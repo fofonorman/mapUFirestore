@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>486660590554-jgcnlf06kms18tguimk2u30ke6h64c13.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.486660590554-jgcnlf06kms18tguimk2u30ke6h64c13</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAEpt-zCZceiO8Y98OCBHvUQAjcHlryiB0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>486660590554</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>in.mapu.mapUFirestore</string>
+	<key>PROJECT_ID</key>
+	<string>mapufirestore</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mapufirestore.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:486660590554:ios:6f29f04b6438734bb78ee3</string>
+	<key>DATABASE_URL</key>
+	<string>https://mapufirestore.firebaseio.com</string>
+</dict>
+</plist>
