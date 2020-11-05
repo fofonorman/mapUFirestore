@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var QRCodePic: UIImageView!
     @IBOutlet weak var URLInput: UITextField!
     var qrcodeImage: CIImage!
+    
+    
 
     
     
@@ -30,12 +32,14 @@ class ViewController: UIViewController {
     @IBAction func genQRCodeBtn(_ sender: UIButton) {
         
         if qrcodeImage == nil {
+            
                 if URLInput.text == "" {
                     URLInput.text = "Please input URL"
+                    return
                 }
-        }
+            
         
-        let data = URLInput.text!.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
+                else {  let data = URLInput.text!.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
 
                 let filter = CIFilter(name: "CIQRCodeGenerator")
 
@@ -44,10 +48,17 @@ class ViewController: UIViewController {
 
         qrcodeImage = filter?.outputImage
         QRCodePic.image = UIImage(ciImage: qrcodeImage)
-
         URLInput.resignFirstResponder()
+        GenQRcode.setTitle("Clear", for: UIControl.State.normal)
+                    
+    }}else {
+        QRCodePic.image = nil
+        qrcodeImage = nil
+        GenQRcode.setTitle("Generate", for: UIControl.State.normal)
+                
+            }
+        
     }
-    
     
 }
 
