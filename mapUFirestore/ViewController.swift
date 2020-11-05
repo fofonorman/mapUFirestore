@@ -17,9 +17,6 @@ class ViewController: UIViewController {
     
     
 
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -27,6 +24,21 @@ class ViewController: UIViewController {
    
 
     }
+    
+    
+    
+    @IBAction func `switch`(_ sender: UISwitch) {
+        
+        if sender.isOn == true {
+            QRCodePic.isHidden = false
+        } else {
+            QRCodePic.isHidden = true
+        }
+            
+            
+    }
+    
+    
 
 
     @IBAction func genQRCodeBtn(_ sender: UIButton) {
@@ -59,6 +71,10 @@ class ViewController: UIViewController {
             }
         
     }
+    
+    
+    
+    
     
 }
 
