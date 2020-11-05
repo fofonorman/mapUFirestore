@@ -13,11 +13,14 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
 
     
     @IBOutlet weak var camView: UIView!
+    @IBOutlet weak var codeTextLabel: UILabel!
+    @IBOutlet weak var QRCodeString: UILabel!
     
     
-    var captureSession:AVCaptureSession?
-    var PreviewLayer:AVCaptureVideoPreviewLayer?
+    var captureSession: AVCaptureSession?
+    var previewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +38,7 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     func setQRCodeScan(){
             
             //實體化一個AVCaptureSession物件
-            captureSesion = AVCaptureSession()
+            captureSession = AVCaptureSession()
             
             //AVCaptureDevice可以抓到相機和其屬性
             guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {return}
@@ -46,16 +49,16 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
                 print(error)
                 return
             }
-            if (captureSesion?.canAddInput(videoInput) ?? false ){
-                captureSesion?.addInput(videoInput)
+            if (captureSession?.canAddInput(videoInput) ?? false ){
+                captureSession?.addInput(videoInput)
             }else{
                 return
             }
             
             //AVCaptureMetaDataOutput輸出影音資料，先實體化AVCaptureMetaDataOutput物件
             let metaDataOutput = AVCaptureMetadataOutput()
-            if (captureSesion?.canAddOutput(metaDataOutput) ?? false){
-                captureSesion?.addOutput(metaDataOutput)
+            if (captureSession?.canAddOutput(metaDataOutput) ?? false){
+                captureSession?.addOutput(metaDataOutput)
                 
                 //關鍵！執行緒處理QRCode
                 metaDataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
@@ -67,17 +70,37 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
             }
             
             //用AVCaptureVideoPreviewLayer來呈現Session上的資料
-            previewLayer = AVCaptureVideoPreviewLayer(session: captureSesion!)
+            previewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
             //顯示size
-            previewLayer.videoGravity = .resizeAspectFill
+        previewLayer?.videoGravity = .resizeAspectFill
             //呈現在camView上面
-            previewLayer.frame = camView.layer.frame
+        previewLayer?.frame = camView.layer.frame
             //加入畫面
-            view.layer.addSublayer(previewLayer)
+        view.layer.addSublayer(previewLayer!)
             //開始影像擷取呈現鏡頭的畫面
-            captureSesion?.startRunning()
+        captureSession?.startRunning()
         }
     
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutputmetadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        
+        captureSession?.startRunning()
+        
+            if let metadataObject = didOutputmetadataObjects.first{
+                
+                //AVMetadataMachineReadableCodeObject是從OutPut擷取到barcode內容
+                guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else {return}
+                //將讀取到的內容轉成string
+                guard let stringValue = readableObject.stringValue else {return}
+                //掃到QRCode後的震動提示
+                AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+                //將string資料放到label元件上
+                codeTextLabel.text = stringValue
+                //存取QRcodeURL
+                QRCodeString.text = stringValue
+                
+            }
+        
+        }
 
     
     
