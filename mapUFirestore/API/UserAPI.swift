@@ -6,21 +6,22 @@
 //
 
 import Foundation
-import FirebaseDatabase
+//import FirebaseDatabase
 import FirebaseAuth
+import FirebaseFirestore
 
 
 class UserAPI {
 
 //    let currentUser = Auth.auth().currentUser
     
-    var userRefRoot = Database.database().reference()
+    let db = Firestore.firestore()
 
-    var userRef = Database.database().reference().child("userList")
+    var userListRef = db.collection("userList")
     
     func observeUser(withID uid: String, completion: @escaping (User) -> Void ) {
         
-        userRef.child(uid).observeSingleEvent(of: .value, with: {
+        userListRef.child(uid).observeSingleEvent(of: .value, with: {
             (snapshot) in
             
             if let dic = snapshot.value as? [String: Any] {

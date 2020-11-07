@@ -23,6 +23,9 @@ class InteractWithDBViewController: UIViewController {
     var TagInstanceForVote: Tag?
     var shuffledTagArr = [Tag]()
     var followingList = [User]()
+    
+//    let db = Firestore.firestore()
+//    var userListRef: DocumentReference?
 
     override func viewDidLoad() {
         super.viewDidLoad()
