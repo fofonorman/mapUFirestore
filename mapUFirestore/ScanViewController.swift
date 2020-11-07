@@ -34,10 +34,14 @@ class ScanViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVCap
         let captureMetadataOutput = AVCaptureMetadataOutput()
         captureSession?.addOutput(captureMetadataOutput)
         
+        
+        
         captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
         
-        captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
+        captureMetadataOutput.metadataObjectTypes = captureMetadataOutput.availableMetadataObjectTypes
+//        captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
         
+                
         messageLabel.isHidden = true
         view.bringSubviewToFront(messageLabel)
         
