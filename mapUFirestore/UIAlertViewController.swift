@@ -6,9 +6,14 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
 class UIAlertViewController: UIViewController {
 
+    let db = Firestore.firestore()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,8 +32,17 @@ class UIAlertViewController: UIViewController {
         
         let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
            let phone = controller.textFields?[0].text
-        
-           print(phone!)
+            
+            if let uid = Auth.auth().currentUser?.uid {
+                self.db.collection("userList").document(uid).updateData(["Phone": phone])
+            
+               print(phone!)
+            }else {
+                
+                print("failed to update!")
+            }
+            
+            
         }
         
         controller.addAction(okAction)
