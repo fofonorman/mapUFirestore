@@ -14,7 +14,7 @@ class InteractWithDBViewController: UIViewController {
     
     
     @IBOutlet weak var randomTag: UILabel!
-    
+    @IBOutlet weak var inputTag: UITextField!
     
     
     var tagsForVote: [String] = []
@@ -23,7 +23,8 @@ class InteractWithDBViewController: UIViewController {
     var TagInstanceForVote: Tag?
     var shuffledTagArr = [Tag]()
     var followingList = [User]()
-    
+    let db = Firestore.firestore()
+
 //    let db = Firestore.firestore()
 //    var userListRef: DocumentReference?
 
@@ -34,7 +35,8 @@ class InteractWithDBViewController: UIViewController {
         //匿名登入
         Auth.auth().signInAnonymously { (authresult,error) in
             if error == nil{
-                API.UserRef.userRef.child("\(authresult!.user.uid)").setValue(["name": "test"])
+                self.db.collection("userList").document("\(authresult!.user.uid)").updateData(["ABABa": "CCCC"])
+                
             print("signed-in \(authresult!.user.uid)")
            }else{
            print(error!.localizedDescription)
@@ -76,6 +78,25 @@ class InteractWithDBViewController: UIViewController {
 //            shuffledArr = self.tagArr.shuffled()
 
         }
+    
+    
+    @IBAction func tagSubmitBtn(_ sender: UIButton) {
+        
+        let data = ["tagContent": self.inputTag.text]
+        
+        if self.inputTag.text == "" {
+            
+            self.inputTag.text = "Please input a tag."
+            
+        }else{
+            
+            db.collection("tagPoolDefault").addDocument(data: data)
+         
+            self.inputTag.text = ""
+        }
+    }
+    
+    
     
 
     /*

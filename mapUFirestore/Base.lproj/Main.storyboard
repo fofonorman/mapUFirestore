@@ -135,12 +135,16 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                 <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="tagSubmitBtn:" destination="pQu-7l-s2X" eventType="touchUpInside" id="zdK-ig-iQS"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Cjg-h7-SYQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="inputTag" destination="9B0-WJ-FRY" id="WgD-kT-x3g"/>
                         <outlet property="randomTag" destination="R7e-p2-8Zx" id="VV5-d0-0Ay"/>
                     </connections>
                 </viewController>
