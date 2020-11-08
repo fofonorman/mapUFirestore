@@ -67,12 +67,25 @@ class UIAlertViewController: UIViewController {
         
     }
     
+    func getUserListID () {
+        
+        db.collection("userList").getDocuments { (querySnapshot, error) in
+            if let querySnapshot = querySnapshot {
+                for document in querySnapshot.documents {
+                    print(document.data()["name"]!)
+              }
+           }
+        }
+        
+        
+    }
     
     
     @IBAction func testAlertAction(_ sender: UIButton) {
         
-        twoBtnsAlert()
-            }
+        getUserListID()
+        
+    }
     
     @IBAction func WhoYouVoteFor(_ sender: UIButton) {
         WhoYouVoteFor()
