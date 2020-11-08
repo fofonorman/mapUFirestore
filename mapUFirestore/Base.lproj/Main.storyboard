@@ -165,6 +165,15 @@
                                     <action selector="testAlertAction:" destination="XCR-Xr-RAu" eventType="touchUpInside" id="zxa-du-fqv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9a-xe-HcD">
+                                <rect key="frame" x="20" y="527" width="374" height="136"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="WhoYouVoteFor"/>
+                                <connections>
+                                    <action selector="WhoYouVoteFor:" destination="XCR-Xr-RAu" eventType="touchUpInside" id="SdL-qq-ipD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZFZ-kQ-dJC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
