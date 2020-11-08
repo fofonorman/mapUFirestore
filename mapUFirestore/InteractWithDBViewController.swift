@@ -87,9 +87,24 @@ class InteractWithDBViewController: UIViewController {
         if self.inputTag.text?.isEmpty == true {
             
             let controller = UIAlertController(title: "Failed", message: "Please input a tag.", preferredStyle: .alert)
-               let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-               controller.addAction(okAction)
-               present(controller, animated: true, completion: nil)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: {(ACTION: UIAlertAction) in
+                self.dismiss(animated: true, completion: nil)
+                
+            })
+                
+            controller.addAction(okAction)
+              
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {(ACTION: UIAlertAction) in
+                self.dismiss(animated: true, completion: nil)
+                
+            })
+                
+            controller.addAction(cancelAction)
+//            let cancelAction = UIAlertAction(title: "cancel", style: .default, handler: nil)
+//            controller.addAction(cancelAction)
+            present(controller, animated: true, completion: nil)
+            
+            
         }else{
             
             db.collection("tagPoolDefault").addDocument(data: data)
