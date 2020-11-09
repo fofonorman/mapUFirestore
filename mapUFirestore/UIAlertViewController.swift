@@ -12,7 +12,7 @@ import FirebaseAuth
 class UIAlertViewController: UIViewController {
 
     let db = Firestore.firestore()
-    
+    var friNameForVote = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +72,16 @@ class UIAlertViewController: UIViewController {
         db.collection("userList").getDocuments { (querySnapshot, error) in
             if let querySnapshot = querySnapshot {
                 for document in querySnapshot.documents {
-                    print(document.data()["name"]!)
+                    
+                    if var friName = document.data()["name"] as? String {
+                        self.friNameForVote.append(friName)
+                        print(friName)
+                        print(self.friNameForVote)
+
+                    } else {
+                        print(error)
+                    }
+                    
               }
            }
         }
