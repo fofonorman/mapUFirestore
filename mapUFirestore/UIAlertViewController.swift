@@ -156,14 +156,37 @@ class UIAlertViewController: UIViewController {
         
     }
     
-    @IBAction func testAlertAction(_ sender: UIButton) {
+    func twoBtnToDiscardChange() {
         
+        let alert = UIAlertController(title: "Alert", message: "Alert with more than 2 buttons", preferredStyle: .alert)
+
+                alert.addAction(UIAlertAction(title: "Default", style: .default, handler: { (_) in
+                    print("You've pressed default")
+                }))
+
+                alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (_) in
+                    print("You've pressed cancel")
+                }))
+
+//                alert.addAction(UIAlertAction(title: "Destructive", style: .destructive, handler: { (_) in
+//                    print("You've pressed the destructive")
+//                }))
+                self.present(alert, animated: true, completion: nil)
+
+        
+    }
+    
+    @IBAction func testAlertAction(_ sender: UIButton) {
+        twoBtnToDiscardChange()
           
     }
     
     @IBAction func WhoYouVoteFor(_ sender: UIButton) {
         WhoYouVoteFor()
     }
+    
+    
+    
     
     
     
