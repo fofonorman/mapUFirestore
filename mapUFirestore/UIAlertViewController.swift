@@ -75,7 +75,7 @@ class UIAlertViewController: UIViewController {
     func WhoYouVoteFor() {
         
      
-        let controller = UIAlertController(title: "真心話大冒險", message: self.shuffledTagContent[0] , preferredStyle: .actionSheet)
+        let controller = UIAlertController(title: "真心話大冒險", message: "Try it!!" , preferredStyle: .actionSheet)
         let names = self.friNameForVote
         for name in names {
            let action = UIAlertAction(title: name, style: .default) {

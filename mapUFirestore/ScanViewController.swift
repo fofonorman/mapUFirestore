@@ -29,7 +29,25 @@ class ScanViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVCap
 
         // Do any additional setup after loading the view.
         
+        captureSession = AVCaptureSession()
+        captureSession?.sessionPreset = AVCaptureSession.Preset.hd1920x1080
         
+        let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
+        
+        do {
+            
+            let input = try AVCaptureDeviceInput(device: captureDevice!)
+            captureSession?.addInput(input )
+            
+        } catch {
+            
+            print("no camera!!!")
+        }
+          captureSession?.startRunning()
+
+          previewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
+          previewLayer?.frame = view.frame
+          view.layer.addSublayer(previewLayer!)
         
         let captureMetadataOutput = AVCaptureMetadataOutput()
         captureSession?.addOutput(captureMetadataOutput)
