@@ -37,9 +37,23 @@ class UIAlertViewController: UIViewController {
         
     }
     
-    
+    //晃動效果
+  
+//
+//        func shake(duration timeDuration: Double = 0.07, repeat countRepeat: Float = 3){
+//               let animation = CABasicAnimation(keyPath: "position")
+//               animation.duration = timeDuration
+//               animation.repeatCount = countRepeat
+//               animation.autoreverses = true
+//            animation.fromValue = NSValue(cgPoint: CGPoint(x: self.view.center.x - 10, y: self.view.center.y))
+//            animation.toValue = NSValue(cgPoint: CGPoint(x: self.view.center.x + 10, y: self.view.center.y))
+//            self.view.layer.add(animation, forKey: "position")
+//           }
+
+        
 
     
+ 
     
     // 兩顆按鈕警告視窗
     
@@ -55,15 +69,24 @@ class UIAlertViewController: UIViewController {
            let phone = controller.textFields?[0].text
             
             if let uid = Auth.auth().currentUser?.uid {
-                self.db.collection("userList").document(uid).updateData(["Phone": phone])
-            
-            }else {
                 
-                print("failed to update!")
-            }
+                if phone != "" {
+                    
+                    self.db.collection("userList").document(uid).updateData(["Phone": phone])
+                
+                }else {
+//                    let animation = CABasicAnimation(keyPath: "position")
+//                    animation.duration = 0.07
+//                    animation.repeatCount = 4
+//                    animation.autoreverses = true
+//                    animation.fromValue = NSValue(cgPoint: CGPoint(x: self.center.x - 10, y: controller.center.y))
+//                    animation.toValue = NSValue(cgPoint: CGPoint(x: controller.center.x + 10, y: viewToShake.center.y))
+//
+//                    controller.layer.add(animation, forKey: "position")
+                }
             
             
-        }
+            }}
         
         controller.addAction(okAction)
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
@@ -177,7 +200,7 @@ class UIAlertViewController: UIViewController {
     }
     
     @IBAction func testAlertAction(_ sender: UIButton) {
-        twoBtnToDiscardChange()
+        twoBtnsAlert()
           
     }
     
