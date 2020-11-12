@@ -42,7 +42,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-
+    @IBAction func copyTest(_ sender: UIButton) {
+        UIPasteboard.general.string = "Hello world"
+    }
+    
 
     @IBAction func genQRCodeBtn(_ sender: UIButton) {
         

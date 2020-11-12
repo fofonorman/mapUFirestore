@@ -46,27 +46,29 @@ class ScanViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVCap
           captureSession?.startRunning()
 
           previewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
+          previewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
           previewLayer?.frame = view.frame
           view.layer.addSublayer(previewLayer!)
         
         let captureMetadataOutput = AVCaptureMetadataOutput()
         captureSession?.addOutput(captureMetadataOutput)
         
-        
+         
         
         captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
         
-        captureMetadataOutput.metadataObjectTypes = captureMetadataOutput.availableMetadataObjectTypes
-//        captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
+//        captureMetadataOutput.metadataObjectTypes = captureMetadataOutput.availableMetadataObjectTypes
+        captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
         
                 
         messageLabel.isHidden = true
         view.bringSubviewToFront(messageLabel)
-        
+         
         frameView = UIView()
         
         if let detectView = frameView {
             
+          
             detectView.layer.borderColor = UIColor.green.cgColor
             detectView.layer.borderWidth = 2.0
             view.addSubview(detectView)
