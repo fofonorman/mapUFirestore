@@ -21,6 +21,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         URLInput.delegate = self
+        
+        self.GenQRcode.setImage(UIImage(named : "kkkgi"), for: UIControl.State.normal) // 預設狀態下要顯示的圖片
+                self.GenQRcode.setImage(UIImage(named : "testPic"), for: UIControl.State.selected) // 選取狀態下要顯示的圖片
+            
+
    
 
     }
@@ -76,8 +81,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 
             }
         
+        self.GenQRcode.isSelected = !sender.isSelected
+        
     }
     
+
     
     
     
