@@ -9,17 +9,23 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 
-class UIAlertViewController: UIViewController {
+class UIAlertViewController: UIViewController, UITextFieldDelegate {
 
     let db = Firestore.firestore()
     var friNameForVote = [String]()
     var tagContent = [String]()
     var shuffledTagContent = [String]()
     
+    @IBOutlet weak var shareText: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        shareText.delegate = self
+
+        
         getUserListID(completionHandler: {  friName in
             print(self.friNameForVote)
 
@@ -36,6 +42,16 @@ class UIAlertViewController: UIViewController {
         
         
     }
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            self.view.endEditing(true)
+        }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            textField.resignFirstResponder()
+            return true
+      }
     
     //晃動效果
   
@@ -199,8 +215,16 @@ class UIAlertViewController: UIViewController {
         
     }
     
+//    分享貼文到其他 app
+    func sharePost() {
+        let activityController = UIActivityViewController(activityItems: [shareText.text!, UIImage(named: "testPic")], applicationActivities: nil)
+        present(activityController, animated: true, completion: nil)
+        
+    }
+    
+    
     @IBAction func testAlertAction(_ sender: UIButton) {
-        twoBtnsAlert()
+        sharePost()
           
     }
     
