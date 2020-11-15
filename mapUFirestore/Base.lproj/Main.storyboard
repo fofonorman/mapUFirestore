@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vS5-HZ-XAG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8ec-fK-1xJ">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--QRCODE-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="mapUFirestore" customModuleProvider="target" sceneMemberID="viewController">
@@ -66,7 +66,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="aT9-xd-7QD"/>
+                    <navigationItem key="navigationItem" title="QRCODE" id="aT9-xd-7QD">
+                        <barButtonItem key="backBarButtonItem" title="Back to Scan" id="gFd-H2-S3y"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="GenQRcode" destination="Hu4-Zz-513" id="fGn-gf-4Js"/>
                         <outlet property="QRCodePic" destination="bui-Ir-1jt" id="RLG-ZL-Beq"/>
@@ -176,7 +178,7 @@
             </objects>
             <point key="canvasLocation" x="2626" y="823"/>
         </scene>
-        <!--View Controller-->
+        <!--Item-->
         <scene sceneID="Rsj-3L-PLz">
             <objects>
                 <viewController id="vS5-HZ-XAG" sceneMemberID="viewController">
@@ -184,7 +186,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JH7-ri-4gn">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JH7-ri-4gn">
                                 <rect key="frame" x="20" y="180" width="374" height="253"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -193,7 +195,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="001" translatesAutoresizingMaskIntoConstraints="NO" id="q2e-cz-oZK">
-                                                <rect key="frame" x="20" y="11" width="143" height="128"/>
+                                                <rect key="frame" x="20" y="-10" width="157" height="160"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="002" translatesAutoresizingMaskIntoConstraints="NO" id="8Nz-Zs-rt2">
@@ -222,12 +224,13 @@
                         <viewLayoutGuide key="safeArea" id="XRy-Kj-yMC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="0vb-wE-Vww"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AuY-6T-AiV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2638" y="1623"/>
+            <point key="canvasLocation" x="2637.68115942029" y="1622.5446428571429"/>
         </scene>
-        <!--Alert View Controller-->
+        <!--VOTE-->
         <scene sceneID="H6w-rT-vIR">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="XCR-Xr-RAu" customClass="UIAlertViewController" customModule="mapUFirestore" customModuleProvider="target" sceneMemberID="viewController">
@@ -263,7 +266,9 @@
                         <viewLayoutGuide key="safeArea" id="ZFZ-kQ-dJC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="T2e-nv-iSY"/>
+                    <navigationItem key="navigationItem" title="VOTE" id="T2e-nv-iSY">
+                        <barButtonItem key="backBarButtonItem" title="TEST" id="289-9G-JT2"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="shareText" destination="DZO-5B-qvw" id="tl3-eC-SE1"/>
                     </connections>
@@ -272,11 +277,13 @@
             </objects>
             <point key="canvasLocation" x="4433" y="88"/>
         </scene>
-        <!--Item-->
+        <!--YES-->
         <scene sceneID="z40-82-JbJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tGc-3h-rE7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="pv1-LB-eJg"/>
+                    <tabBarItem key="tabBarItem" title="YES" image="logo.png" selectedImage="close-with-transparency.png" id="pv1-LB-eJg">
+                        <color key="badgeColor" systemColor="linkColor"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QHZ-hu-LO9">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -297,11 +304,13 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="8ec-fK-1xJ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="blZ-fi-3t6">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="tGc-3h-rE7" kind="relationship" relationship="viewControllers" id="sRU-hc-QAd"/>
+                        <segue destination="vS5-HZ-XAG" kind="relationship" relationship="viewControllers" id="aVe-7g-wbN"/>
                         <segue destination="pQu-7l-s2X" kind="relationship" relationship="viewControllers" id="8w0-Ic-rZ5"/>
                     </connections>
                 </tabBarController>
@@ -314,7 +323,12 @@
         <image name="001" width="275" height="183"/>
         <image name="002" width="243" height="208"/>
         <image name="003" width="225" height="225"/>
+        <image name="close-with-transparency.png" width="44" height="44"/>
         <image name="kkkgi" width="800" height="800"/>
+        <image name="logo.png" width="1332" height="928"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
