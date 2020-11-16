@@ -21,7 +21,24 @@ class UserAPI {
         
         let db = Firestore.firestore()
 
-        var userListRef = db.collection("userList")
+        let userListRef = db.collection("userList")
+        
+        userListRef.getDocuments{ (querySnapshot, error) in
+            
+            if let querySnapshot = querySnapshot {
+                
+                for document in querySnapshot.documents {
+                    
+                    if let 
+                    
+                }
+                
+            }
+            
+            
+        }
+        
+        
         
 //       待改成 firestore path
 //        userListRef.child(uid).observeSingleEvent(of: .value, with: {

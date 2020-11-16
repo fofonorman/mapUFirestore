@@ -14,10 +14,10 @@ class Tag {
 
 extension Tag{
     
-    static func typeOneTag(ID: String, dic: [String: Any]) -> Tag {
+    static func typeOneTag(ID: String, tagContent: String) -> Tag {
            
         let tag = Tag()
-        tag.tagContent = dic["tag"] as? String
+        tag.tagContent = tagContent
         tag.tagID = ID
         
         return tag

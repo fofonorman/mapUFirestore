@@ -35,41 +35,46 @@ class InteractWithDBViewController: UIViewController {
         //匿名登入
         Auth.auth().signInAnonymously { (authresult,error) in
             if error == nil{
-                self.db.collection("userList").document("\(authresult!.user.uid)").updateData(["ABABa": "CCCC"])
+                self.db.collection("userList").document(authresult!.user.uid).setData(["DDDD": "EEEEE"])
                 
             print("signed-in \(authresult!.user.uid)")
            }else{
            print(error!.localizedDescription)
         }}
         
-//        fetchTagPool(completionHandler: { tagArr in
-//            self.shuffledTagArr = tagArr!.shuffled()
-//            self.TagInstanceForVote = self.outputRandomTagInstance(tagArr: self.shuffledTagArr)
-//          
-//            self.randomTag.text = self.TagInstanceForVote?.tagContent
-//        })
+        fetchTagPool(completionHandler: { tagArr in
+            self.shuffledTagArr = tagArr!.shuffled()
+            self.TagInstanceForVote = self.outputRandomTagInstance(tagArr: self.shuffledTagArr)
+          
+            self.randomTag.text = self.TagInstanceForVote?.tagContent
+        })
         
-        fetchTag()
+        
     }
+    
+    
+    
+    
+    
     
     typealias TagArrayClosure = ([Tag]?) -> Void
 
     //撈出tagPool底下所有資料匯入class並作為日後存取相關資料所用
-//    func fetchTagPool(completionHandler: @escaping TagArrayClosure) {
-//        var result = [Tag]()
-//
-//            API.Tag.observeTagPool { tag in
-//                result.append(tag)
-//
-//                DispatchQueue.main.async() {
-//                    if result.isEmpty {
-//                        completionHandler(nil)
-//                    }else {
-//                        completionHandler(result)
-//                      }
-//        }
-//    }
-//    }
+    func fetchTagPool(completionHandler: @escaping TagArrayClosure) {
+        var result = [Tag]()
+
+            API.Tag.observeTagPool { tag in
+                result.append(tag)
+
+                DispatchQueue.main.async() {
+                    if result.isEmpty {
+                        completionHandler(nil)
+                    }else {
+                        completionHandler(result)
+                      }
+        }
+    }
+    }
     
     func outputRandomTagInstance(tagArr: [Tag]) -> Tag {
         
@@ -120,13 +125,17 @@ class InteractWithDBViewController: UIViewController {
         db.collection("tagPoolDefault").getDocuments { (querySnapshot, error) in
            if let querySnapshot = querySnapshot {
               for document in querySnapshot.documents {
-                 print(document.documentID)
+                print(document.data())
               }
            }
         }
                 
     }
     
+    @IBAction func testBtn(_ sender: UIButton) {
+        
+        
+    }
     
     
 
