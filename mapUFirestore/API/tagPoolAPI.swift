@@ -29,7 +29,7 @@ class TagPoolAPI {
                     let newTag = Tag.typeOneTag(ID: tagIDs, tagContent: tagContent as! String)
                         completion(newTag)
                     
-                    print(document.data()["tagContent"])
+                    
                 }
                 
                 

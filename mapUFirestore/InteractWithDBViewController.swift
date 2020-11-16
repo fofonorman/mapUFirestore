@@ -16,13 +16,15 @@ class InteractWithDBViewController: UIViewController {
     @IBOutlet weak var randomTag: UILabel!
     @IBOutlet weak var inputTag: UITextField!
     
+    @IBOutlet weak var FriendBtnA: UIButton!
+    @IBOutlet weak var FriendBtnB: UIButton!
     
     var tagsForVote: [String] = []
     var userNameArr: [String] = []
     var tagArr = [Tag]()
     var TagInstanceForVote: Tag?
     var shuffledTagArr = [Tag]()
-    var followingList = [User]()
+    var shuffledFollowingList = [User]()
     let db = Firestore.firestore()
 
 //    let db = Firestore.firestore()
@@ -48,6 +50,14 @@ class InteractWithDBViewController: UIViewController {
           
             self.randomTag.text = self.TagInstanceForVote?.tagContent
         })
+        
+       fetchFollowingList(completionHandler: { userArr in
+        self.shuffledFollowingList = userArr!.shuffled()
+            
+        
+        })
+        
+        
         
         
     }
@@ -75,6 +85,28 @@ class InteractWithDBViewController: UIViewController {
         }
     }
     }
+    
+    typealias FollowingListArrayClosure = ([User]?) -> Void
+
+    //撈出followingList底下所有資料匯入class並作為日後存取相關資料所用
+    func fetchFollowingList(completionHandler: @escaping FollowingListArrayClosure) {
+        var result = [User]()
+
+            API.User.fetchFollowingList { users in
+                result.append(users)
+
+                DispatchQueue.main.async() {
+                    if result.isEmpty {
+                        completionHandler(nil)
+                    }else {
+                        completionHandler(result)
+                      }
+        }
+    }
+    }
+    
+    
+    
     
     func outputRandomTagInstance(tagArr: [Tag]) -> Tag {
         

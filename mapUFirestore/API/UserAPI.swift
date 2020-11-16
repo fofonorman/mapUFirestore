@@ -23,13 +23,20 @@ class UserAPI {
 
         let userListRef = db.collection("userList")
         
-        userListRef.getDocuments{ (querySnapshot, error) in
+        userListRef.document(currentUser!.uid).collection("followingList").getDocuments { (querySnapshot, error) in
             
             if let querySnapshot = querySnapshot {
                 
                 for document in querySnapshot.documents {
                     
-                    if let 
+                    if let names = document.data()["name"] {
+                        
+                        let uids = document.documentID
+                        
+                        let newUser = User.certainUser(uid: uids, displayName: names as! String)
+                        completion(newUser)
+                        
+                    }
                     
                 }
                 
@@ -39,18 +46,7 @@ class UserAPI {
         }
         
         
-        
-//       待改成 firestore path
-//        userListRef.child(uid).observeSingleEvent(of: .value, with: {
-//            (snapshot) in
-//
-//            if let dic = snapshot.value as? [String: Any] {
-//
-//                let user = User.certainUser(uid: uid, displayName: dic["name"] as! String)
-//                completion(user)
-//            }
-//
-//        })
+      
     }
     
     
