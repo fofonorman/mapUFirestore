@@ -52,18 +52,33 @@ class InteractWithDBViewController: UIViewController {
         })
         
        fetchFollowingList(completionHandler: { userArr in
+
         self.shuffledFollowingList = userArr!.shuffled()
-            
+        self.FriendBtnA.setTitle(self.shuffledFollowingList[0].displayName, for: .normal)
+        print(self.shuffledFollowingList[0].displayName)
+        }
+       )
         
-        })
-        
-        
-        
+          
         
     }
     
     
+func fetchFriend() {
     
+    
+    
+    self.db.collection("userList").document(API.UserRef.currentUser!.uid).collection("FollowingList").getDocuments { (querySnapshot, error) in
+        if let querySnapshot = querySnapshot {
+           for document in querySnapshot.documents {
+              print(document.documentID)
+            print(document.data()["name"])
+           }
+        }
+     }
+
+    
+}
     
     
     
@@ -100,6 +115,8 @@ class InteractWithDBViewController: UIViewController {
                         completionHandler(nil)
                     }else {
                         completionHandler(result)
+                        
+                        print(result)
                       }
         }
     }
@@ -164,8 +181,11 @@ class InteractWithDBViewController: UIViewController {
                 
     }
     
+    
+  
+    
     @IBAction func testBtn(_ sender: UIButton) {
-        
+        fetchFriend()
         
     }
     

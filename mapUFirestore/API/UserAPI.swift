@@ -23,6 +23,8 @@ class UserAPI {
 
         let userListRef = db.collection("userList")
         
+        
+//        寫錯了，下列方法應該要用在 followingListAPI
         userListRef.document(currentUser!.uid).collection("followingList").getDocuments { (querySnapshot, error) in
             
             if let querySnapshot = querySnapshot {

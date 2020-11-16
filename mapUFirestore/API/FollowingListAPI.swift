@@ -13,26 +13,46 @@ import FirebaseAuth
 
 class FollowingListAPI {
 
-    let userRef = Database.database().reference()
-      
+    let currentUser = Auth.auth().currentUser
+
     func fetchFollowingList(completion: @escaping (User) -> Void) {
          
         
-       if let currentUserUID = Auth.auth().currentUser?.uid {
-              
-            let followingListRef = Database.database().reference().child("userList").child(currentUserUID).child("followingList")
+        let db = Firestore.firestore()
+
+        let userListRef = db.collection("userList")
+        
+        
+        userListRef.document(currentUser!.uid).collection("FollowingList").getDocuments { (querySnapshot, error) in
+            
+            if let querySnapshot = querySnapshot {
                 
-         followingListRef.observe(.childAdded, with: {(Snapshot) in
-                      
-                    let followingUID = Snapshot.key
-                    self.userRef.child("userList").child(followingUID).child("name").observe(DataEventType.value, with: { (snapshot) in
-                    let userName = snapshot.value as? String
+                for document in querySnapshot.documents {
+//                    要將撈出來的 followingListID 拿去正確的路徑撈 userDisplayName
+                    if let uids = document.documentID {
                         
-                    let followingUser = User.followingList(uid: followingUID, displayName: userName ?? "")
-                        completion(followingUser)
+                        userListRef.document(uids).getDocument { (queryNames, error) in
+                            
+                            if let queryNames = queryNames {
+                                
+                                let names = queryNames.data()?["name"]
+                                
+                                let newUser = User.certainUser(uid: uids, displayName: names as! String)
+                                completion(newUser)
+                                
+                            }
+                            
+                        }
+                        
+                       
+                        
                     }
-            )})
-         
+                    
+                }
+                
+            }
+            
+            
         }
                
     }
