@@ -7,6 +7,7 @@
 
 import Foundation
 
+import FirebaseFirestore
 import FirebaseDatabase
 
 class User {
@@ -44,8 +45,8 @@ extension User{
 
 extension User{
     
-    static func userRefSetup() -> DatabaseReference {
-        let userRef = Database.database().reference()
+    static func userRefSetup() -> Firestore {
+        let userRef = Firestore.firestore()
         return userRef
     }
     

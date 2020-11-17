@@ -28,33 +28,18 @@ class FollowingListAPI {
             if let querySnapshot = querySnapshot {
                 
                 for document in querySnapshot.documents {
-//                    要將撈出來的 followingListID 拿去正確的路徑撈 userDisplayName
-                    if let uids = document.documentID {
+//   要將撈出來的 followingListID 拿去正確的路徑撈 userDisplayName
+ 
+                    if let names = userListRef.document(document.documentID).   {
                         
-                        userListRef.document(uids).getDocument { (queryNames, error) in
-                            
-                            if let queryNames = queryNames {
-                                
-                                let names = queryNames.data()?["name"]
-                                
-                                let newUser = User.certainUser(uid: uids, displayName: names as! String)
+                        let uids = document.documentID
+                        let newUser = User.certainUser(uid: uids, displayName: names as! String)
                                 completion(newUser)
                                 
                             }
                             
-                        }
-                        
-                       
-                        
-                    }
-                    
-                }
-                
-            }
-            
-            
-        }
+             }} }}}
                
-    }
+//if let names = document.data()["name"]
 
-}
+

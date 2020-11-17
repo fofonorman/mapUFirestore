@@ -14,7 +14,6 @@ import FirebaseFirestore
 class UserAPI {
 
     let currentUser = Auth.auth().currentUser
-  
     
     func observeUser(withID uid: String, completion: @escaping (User) -> Void ) {
         
@@ -24,22 +23,19 @@ class UserAPI {
         let userListRef = db.collection("userList")
         
         
-//        寫錯了，下列方法應該要用在 followingListAPI
-        userListRef.document(currentUser!.uid).collection("followingList").getDocuments { (querySnapshot, error) in
+//      將uid輸入後撈出name再填入 certainUser class
+        userListRef.document(uid).getDocument { (document, error) in
             
-            if let querySnapshot = querySnapshot {
+            if let name = document?.data()?["name"], (name as AnyObject).exists {
                 
-                for document in querySnapshot.documents {
-                    
-                    if let names = document.data()["name"] {
-                        
-                        let uids = document.documentID
-                        
-                        let newUser = User.certainUser(uid: uids, displayName: names as! String)
-                        completion(newUser)
-                        
+
+                let uid = document?.documentID
+
+                let certainUser = User.certainUser(uid: uid!, displayName: name as! String)
+                        completion(certainUser)
+
                     }
-                    
+
                 }
                 
             }
