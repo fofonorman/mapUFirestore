@@ -182,10 +182,10 @@ func fetchFriend() {
     }
     
     
+        
   
     
     @IBAction func testBtn(_ sender: UIButton) {
-        fetchFriend()
         
     }
     

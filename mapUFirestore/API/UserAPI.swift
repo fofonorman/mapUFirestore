@@ -26,7 +26,7 @@ class UserAPI {
 //      將uid輸入後撈出name再填入 certainUser class
         userListRef.document(uid).getDocument { (document, error) in
             
-            if let name = document?.data()?["name"], (name as AnyObject).exists {
+            if let name = document?.data()?["name"] {
                 
 
                 let uid = document?.documentID
@@ -34,7 +34,10 @@ class UserAPI {
                 let certainUser = User.certainUser(uid: uid!, displayName: name as! String)
                         completion(certainUser)
 
-                    }
+            } else {
+                
+                print(error)
+            }
 
                 }
                 
@@ -43,9 +46,4 @@ class UserAPI {
             
         }
         
-        
-      
-    }
-    
-    
-}
+
