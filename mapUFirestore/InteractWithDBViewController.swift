@@ -51,13 +51,13 @@ class InteractWithDBViewController: UIViewController {
             self.randomTag.text = self.TagInstanceForVote?.tagContent
         })
         
-       fetchFollowingList(completionHandler: { userArr in
-
-        self.shuffledFollowingList = userArr!.shuffled()
-        self.FriendBtnA.setTitle(self.shuffledFollowingList[0].displayName, for: .normal)
-        print(self.shuffledFollowingList[0].displayName)
-        }
-       )
+//       fetchFollowingList(completionHandler: { userArr in
+//
+//        self.shuffledFollowingList = userArr!.shuffled()
+//        self.FriendBtnA.setTitle(self.shuffledFollowingList[0].displayName, for: .normal)
+//        print(self.shuffledFollowingList[0].displayName)
+//        }
+//       )
         
           
         
@@ -72,6 +72,8 @@ func fetchFriend() {
         if let querySnapshot = querySnapshot {
            for document in querySnapshot.documents {
               print(document.documentID)
+            
+//因為從followingList得到的uid路徑底下沒有name值，所以將撈不到name
             print(document.data()["name"])
            }
         }
@@ -107,7 +109,7 @@ func fetchFriend() {
     func fetchFollowingList(completionHandler: @escaping FollowingListArrayClosure) {
         var result = [User]()
 
-            API.User.fetchFollowingList { users in
+            API.FollowingList.fetchFollowingList(withID: Auth.auth().currentUser!.uid) { users in
                 result.append(users)
 
                 DispatchQueue.main.async() {
@@ -115,8 +117,7 @@ func fetchFriend() {
                         completionHandler(nil)
                     }else {
                         completionHandler(result)
-                        
-                        print(result)
+
                       }
         }
     }
@@ -182,12 +183,27 @@ func fetchFriend() {
     }
     
     
+    func test(withID uid: String) {
         
+      
+    }
   
     
     @IBAction func testBtn(_ sender: UIButton) {
         
-    }
+        fetchFriend()
+        
+//        API.FollowingList.fetchFollowingList(withID: Auth.auth().currentUser!.uid) {
+//
+//            ( friend ) in
+//
+//            self.shuffledFollowingList.append(friend)
+//            print(self.shuffledFollowingList)
+//           self.FriendBtnA.setTitle(self.shuffledFollowingList[0].displayName, for: .normal)
+            
+        }
+        
+        }
     
     
 
@@ -201,4 +217,4 @@ func fetchFriend() {
     }
     */
 
-}
+

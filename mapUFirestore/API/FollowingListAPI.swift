@@ -15,7 +15,7 @@ class FollowingListAPI {
 
     let currentUser = Auth.auth().currentUser
 
-    func fetchFollowingList(completion: @escaping (User) -> Void) {
+    func fetchFollowingList(withID uid: String, completion: @escaping (User) -> Void) {
          
         
         let db = Firestore.firestore()
@@ -23,25 +23,38 @@ class FollowingListAPI {
         let userListRef = db.collection("userList")
         
         
-//        userListRef.document(currentUser!.uid).collection("FollowingList").getDocuments { (querySnapshot, error) in
-//            
-//            if let querySnapshot = querySnapshot {
-//                
-//                for document in querySnapshot.documents {
-////   要將撈出來的 followingListID 拿去正確的路徑撈 userDisplayName
-// 
-//                    if let names = userListRef.document(document.documentID).   {
-//                        
-//                        let uids = document.documentID
-//                        let newUser = User.certainUser(uid: uids, displayName: names as! String)
-//                                completion(newUser)
-//                                
-//                            }
-//                            
-//             }} }
+        //      將uid輸入後撈出name再填入 certainUser class
+        userListRef.document(uid).collection("FollowingList").getDocuments { (querySnapshot, error) in
+            
+           if let existingSnapshot = querySnapshot  {
+                        
+                for i in existingSnapshot.documents {
+                    
+                    API.UserRef.observeUser(withID: i.documentID) {
+                        
+                        (followingUser) in
+                        
+                        completion(followingUser)
+                        
+                    }
+                    
+                }
+//
+//                        let uid = document?.documentID
+//
+//                        let certainUser = User.certainUser(uid: uid!, displayName: name as! String)
+//                                completion(certainUser)
+//
+//                    } else {
+//
+//                        print(error)
+//                    }
+
+                        }
         
     }}
                
 //if let names = document.data()["name"]
 
 
+}
