@@ -191,17 +191,30 @@ func fetchFriend() {
     
     @IBAction func testBtn(_ sender: UIButton) {
         
-        fetchFriend()
         
 //        API.FollowingList.fetchFollowingList(withID: Auth.auth().currentUser!.uid) {
 //
 //            ( friend ) in
 //
 //            self.shuffledFollowingList.append(friend)
-//            print(self.shuffledFollowingList)
+//
 //           self.FriendBtnA.setTitle(self.shuffledFollowingList[0].displayName, for: .normal)
-            
-        }
+//
+//        }
+        
+        db.collection("userList").document(Auth.auth().currentUser!.uid).collection("TagIGot").document(TagInstanceForVote?.tagID as! String).setData([TagInstanceForVote?.tagContent as! String: true])
+        
+//        將收到標籤的用戶放到標籤文件底下的whoGotThisTag
+        db.collection("tagPoolDefault").document(TagInstanceForVote?.tagID as! String).updateData(<#T##fields: [AnyHashable : Any]##[AnyHashable : Any]#>)
+        
+        
+//        .addDocument(data: [TagInstanceForVote?.tagContent as! String: true])
+//
+        
+        
+//        document("TagIGot").updateData([TagInstanceForVote?.tagContent: true])
+        
+        
         
         }
     
@@ -217,4 +230,4 @@ func fetchFriend() {
     }
     */
 
-
+}

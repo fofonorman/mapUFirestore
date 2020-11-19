@@ -12,10 +12,11 @@ import FirebaseFirestore
 class TagPoolAPI {
     
       
+    let db = Firestore.firestore()
+    
+    
     func observeTagPool(completion: @escaping (Tag) -> Void) {
    
-        let db = Firestore.firestore()
-        
         let tagPoolRef = db.collection("tagPoolDefault")
        
         
