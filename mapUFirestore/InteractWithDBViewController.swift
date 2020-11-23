@@ -47,18 +47,19 @@ class InteractWithDBViewController: UIViewController {
         }}
         
         fetchTagPool(completionHandler: { tagArr in
-            self.shuffledTagArr = tagArr!.shuffled()
-            self.TagInstanceForVote = self.outputRandomTagInstance(tagArr: self.shuffledTagArr)
           
+            self.TagInstanceForVote = tagArr?.randomElement()
+            
+                    
             self.randomTag.text = self.TagInstanceForVote?.tagContent
+            
         })
         
        fetchFollowingList(completionHandler: { userArr in
 
-        self.shuffledFollowingList = userArr!.shuffled()
-        self.FriendBtnA.setTitle(self.shuffledFollowingList[0].displayName, for: .normal)
+        self.FollowingListInstance = userArr!.randomElement()
+        self.FriendBtnA.setTitle(self.FollowingListInstance?.displayName, for: .normal)
         
-        print(self.shuffledFollowingList.count)
         }
        )
         
@@ -176,25 +177,7 @@ class InteractWithDBViewController: UIViewController {
   
     @IBAction func FriendABtn(_ sender: UIButton) {
 
-        if self.followingListArrRandomIndex == 10 {
-            
-            self.followingListArrRandomIndex = 0
-            
-        }else {
-            
-            self.followingListArrRandomIndex += 1
-
-        }
-        
-                API.FollowingList.fetchFollowingList(withID: Auth.auth().currentUser!.uid) {
-
-                    ( friend ) in
-
-                    self.shuffledFollowingList.append(friend)
-                    self.FriendBtnA.setTitle(self.shuffledFollowingList[self.followingListArrRandomIndex].displayName, for: .normal)
-                  
-                   print(self.shuffledFollowingList)
-                }
+     
         
 //      按下投票鈕時，透過func actionsAfterClickFriendToVote將資料存入資料庫
         
