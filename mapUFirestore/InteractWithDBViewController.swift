@@ -185,12 +185,12 @@ func fetchFriend() {
     
     func test(withID uid: String) {
         
-      
+        db.collection("tagPoolDefault").document(uid).updateData(["whoGotThisTag": FieldValue.arrayUnion(["USERDDDDDD"])])
     }
   
     
     @IBAction func testBtn(_ sender: UIButton) {
-        
+        test(withID: "VvJTZHoJ3B4PUcMGJ8E0")
         
 //        API.FollowingList.fetchFollowingList(withID: Auth.auth().currentUser!.uid) {
 //
@@ -202,10 +202,11 @@ func fetchFriend() {
 //
 //        }
         
-        db.collection("userList").document(Auth.auth().currentUser!.uid).collection("TagIGot").document(TagInstanceForVote?.tagID as! String).setData([TagInstanceForVote?.tagContent as! String: true])
-        
-//        將收到標籤的用戶放到標籤文件底下的whoGotThisTag
-        db.collection("tagPoolDefault").document(TagInstanceForVote?.tagID as! String).updateData(<#T##fields: [AnyHashable : Any]##[AnyHashable : Any]#>)
+//
+//        db.collection("userList").document(Auth.auth().currentUser!.uid).collection("TagIGot").document(TagInstanceForVote?.tagID as! String).setData([TagInstanceForVote?.tagContent as! String: true])
+//
+////        將收到標籤的用戶放到標籤文件底下的whoGotThisTag
+//        db.collection("tagPoolDefault").document(TagInstanceForVote?.tagID as! String).updateData(<#T##fields: [AnyHashable : Any]##[AnyHashable : Any]#>)
         
         
 //        .addDocument(data: [TagInstanceForVote?.tagContent as! String: true])
