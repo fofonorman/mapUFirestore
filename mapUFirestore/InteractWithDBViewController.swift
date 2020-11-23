@@ -23,10 +23,11 @@ class InteractWithDBViewController: UIViewController {
     var userNameArr: [String] = []
     var tagArr = [Tag]()
     var TagInstanceForVote: Tag?
+    var FollowingListInstance: User?
     var shuffledTagArr = [Tag]()
     var shuffledFollowingList = [User]()
     let db = Firestore.firestore()
-    var followingListArrRandomIndex: Int?
+    var followingListArrRandomIndex = 0
 
 //    let db = Firestore.firestore()
 //    var userListRef: DocumentReference?
@@ -56,7 +57,8 @@ class InteractWithDBViewController: UIViewController {
 
         self.shuffledFollowingList = userArr!.shuffled()
         self.FriendBtnA.setTitle(self.shuffledFollowingList[0].displayName, for: .normal)
-        print(self.shuffledFollowingList[0].displayName!)
+        
+        print(self.shuffledFollowingList.count)
         }
        )
         
@@ -173,17 +175,37 @@ class InteractWithDBViewController: UIViewController {
     }
   
     @IBAction func FriendABtn(_ sender: UIButton) {
+
+        if self.followingListArrRandomIndex == 10 {
+            
+            self.followingListArrRandomIndex = 0
+            
+        }else {
+            
+            self.followingListArrRandomIndex += 1
+
+        }
         
                 API.FollowingList.fetchFollowingList(withID: Auth.auth().currentUser!.uid) {
 
                     ( friend ) in
 
                     self.shuffledFollowingList.append(friend)
-                    self.FriendBtnA.setTitle(self.shuffledFollowingList[3].displayName, for: .normal)
-                    print(self.shuffledFollowingList[3].displayName)
-
-
+                    self.FriendBtnA.setTitle(self.shuffledFollowingList[self.followingListArrRandomIndex].displayName, for: .normal)
+                  
+                   print(self.shuffledFollowingList)
                 }
+        
+//      按下投票鈕時，透過func actionsAfterClickFriendToVote將資料存入資料庫
+        
+    }
+    
+    
+    func actionsAfterClickFriendToVote (withUID uid: String, tagContent tagContent: String, tagID tagID: String) {
+        
+        db.collection("userList").document(uid).collection("TagIGot").document(TagInstanceForVote?.tagID as! String).setData([TagInstanceForVote?.tagContent as! String: true])
+        
+        db.collection("tagPoolDefault").document(tagID).updateData(["whoGotThisTag": FieldValue.arrayUnion([uid])])
         
         
         
