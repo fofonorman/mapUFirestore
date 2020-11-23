@@ -26,6 +26,7 @@ class InteractWithDBViewController: UIViewController {
     var shuffledTagArr = [Tag]()
     var shuffledFollowingList = [User]()
     let db = Firestore.firestore()
+    var followingListArrRandomIndex: Int?
 
 //    let db = Firestore.firestore()
 //    var userListRef: DocumentReference?
@@ -51,37 +52,20 @@ class InteractWithDBViewController: UIViewController {
             self.randomTag.text = self.TagInstanceForVote?.tagContent
         })
         
-//       fetchFollowingList(completionHandler: { userArr in
-//
-//        self.shuffledFollowingList = userArr!.shuffled()
-//        self.FriendBtnA.setTitle(self.shuffledFollowingList[0].displayName, for: .normal)
-//        print(self.shuffledFollowingList[0].displayName)
-//        }
-//       )
+       fetchFollowingList(completionHandler: { userArr in
+
+        self.shuffledFollowingList = userArr!.shuffled()
+        self.FriendBtnA.setTitle(self.shuffledFollowingList[0].displayName, for: .normal)
+        print(self.shuffledFollowingList[0].displayName!)
+        }
+       )
         
           
         
     }
     
     
-func fetchFriend() {
-    
-    
-    
-    self.db.collection("userList").document(API.UserRef.currentUser!.uid).collection("FollowingList").getDocuments { (querySnapshot, error) in
-        if let querySnapshot = querySnapshot {
-           for document in querySnapshot.documents {
-              print(document.documentID)
-            
-//因為從followingList得到的uid路徑底下沒有name值，所以將撈不到name
-            print(document.data()["name"])
-           }
-        }
-     }
-
-    
-}
-    
+  
     
     
     typealias TagArrayClosure = ([Tag]?) -> Void
@@ -188,6 +172,22 @@ func fetchFriend() {
         db.collection("tagPoolDefault").document(uid).updateData(["whoGotThisTag": FieldValue.arrayUnion(["USERDDDDDD"])])
     }
   
+    @IBAction func FriendABtn(_ sender: UIButton) {
+        
+                API.FollowingList.fetchFollowingList(withID: Auth.auth().currentUser!.uid) {
+
+                    ( friend ) in
+
+                    self.shuffledFollowingList.append(friend)
+                    self.FriendBtnA.setTitle(self.shuffledFollowingList[3].displayName, for: .normal)
+                    print(self.shuffledFollowingList[3].displayName)
+
+
+                }
+        
+        
+        
+    }
     
     @IBAction func testBtn(_ sender: UIButton) {
         test(withID: "VvJTZHoJ3B4PUcMGJ8E0")

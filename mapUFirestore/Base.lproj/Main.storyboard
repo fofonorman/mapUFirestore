@@ -117,6 +117,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                 <state key="normal" title="Fri A"/>
+                                <connections>
+                                    <action selector="FriendABtn:" destination="pQu-7l-s2X" eventType="touchUpInside" id="MXf-9v-DHX"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJJ-kR-59w">
                                 <rect key="frame" x="77" y="472" width="261" height="79"/>
