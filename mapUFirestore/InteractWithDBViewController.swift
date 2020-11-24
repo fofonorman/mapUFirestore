@@ -186,6 +186,18 @@ class InteractWithDBViewController: UIViewController {
         assignNewFollowingInstanceToFrontEnd()
     }
     
+    
+    @IBAction func FriendBBtn(_ sender: UIButton) {
+        
+        actionsAfterClickFriendToVote(withUID: self.FollowingListInstance?.uid as! String, withTagContent: self.TagInstanceForVote?.tagContent as! String, withTagID: self.TagInstanceForVote?.tagID as! String)
+        
+        assignNewTagInstanceToFrontEnd()
+        assignNewFollowingInstanceToFrontEnd()
+        
+    }
+    
+    
+    
     func assignNewTagInstanceToFrontEnd() {
           
         
@@ -200,6 +212,10 @@ class InteractWithDBViewController: UIViewController {
     self.FollowingListInstance = self.FollowingList.randomElement()
     self.FriendBtnA.setTitle(self.FollowingListInstance?.displayName, for: .normal)
     
+        self.FollowingListInstance = self.FollowingList.randomElement()
+        self.FriendBtnB.setTitle(self.FollowingListInstance?.displayName, for: .normal)
+        
+        
     }
     
     
