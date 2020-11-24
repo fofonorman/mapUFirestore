@@ -50,7 +50,6 @@ class InteractWithDBViewController: UIViewController {
           
             self.TagInstanceForVote = tagArr?.randomElement()
             
-                    
             self.randomTag.text = self.TagInstanceForVote?.tagContent
             
         })
@@ -58,7 +57,10 @@ class InteractWithDBViewController: UIViewController {
        fetchFollowingList(completionHandler: { userArr in
 
         self.FollowingListInstance = userArr!.randomElement()
+        
+        
         self.FriendBtnA.setTitle(self.FollowingListInstance?.displayName, for: .normal)
+   
         
         }
        )
@@ -180,11 +182,14 @@ class InteractWithDBViewController: UIViewController {
      
         
 //      按下投票鈕時，透過func actionsAfterClickFriendToVote將資料存入資料庫
+        actionsAfterClickFriendToVote(withUID: self.FollowingListInstance?.uid as! String, withTagContent: self.TagInstanceForVote?.tagContent as! String, withTagID: self.TagInstanceForVote?.tagID as! String)
+        
+        
         
     }
     
     
-    func actionsAfterClickFriendToVote (withUID uid: String, tagContent tagContent: String, tagID tagID: String) {
+    func actionsAfterClickFriendToVote (withUID uid: String, withTagContent tagContent: String, withTagID tagID: String) {
         
         db.collection("userList").document(uid).collection("TagIGot").document(TagInstanceForVote?.tagID as! String).setData([TagInstanceForVote?.tagContent as! String: true])
         
