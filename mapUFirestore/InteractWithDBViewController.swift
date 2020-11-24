@@ -19,13 +19,12 @@ class InteractWithDBViewController: UIViewController {
     @IBOutlet weak var FriendBtnA: UIButton!
     @IBOutlet weak var FriendBtnB: UIButton!
     
-    var tagsForVote: [String] = []
     var userNameArr: [String] = []
-    var tagArr = [Tag]()
     var TagInstanceForVote: Tag?
     var FollowingListInstance: User?
-    var shuffledTagArr = [Tag]()
-    var shuffledFollowingList = [User]()
+    var FollowingList = [User]()
+    var tagsForVoteList = [Tag]()
+
     let db = Firestore.firestore()
     var followingListArrRandomIndex = 0
 
@@ -46,9 +45,11 @@ class InteractWithDBViewController: UIViewController {
            print(error!.localizedDescription)
         }}
         
-        fetchTagPool(completionHandler: { tagArr in
+        fetchTagPool(completionHandler: { tags in
           
-            self.TagInstanceForVote = tagArr?.randomElement()
+            self.tagsForVoteList = tags!
+            
+            self.TagInstanceForVote = self.tagsForVoteList.randomElement()
             
             self.randomTag.text = self.TagInstanceForVote?.tagContent
             
@@ -56,7 +57,9 @@ class InteractWithDBViewController: UIViewController {
         
        fetchFollowingList(completionHandler: { userArr in
 
-        self.FollowingListInstance = userArr!.randomElement()
+        self.FollowingList = userArr!
+        
+        self.FollowingListInstance = self.FollowingList.randomElement()
         
         
         self.FriendBtnA.setTitle(self.FollowingListInstance?.displayName, for: .normal)
@@ -181,10 +184,16 @@ class InteractWithDBViewController: UIViewController {
 
      
         
-//      按下投票鈕時，透過func actionsAfterClickFriendToVote將資料存入資料庫
+//      按下投票鈕時，透過 actionsAfterClickFriendToVote() 將資料存入資料庫
         actionsAfterClickFriendToVote(withUID: self.FollowingListInstance?.uid as! String, withTagContent: self.TagInstanceForVote?.tagContent as! String, withTagID: self.TagInstanceForVote?.tagID as! String)
         
+        self.FollowingListInstance = self.FollowingList.randomElement()
+        self.FriendBtnA.setTitle(self.FollowingListInstance?.displayName, for: .normal)
         
+        
+        self.TagInstanceForVote = self.tagsForVoteList.randomElement()
+        
+        self.randomTag.text = self.TagInstanceForVote?.tagContent
         
     }
     
