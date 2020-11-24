@@ -49,9 +49,7 @@ class InteractWithDBViewController: UIViewController {
           
             self.tagsForVoteList = tags!
             
-            self.TagInstanceForVote = self.tagsForVoteList.randomElement()
-            
-            self.randomTag.text = self.TagInstanceForVote?.tagContent
+            self.assignNewTagInstanceToFrontEnd()
             
         })
         
@@ -59,10 +57,7 @@ class InteractWithDBViewController: UIViewController {
 
         self.FollowingList = userArr!
         
-        self.FollowingListInstance = self.FollowingList.randomElement()
-        
-        
-        self.FriendBtnA.setTitle(self.FollowingListInstance?.displayName, for: .normal)
+        self.assignNewFollowingInstanceToFrontEnd()
    
         
         }
@@ -187,14 +182,24 @@ class InteractWithDBViewController: UIViewController {
 //      按下投票鈕時，透過 actionsAfterClickFriendToVote() 將資料存入資料庫
         actionsAfterClickFriendToVote(withUID: self.FollowingListInstance?.uid as! String, withTagContent: self.TagInstanceForVote?.tagContent as! String, withTagID: self.TagInstanceForVote?.tagID as! String)
         
-        self.FollowingListInstance = self.FollowingList.randomElement()
-        self.FriendBtnA.setTitle(self.FollowingListInstance?.displayName, for: .normal)
-        
+        assignNewTagInstanceToFrontEnd()
+        assignNewFollowingInstanceToFrontEnd()
+    }
+    
+    func assignNewTagInstanceToFrontEnd() {
+          
         
         self.TagInstanceForVote = self.tagsForVoteList.randomElement()
         
         self.randomTag.text = self.TagInstanceForVote?.tagContent
         
+    }
+    
+    func assignNewFollowingInstanceToFrontEnd() {
+    
+    self.FollowingListInstance = self.FollowingList.randomElement()
+    self.FriendBtnA.setTitle(self.FollowingListInstance?.displayName, for: .normal)
+    
     }
     
     
