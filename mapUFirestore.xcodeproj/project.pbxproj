@@ -30,6 +30,7 @@
 		9683C86F2549C56500A5C8A1 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683C86E2549C56500A5C8A1 /* Tag.swift */; };
 		9683C8772549C59000A5C8A1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683C8762549C59000A5C8A1 /* User.swift */; };
 		96F51BB32557EF86006D44D5 /* UIAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F51BB22557EF86006D44D5 /* UIAlertViewController.swift */; };
+		96F52CF5256D45D400C06FF3 /* TagIGotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F52CF4256D45D400C06FF3 /* TagIGotTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		9683C86E2549C56500A5C8A1 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		9683C8762549C59000A5C8A1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		96F51BB22557EF86006D44D5 /* UIAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertViewController.swift; sourceTree = "<group>"; };
+		96F52CF4256D45D400C06FF3 /* TagIGotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagIGotTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 				963F072C254583DE00E3D11B /* AppDelegate.swift */,
 				96F51BB22557EF86006D44D5 /* UIAlertViewController.swift */,
 				963F072E254583DE00E3D11B /* SceneDelegate.swift */,
+				96F52CF4256D45D400C06FF3 /* TagIGotTest.swift */,
 				963F0730254583DE00E3D11B /* ViewController.swift */,
 				964126F92553E94200F63309 /* ScanViewController.swift */,
 				966AD46225558A58002EEF9B /* InteractWithDBViewController.swift */,
@@ -326,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				963F0737254583DE00E3D11B /* mapUFirestore.xcdatamodeld in Sources */,
+				96F52CF5256D45D400C06FF3 /* TagIGotTest.swift in Sources */,
 				963F0731254583DE00E3D11B /* ViewController.swift in Sources */,
 				963F072D254583DE00E3D11B /* AppDelegate.swift in Sources */,
 				964126FA2553E94200F63309 /* ScanViewController.swift in Sources */,
