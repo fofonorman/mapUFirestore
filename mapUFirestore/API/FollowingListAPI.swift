@@ -23,7 +23,7 @@ class FollowingListAPI {
         let userListRef = db.collection("userList")
         
         
-        //      將uid輸入後撈出name再填入 certainUser class
+        //      要補上else處理方式
         userListRef.document(uid).collection("FollowingList").getDocuments { (querySnapshot, error) in
             
            if let existingSnapshot = querySnapshot  {
@@ -39,22 +39,12 @@ class FollowingListAPI {
                     }
                     
                 }
-//
-//                        let uid = document?.documentID
-//
-//                        let certainUser = User.certainUser(uid: uid!, displayName: name as! String)
-//                                completion(certainUser)
-//
-//                    } else {
-//
-//                        print(error)
-//                    }
+
 
                         }
         
     }}
                
-//if let names = document.data()["name"]
 
 
 }
