@@ -6,11 +6,16 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class TagIGotTest: ViewController {
 
     @IBOutlet weak var thumbUpImage: UIButton!
-    
+    @IBOutlet weak var tagContent: UILabel!
+    @IBOutlet weak var numberOfThumbUp: UILabel!
+
+    let db = Firestore.firestore()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,9 +31,31 @@ class TagIGotTest: ViewController {
 
     @IBAction func thumbUp(_ sender: UIButton) {
         
+        fetchTagTheUserGotList()
+        
         self.thumbUpImage.isSelected = !sender.isSelected
         
     }
+    
+    func fetchTagTheUserGotList() {
+        
+        db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").addSnapshotListener { (querySnapshot, error) in
+           guard let querySnapshot = querySnapshot else {
+              return
+           }
+           querySnapshot.documentChanges.forEach({ (documentChange) in
+              if documentChange.type == .added {
+                print(documentChange.document.data())
+              }
+           })
+        }
+        
+    }
+    
+    
+    
+    
+    
     
     
     

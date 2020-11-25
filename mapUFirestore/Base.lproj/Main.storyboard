@@ -236,6 +236,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="numberOfThumbUp" destination="Py4-8t-Olj" id="sZV-JX-Z1O"/>
+                        <outlet property="tagContent" destination="XbJ-SU-bif" id="ciO-Nq-xrE"/>
                         <outlet property="thumbUpImage" destination="MaC-WV-7yj" id="qTS-g2-PnD"/>
                     </connections>
                 </viewController>
