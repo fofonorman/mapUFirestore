@@ -17,7 +17,7 @@ class FollowingListAPI {
       
     func fetchFollowingList(completion: @escaping (User) -> Void) {
          
-        
+        //要補上else就重新登入
        if let currentUserUID = Auth.auth().currentUser?.uid {
               
             let followingListRef = Database.database().reference().child("userList").child(currentUserUID).child("followingList")

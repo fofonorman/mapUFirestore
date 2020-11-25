@@ -26,7 +26,8 @@ extension TagTheUserGot {
         tagList.tagID = tagID
         tagList.thumbUpOrNot = thumbUpOrNot
         
-        
+        return tagList
+
     }
     
     
