@@ -11,20 +11,20 @@ class TagTheUserGot {
     var numberOfThumbs: Int?
     var tagID: String?
     var tagContent: String?
-    var thumbUpOrNot: Bool?
+    var thumbUpByYou: Bool?
     }
 
 
 extension TagTheUserGot {
     
-    static func TagListInMyFollowingUser(numberOfThumbs: Int, tagID: String, tagContent: String, thumbUpOrNot: Bool) -> TagTheUserGot {
+    static func TagListInMyFollowingUser(numberOfThumbs: Int, tagID: String, tagContent: String, thumbUpByYou: Bool) -> TagTheUserGot {
         
         let tagList = TagTheUserGot()
         
         tagList.numberOfThumbs = numberOfThumbs
         tagList.tagContent = tagContent
         tagList.tagID = tagID
-        tagList.thumbUpOrNot = thumbUpOrNot
+        tagList.thumbUpByYou = thumbUpByYou
         
         return tagList
 

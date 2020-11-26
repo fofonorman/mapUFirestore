@@ -39,13 +39,22 @@ class TagIGotTest: ViewController {
     
     func fetchTagTheUserGotList() {
         
+        var tagIGotList = [QueryDocumentSnapshot]()
+
         db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").addSnapshotListener { (querySnapshot, error) in
            guard let querySnapshot = querySnapshot else {
               return
            }
            querySnapshot.documentChanges.forEach({ (documentChange) in
               if documentChange.type == .added {
-                print(documentChange.document.data())
+             
+                             
+              let tagID = documentChange.document.documentID
+              
+              
+             
+                
+                
               }
            })
         }
