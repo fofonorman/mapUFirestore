@@ -96,6 +96,7 @@ class InteractWithDBViewController: UIViewController {
     func fetchFollowingList(completionHandler: @escaping FollowingListArrayClosure) {
         var result = [User]()
 
+             
             API.FollowingList.fetchFollowingList(withID: Auth.auth().currentUser!.uid) { users in
                 result.append(users)
 
@@ -221,7 +222,7 @@ class InteractWithDBViewController: UIViewController {
     
     func actionsAfterClickFriendToVote (withUID uid: String, withTagContent tagContent: String, withTagID tagID: String) {
         
-        db.collection("userList").document(uid).collection("TagIGot").document(TagInstanceForVote?.tagID as! String).setData([TagInstanceForVote?.tagContent as! String: true])
+        db.collection("userList").document(uid).collection("TagIGot").document(TagInstanceForVote?.tagID as! String).setData(["tagContent": TagInstanceForVote?.tagContent])
         
         db.collection("tagPoolDefault").document(tagID).updateData(["whoGotThisTag": FieldValue.arrayUnion([uid])])
         
