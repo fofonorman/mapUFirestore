@@ -39,7 +39,7 @@ class TagIGotTest: ViewController {
     
     func fetchTagTheUserGotList() {
         
-        var tagIGotList = [QueryDocumentSnapshot]()
+        var thumbUpsByUsers = [String]()
 
         db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").addSnapshotListener { (querySnapshot, error) in
            guard let querySnapshot = querySnapshot else {
@@ -51,9 +51,11 @@ class TagIGotTest: ViewController {
                              
               let tagID = documentChange.document.documentID
               
-              
-             
+                let tagContent = documentChange.document.data()["tagContent"]
+                let likedByUsers = documentChange.document.data()["thumbUp"]
                 
+               
+//怎麼撈出各自標籤下的某欄陣列值，再換算成各自標籤下的讚數？
                 
               }
            })
