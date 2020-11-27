@@ -31,37 +31,50 @@ class TagIGotTest: ViewController {
 
     @IBAction func thumbUp(_ sender: UIButton) {
         
-        fetchTagTheUserGotList()
+        fetchTagTheUserGotList() { (result) in
+            print(result)
+        
+             }
         
         self.thumbUpImage.isSelected = !sender.isSelected
         
     }
     
-    func fetchTagTheUserGotList() {
+    
+   
+    
+    func fetchTagTheUserGotList(completion: @escaping (TagTheUserGot) -> Void) {
         
-        var thumbUpsByUsers = [String]()
+//  研究怎麼將thumbup陣列取出，與相對應的文件貯存起來
 
-        db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").addSnapshotListener { (querySnapshot, error) in
-           guard let querySnapshot = querySnapshot else {
-              return
-           }
-           querySnapshot.documentChanges.forEach({ (documentChange) in
-              if documentChange.type == .added {
-             
-                             
-              let tagID = documentChange.document.documentID
-              
-                let tagContent = documentChange.document.data()["tagContent"]
-                let likedByUsers = documentChange.document.data()["thumbUp"]
+        db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").getDocuments { (snapshot, error) in
+            
+            guard let snapshot = snapshot else {
+                return
+            }
+
+            for document in snapshot.documents {
+                
+                 let tagContent = document.data()["tagContent"] as! String
+                    
+                    let tagID = document.documentID
+                    let thumUps = 6
+                    let likedByYou = false
+                    
+                    let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: thumUps, tagID: tagID, tagContent: tagContent, thumbUpByYou: likedByYou)
+                    
+                    completion(tagListMember)
+                    
                 
                
-//怎麼撈出各自標籤下的某欄陣列值，再換算成各自標籤下的讚數？
+            }
                 
-              }
-           })
+            }
+            
+        }
         }
         
-    }
+    
     
     
     
@@ -81,4 +94,4 @@ class TagIGotTest: ViewController {
     }
     */
 
-}
+
