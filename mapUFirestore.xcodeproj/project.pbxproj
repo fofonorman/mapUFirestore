@@ -19,6 +19,7 @@
 		964126FA2553E94200F63309 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964126F92553E94200F63309 /* ScanViewController.swift */; };
 		9644DD4F256E9050000601B9 /* TagTheUserGot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9644DD4E256E9050000601B9 /* TagTheUserGot.swift */; };
 		9644DD54256E9DA8000601B9 /* TagTheUserGotAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9644DD53256E9DA8000601B9 /* TagTheUserGotAPI.swift */; };
+		964A9595257136250013E617 /* AccessPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964A9594257136250013E617 /* AccessPhoto.swift */; };
 		966AD46325558A58002EEF9B /* InteractWithDBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966AD46225558A58002EEF9B /* InteractWithDBViewController.swift */; };
 		9683C8422549BBC200A5C8A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9683C8412549BBC200A5C8A1 /* GoogleService-Info.plist */; };
 		9683C8482549BC4A00A5C8A1 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9683C8472549BC4A00A5C8A1 /* FirebaseFirestoreSwift */; };
@@ -71,6 +72,7 @@
 		964126F92553E94200F63309 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		9644DD4E256E9050000601B9 /* TagTheUserGot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTheUserGot.swift; sourceTree = "<group>"; };
 		9644DD53256E9DA8000601B9 /* TagTheUserGotAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTheUserGotAPI.swift; sourceTree = "<group>"; };
+		964A9594257136250013E617 /* AccessPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPhoto.swift; sourceTree = "<group>"; };
 		966AD46225558A58002EEF9B /* InteractWithDBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractWithDBViewController.swift; sourceTree = "<group>"; };
 		9683C8412549BBC200A5C8A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9683C8532549C46A00A5C8A1 /* tagPoolAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tagPoolAPI.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				96F52CF4256D45D400C06FF3 /* TagIGotTest.swift */,
 				963F0730254583DE00E3D11B /* ViewController.swift */,
 				964126F92553E94200F63309 /* ScanViewController.swift */,
+				964A9594257136250013E617 /* AccessPhoto.swift */,
 				966AD46225558A58002EEF9B /* InteractWithDBViewController.swift */,
 				9683C86D2549C55000A5C8A1 /* Model */,
 				9683C8522549C45000A5C8A1 /* API */,
@@ -334,6 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				964A9595257136250013E617 /* AccessPhoto.swift in Sources */,
 				963F0737254583DE00E3D11B /* mapUFirestore.xcdatamodeld in Sources */,
 				9644DD54256E9DA8000601B9 /* TagTheUserGotAPI.swift in Sources */,
 				96F52CF5256D45D400C06FF3 /* TagIGotTest.swift in Sources */,
