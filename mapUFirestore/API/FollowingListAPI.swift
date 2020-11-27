@@ -33,8 +33,7 @@ class FollowingListAPI {
                     API.UserRef.observeUser(withID: i.documentID) {
                         
                         (followingUser) in
-                        
-                    let followingUser = User.followingList(uid: followingUID, displayName: userName ?? "")
+                                           
                         completion(followingUser)
                         
                     }
@@ -44,7 +43,9 @@ class FollowingListAPI {
 
                         }
         
-    }}
+    }
+        
+    }
                
 
 
