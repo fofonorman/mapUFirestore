@@ -13,28 +13,39 @@ import FirebaseAuth
 
 class FollowingListAPI {
 
-    let userRef = Database.database().reference()
-      
-    func fetchFollowingList(completion: @escaping (User) -> Void) {
+    let currentUser = Auth.auth().currentUser
+
+    func fetchFollowingList(withID uid: String, completion: @escaping (User) -> Void) {
          
-        //要補上else就重新登入
-       if let currentUserUID = Auth.auth().currentUser?.uid {
-              
-            let followingListRef = Database.database().reference().child("userList").child(currentUserUID).child("followingList")
-                
-         followingListRef.observe(.childAdded, with: {(Snapshot) in
-                      
-                    let followingUID = Snapshot.key
-                    self.userRef.child("userList").child(followingUID).child("name").observe(DataEventType.value, with: { (snapshot) in
-                    let userName = snapshot.value as? String
+        
+        let db = Firestore.firestore()
+
+        let userListRef = db.collection("userList")
+        
+        
+        //      要補上else處理方式
+        userListRef.document(uid).collection("FollowingList").getDocuments { (querySnapshot, error) in
+            
+           if let existingSnapshot = querySnapshot  {
+                        
+                for i in existingSnapshot.documents {
+                    
+                    API.UserRef.observeUser(withID: i.documentID) {
+                        
+                        (followingUser) in
                         
                     let followingUser = User.followingList(uid: followingUID, displayName: userName ?? "")
                         completion(followingUser)
+                        
                     }
-            )})
-         
-        }
+                    
+                }
+
+
+                        }
+        
+    }}
                
-    }
+
 
 }

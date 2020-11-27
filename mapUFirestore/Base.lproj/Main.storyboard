@@ -126,14 +126,20 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                 <state key="normal" title="Fri A"/>
+                                <connections>
+                                    <action selector="FriendABtn:" destination="pQu-7l-s2X" eventType="touchUpInside" id="MXf-9v-DHX"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJJ-kR-59w">
                                 <rect key="frame" x="77" y="472" width="261" height="79"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                 <state key="normal" title="Fri B"/>
+                                <connections>
+                                    <action selector="FriendBBtn:" destination="pQu-7l-s2X" eventType="touchUpInside" id="maM-w7-8dp"/>
+                                </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="input a Tag" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9B0-WJ-FRY">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="input a tag" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9B0-WJ-FRY">
                                 <rect key="frame" x="52" y="164" width="310" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -144,12 +150,27 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                 <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="tagSubmitBtn:" destination="pQu-7l-s2X" eventType="touchUpInside" id="zdK-ig-iQS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7x-fD-zB6">
+                                <rect key="frame" x="129" y="726" width="156" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="TESTButton"/>
+                                <connections>
+                                    <action selector="testBtn:" destination="pQu-7l-s2X" eventType="touchUpInside" id="DP2-QX-ttm"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Cjg-h7-SYQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="FriendBtnA" destination="xXD-Gb-QMo" id="kuD-am-K6Q"/>
+                        <outlet property="FriendBtnB" destination="mJJ-kR-59w" id="taU-pi-d3G"/>
+                        <outlet property="inputTag" destination="9B0-WJ-FRY" id="WgD-kT-x3g"/>
                         <outlet property="randomTag" destination="R7e-p2-8Zx" id="VV5-d0-0Ay"/>
                     </connections>
                 </viewController>

@@ -9,7 +9,7 @@ import Foundation
 struct API {
     
     static var Tag = TagPoolAPI()
-    static var User = FollowingListAPI()
+    static var FollowingList = FollowingListAPI()
     static var UserRef = UserAPI()
     static var TagTheUserGot = TagTheUserGotAPI()
 

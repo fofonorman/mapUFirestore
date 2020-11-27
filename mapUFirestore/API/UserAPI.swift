@@ -6,31 +6,44 @@
 //
 
 import Foundation
-import FirebaseDatabase
+import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 
 
 class UserAPI {
 
-//    let currentUser = Auth.auth().currentUser
-    
-    var userRefRoot = Database.database().reference()
-
-    var userRef = Database.database().reference().child("userList")
+    let currentUser = Auth.auth().currentUser
     
     func observeUser(withID uid: String, completion: @escaping (User) -> Void ) {
         
-        userRef.child(uid).observeSingleEvent(of: .value, with: {
-            (snapshot) in
+        
+        let db = Firestore.firestore()
+
+        let userListRef = db.collection("userList")
+        
+        
+//      將uid輸入後撈出name再填入 certainUser class
+        userListRef.document(uid).getDocument { (document, error) in
             
-            if let dic = snapshot.value as? [String: Any] {
+            if let name = document?.data()?["name"] {
                 
-                let user = User.certainUser(uid: uid, displayName: dic["name"] as! String)
-                completion(user)
+
+                let uid = document?.documentID
+
+                let certainUser = User.certainUser(uid: uid!, displayName: name as! String)
+                        completion(certainUser)
+
+            } else {
+                
+                print(error)
             }
-                       
-        })
-    }
-    
-    
-}
+
+                }
+                
+            }
+            
+            
+        }
+        
+
