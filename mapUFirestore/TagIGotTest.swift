@@ -45,6 +45,7 @@ class TagIGotTest: ViewController {
     
     func fetchTagTheUserGotList(completion: @escaping (TagTheUserGot) -> Void) {
         
+        var likedArr = [String]()
 //  研究怎麼將thumbup陣列取出，與相對應的文件貯存起來
 
         db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").getDocuments { (snapshot, error) in
@@ -58,10 +59,28 @@ class TagIGotTest: ViewController {
                  let tagContent = document.data()["tagContent"] as! String
                     
                     let tagID = document.documentID
-                    let thumUps = 6
                     let likedByYou = false
+                    let numberOfLiked = 6
+                        
+                
+                 let thumb = document.data()["thumbUp"]
                     
-                    let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: thumUps, tagID: tagID, tagContent: tagContent, thumbUpByYou: likedByYou)
+                
+                
+                if let thumbs = thumb {
+                    
+                    likedArr.append(thumbs as! String)
+                    
+                    print(likedArr)
+                    
+                }
+
+                
+                
+//                let numberOfLiked = LikedArr.count
+                
+                
+                    let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent, thumbUpByYou: likedByYou)
                     
                     completion(tagListMember)
                     
