@@ -317,7 +317,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IWy-mU-VwQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2655.072463768116" y="87.723214285714278"/>
+            <point key="canvasLocation" x="2572" y="61"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Yei-t0-46X">
@@ -381,7 +381,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iJj-Xc-ad5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2040.5797101449277" y="182.8125"/>
+            <point key="canvasLocation" x="3565" y="775"/>
         </scene>
         <!--Access Photo-->
         <scene sceneID="PCR-4B-22Z">
@@ -394,6 +394,10 @@
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FGR-2d-STt">
                                 <rect key="frame" x="87" y="108" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="2bv-9Y-Dy2" appends="YES" id="6Aa-dh-yS1"/>
+                                </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcl-O6-b1a">
                                 <rect key="frame" x="141" y="509" width="133" height="65"/>
@@ -408,13 +412,24 @@
                         <viewLayoutGuide key="safeArea" id="5Uy-Wu-gPW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="photoImageView" destination="FGR-2d-STt" id="o36-ru-jRY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qSM-Zq-RFc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="2bv-9Y-Dy2">
+                    <connections>
+                        <action selector="photoImage:" destination="vYW-j6-cPO" id="J82-UQ-D16"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2786" y="157"/>
+            <point key="canvasLocation" x="4619" y="806"/>
         </scene>
     </scenes>
     <resources>
+        <image name="001" width="275" height="183"/>
+        <image name="002" width="243" height="208"/>
+        <image name="003" width="225" height="225"/>
         <image name="beforeLike" width="640" height="640"/>
         <image name="kkkgi" width="800" height="800"/>
         <image name="speaker" catalog="system" width="128" height="124"/>
