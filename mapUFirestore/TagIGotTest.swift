@@ -63,18 +63,18 @@ class TagIGotTest: ViewController {
                     let numberOfLiked = 6
                         
                 
-                let thumb = document.data()["thumbUp"] { (result) in
+                let thumb = document.data()["thumbUp"]
                     
-                    likedArr.append(result as! String)
+                    
                     //                print(likedArr)
                     
-                }
+                
 //                print(thumb)
 //                若print(thumb) ，可成功印出
                 
 //
 //                likedArr.append(thumb as! String)
-//                print(likedArr)
+////                print(likedArr)
 ////                若將 thumb 存到 likedArr 並 print(likedArr)，則會沒有值
 
                 
