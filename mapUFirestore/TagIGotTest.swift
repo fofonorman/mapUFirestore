@@ -31,8 +31,8 @@ class TagIGotTest: ViewController {
 
     @IBAction func thumbUp(_ sender: UIButton) {
         
-        fetchTagTheUserGotList() { (result) in
-            print(result)
+        fetchTagTheUserGotList() { (_) in
+            print("yes")
         
              }
         
@@ -63,17 +63,19 @@ class TagIGotTest: ViewController {
                     let numberOfLiked = 6
                         
                 
-                 let thumb = document.data()["thumbUp"]
+                let thumb = document.data()["thumbUp"] { (result) in
                     
-                
-                
-                if let thumbs = thumb {
-                    
-                    likedArr.append(thumbs as! String)
-                    
-                    print(likedArr)
+                    likedArr.append(result as! String)
+                    //                print(likedArr)
                     
                 }
+//                print(thumb)
+//                若print(thumb) ，可成功印出
+                
+//
+//                likedArr.append(thumb as! String)
+//                print(likedArr)
+////                若將 thumb 存到 likedArr 並 print(likedArr)，則會沒有值
 
                 
                 
