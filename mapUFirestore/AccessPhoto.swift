@@ -7,6 +7,7 @@
 
 import UIKit
 import PhotosUI
+import FirebaseFirestore
 
 class AccessPhoto: UIViewController {
 
@@ -21,9 +22,10 @@ class AccessPhoto: UIViewController {
     
     @IBAction func selectPhoto(_ sender: UIButton) {
         
-       
         
     }
+    
+
     
     
   
@@ -40,4 +42,5 @@ class AccessPhoto: UIViewController {
     }
     */
 
+}
 }
