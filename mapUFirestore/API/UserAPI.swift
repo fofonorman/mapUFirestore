@@ -14,11 +14,12 @@ import FirebaseFirestore
 class UserAPI {
 
     let currentUser = Auth.auth().currentUser
+    let db = Firestore.firestore()
+    
     
     func observeUser(withID uid: String, completion: @escaping (User) -> Void ) {
         
         
-        let db = Firestore.firestore()
 
         let userListRef = db.collection("userList")
         

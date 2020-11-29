@@ -25,7 +25,6 @@ class TagIGotTest: ViewController {
                 self.thumbUpImage.setImage(UIImage(named : "afterLike"), for: UIControl.State.selected) // 選取狀態下要顯示的圖片
         
         
-        
     }
     
 
@@ -33,10 +32,9 @@ class TagIGotTest: ViewController {
         
         fetchTagTheUserGotList() { (result) in
 
-            print(result.tagContent)
-            print(result.tagID)
-            print(result.numberOfThumbs)
-            print(result.thumbUpByYou)
+            
+            self.tagContent.text = result.tagContent
+            self.numberOfThumbUp.text = String(result.numberOfThumbs!)
 
             
              }
@@ -50,9 +48,6 @@ class TagIGotTest: ViewController {
     
     func fetchTagTheUserGotList(completion: @escaping (TagTheUserGot) -> Void) {
         
-        var likedArr = [String]()
-//  研究怎麼將thumbup陣列取出，與相對應的文件貯存起來
-
         db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").getDocuments { (snapshot, error) in
             
             guard let snapshot = snapshot else {
@@ -68,16 +63,11 @@ class TagIGotTest: ViewController {
                let tagID = document.documentID
                let likedByYou = false
                let numberOfLiked = thumb.count
-                        
-                
-                
-                   
-                let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent, thumbUpByYou: likedByYou)
+         
+               let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent, thumbUpByYou: likedByYou)
                     
                     completion(tagListMember)
                     
-                
-               
             }
                 
             }
