@@ -31,9 +31,14 @@ class TagIGotTest: ViewController {
 
     @IBAction func thumbUp(_ sender: UIButton) {
         
-        fetchTagTheUserGotList() { (_) in
-            print("yes")
-        
+        fetchTagTheUserGotList() { (result) in
+
+            print(result.tagContent)
+            print(result.tagID)
+            print(result.numberOfThumbs)
+            print(result.thumbUpByYou)
+
+            
              }
         
         self.thumbUpImage.isSelected = !sender.isSelected
@@ -56,33 +61,18 @@ class TagIGotTest: ViewController {
 
             for document in snapshot.documents {
                 
-                 let tagContent = document.data()["tagContent"] as! String
+               let tagContent = document.data()["tagContent"] as! String
                     
-                    let tagID = document.documentID
-                    let likedByYou = false
-                    let numberOfLiked = 6
+               let thumb = document.data()["thumbUp"] as! [String]
+                
+               let tagID = document.documentID
+               let likedByYou = false
+               let numberOfLiked = thumb.count
                         
                 
-                let thumb = document.data()["thumbUp"]
-                    
-                    
-                    //                print(likedArr)
-                    
                 
-//                print(thumb)
-//                若print(thumb) ，可成功印出
-                
-//
-//                likedArr.append(thumb as! String)
-////                print(likedArr)
-////                若將 thumb 存到 likedArr 並 print(likedArr)，則會沒有值
-
-                
-                
-//                let numberOfLiked = LikedArr.count
-                
-                
-                    let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent, thumbUpByYou: likedByYou)
+                   
+                let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent, thumbUpByYou: likedByYou)
                     
                     completion(tagListMember)
                     
