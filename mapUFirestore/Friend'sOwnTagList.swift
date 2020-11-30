@@ -36,48 +36,56 @@ class Friend_sOwnTagList: UITableViewController {
 
   
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? Friend_sOwnTagListCell {
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? Friend_sOwnTagListCell  else { return  UITableViewCell() }
             
-            cell.tagContent.text =
+        fetchTagListTheUserGot(completionHandler: { result in
             
+            var resultArr = result
+            
+            
+            cell.tagContent.text = resultArr![1].tagContent
+            
+            
+        })
+        
+        return cell
+
             
         }
 
         // Configure the cell...
 
-        return cell
     }
     
     
-    
-    func fetchTagTheUserGotList(completion: @escaping (TagTheUserGot) -> Void) {
-        
-        API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").getDocuments { (snapshot, error) in
-            
-            guard let snapshot = snapshot else {
-                return
-            }
+    typealias TagListTheUserGot = ([TagTheUserGot]?) -> Void
 
-            for document in snapshot.documents {
-                
-               let tagContent = document.data()["tagContent"] as! String
-                    
-               let thumb = document.data()["thumbUp"] as! [String]
-                
-               let tagID = document.documentID
-               let likedByYou = false
-               let numberOfLiked = thumb.count
-         
-               let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent, thumbUpByYou: likedByYou)
-                    
-                    completion(tagListMember)
-                    
-            }
-                
-            }
-            
+    //撈出tagIGot底下所有資料匯入class並作為日後存取相關資料所用
+    func fetchTagListTheUserGot(completionHandler: @escaping TagListTheUserGot) {
+        
+        var result = [TagTheUserGot]()
+
+        API.TagTheUserGot.fetchTagTheUserGotList { tag in
+           
+            result.append(tag)
+
+                DispatchQueue.main.async() {
+                    if result.isEmpty {
+                        completionHandler(nil)
+                    }else {
+                        completionHandler(result)
+                      }
         }
-        }
+    }
+    }
+   
+    
+    
+    
+    
+    
+        
 
     /*
     // Override to support conditional editing of the table view.
@@ -124,4 +132,4 @@ class Friend_sOwnTagList: UITableViewController {
     }
     */
 
-}
+
