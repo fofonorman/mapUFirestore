@@ -54,8 +54,7 @@ class Friend_sOwnTagList: UITableViewController {
             
         }
 
-        // Configure the cell...
-
+ß
     }
     
     
