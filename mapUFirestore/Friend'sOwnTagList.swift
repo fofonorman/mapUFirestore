@@ -9,6 +9,8 @@ import UIKit
 
 class Friend_sOwnTagList: UITableViewController {
 
+    var tagListTheUserGot = [TagTheUserGot]()
+
 
     
     override func viewDidLoad() {
@@ -19,6 +21,16 @@ class Friend_sOwnTagList: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        fetchTagListTheUserGot(completionHandler: { result in
+            
+            self.tagListTheUserGot = result!
+               
+        })
+        
+        
+        
+        
     }
 
     // MARK: - Table view data source
@@ -31,7 +43,7 @@ class Friend_sOwnTagList: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        return 7
+        return self.tagListTheUserGot.count
     }
 
   
@@ -39,16 +51,10 @@ class Friend_sOwnTagList: UITableViewController {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? Friend_sOwnTagListCell  else { return  UITableViewCell() }
             
-        fetchTagListTheUserGot(completionHandler: { result in
             
-            var resultArr = result
-            
-            
-            cell.tagContent.text = resultArr![1].tagContent
+        cell.tagContent.text = self.tagListTheUserGot[indexPath.row].tagContent
             
             
-        })
-        
         return cell
 
             
