@@ -19,6 +19,7 @@ class Friend_sOwnTagList: UITableViewController {
         fetchTagListTheUserGot(completionHandler: { result in
 
             self.tagListTheUserGot = result!
+            self.tableView.reloadData()
             print(self.tagListTheUserGot)
     })
         
@@ -34,7 +35,7 @@ class Friend_sOwnTagList: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        return 7
+        return tagListTheUserGot.count
     }
 
   

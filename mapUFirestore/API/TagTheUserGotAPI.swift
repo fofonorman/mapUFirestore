@@ -14,6 +14,7 @@ class TagTheUserGotAPI{
     
     func fetchTagTheUserGotList(completion: @escaping (TagTheUserGot) -> Void) {
         
+//        要改成即時監聽 method
         API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").getDocuments { (snapshot, error) in
             
             guard let snapshot = snapshot else {
