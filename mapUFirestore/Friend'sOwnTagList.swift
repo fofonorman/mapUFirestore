@@ -25,7 +25,9 @@ class Friend_sOwnTagList: UITableViewController {
         fetchTagListTheUserGot(completionHandler: { result in
             
             self.tagListTheUserGot = result!
-               
+            print(self.tagListTheUserGot)
+
+            
         })
         
         
@@ -52,8 +54,10 @@ class Friend_sOwnTagList: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? Friend_sOwnTagListCell  else { return  UITableViewCell() }
             
             
-        cell.tagContent.text = self.tagListTheUserGot[indexPath.row].tagContent
+        cell.tagContent.text = "YYYY"
             
+        cell.numberOfLike.text = "GGGG"
+//            String( self.tagListTheUserGot[indexPath.row].numberOfThumbs!)
             
         return cell
 
