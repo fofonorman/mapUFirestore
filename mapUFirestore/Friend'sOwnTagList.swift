@@ -11,27 +11,16 @@ class Friend_sOwnTagList: UITableViewController {
 
     var tagListTheUserGot = [TagTheUserGot]()
 
-    var testArr = ["AA", "BB", "CC", "DD", "EE", "FF"]
+    let testArr = ["AA", "BB", "CC", "DD", "EE", "FF"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        fetchTagListTheUserGot(completionHandler: { result in
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-//        fetchTagListTheUserGot(completionHandler: { result in
-//
-//            self.tagListTheUserGot = result!
-//            print(self.tagListTheUserGot)
-//
-//
-//        })
-        
-        
-        
+            self.tagListTheUserGot = result!
+            print(self.tagListTheUserGot)
+    })
         
     }
 
@@ -45,7 +34,7 @@ class Friend_sOwnTagList: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        return self.tagListTheUserGot.count
+        return 7
     }
 
   
@@ -54,15 +43,12 @@ class Friend_sOwnTagList: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? Friend_sOwnTagListCell  else { return  UITableViewCell() }
             
             
-        cell.tagContent.text = self.testArr[indexPath.row]
-//            
-//        cell.numberOfLike.text = "6"
-//            String( self.tagListTheUserGot[indexPath.row].numberOfThumbs!)
-            
+        cell.tagContent.text = tagListTheUserGot[indexPath.row].tagContent
+
         return cell
 
             
-        }ß
+        }
 
 
     
