@@ -45,6 +45,8 @@ class Friend_sOwnTagList: UITableViewController {
             
             
         cell.tagContent.text = tagListTheUserGot[indexPath.row].tagContent
+        
+        cell.numberOfLike.text = String(tagListTheUserGot[indexPath.row].numberOfThumbs!)
 
         return cell
 
