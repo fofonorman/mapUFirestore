@@ -11,8 +11,6 @@ class Friend_sOwnTagList: UITableViewController {
 
     var tagListTheUserGot = [TagTheUserGot]()
 
-    let testArr = ["AA", "BB", "CC", "DD", "EE", "FF"]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,7 +18,7 @@ class Friend_sOwnTagList: UITableViewController {
 
             self.tagListTheUserGot = result!
             self.tableView.reloadData()
-            print(self.tagListTheUserGot)
+//            print(self.tagListTheUserGot)
     })
         
     }
@@ -43,14 +41,12 @@ class Friend_sOwnTagList: UITableViewController {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? Friend_sOwnTagListCell  else { return  UITableViewCell() }
             
-            
         cell.tagContent.text = tagListTheUserGot[indexPath.row].tagContent
         
         cell.numberOfLike.text = String(tagListTheUserGot[indexPath.row].numberOfThumbs!)
 
         return cell
 
-            
         }
 
 
