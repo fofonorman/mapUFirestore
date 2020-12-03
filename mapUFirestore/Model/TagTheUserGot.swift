@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TagTheUserGot: Codable {
+class TagTheUserGot {
     var numberOfThumbs: Int?
     var tagID: String?
     var tagContent: String?
