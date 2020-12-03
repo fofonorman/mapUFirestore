@@ -6,21 +6,17 @@
 //
 
 import UIKit
+import FirebaseFirestoreSwift
 
 class Friend_sOwnTagList: UITableViewController {
 
-    var tagListTheUserGot = [TagTheUserGot]()
-
+    var tagListTheUserGot = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        fetchTagListTheUserGot(completionHandler: { result in
+        loadTagList()
 
-            self.tagListTheUserGot = result!
-            self.tableView.reloadData()
-//            print(self.tagListTheUserGot)
-    })
-        
     }
 
     // MARK: - Table view data source
@@ -41,15 +37,45 @@ class Friend_sOwnTagList: UITableViewController {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? Friend_sOwnTagListCell  else { return  UITableViewCell() }
             
-        cell.tagContent.text = tagListTheUserGot[indexPath.row].tagContent
+        cell.tagContent.text = tagListTheUserGot[indexPath.row].tagContent!
         
-        cell.numberOfLike.text = String(tagListTheUserGot[indexPath.row].numberOfThumbs!)
+        cell.numberOfLike.text = String(tagListTheUserGot[indexPath.row].numberOfThumbs!) as! String
 
         return cell
 
         }
 
-
+    func loadTagList() {
+        
+        API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").addSnapshotListener({ (querySnapshot, error) in
+            
+          guard let existingSnapShot = querySnapshot else {
+            
+            print("no result! \(error!)")
+            return }
+            
+            self.tagListTheUserGot =  existingSnapShot.documents
+            self.tableView.reloadData()
+//            for document in existingSnapShot.documents {
+//
+//               let tagContent = document.data()["tagContent"] as! String
+//
+//               let thumb = document.data()["thumbUp"] as! [String]
+//
+//               let tagID = document.documentID
+//               let likedByYou = false
+//               let numberOfLiked = thumb.count
+//
+//               let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent, thumbUpByYou: likedByYou)
+//
+//                self.tagListTheUserGot.append(tagListMember)
+//                self.tableView.reloadData()
+//            }
+            
+            
+        })
+        
+    }
     
     
     
@@ -69,6 +95,7 @@ class Friend_sOwnTagList: UITableViewController {
                         completionHandler(nil)
                     }else {
                         completionHandler(result)
+
                       }
         }
     }
