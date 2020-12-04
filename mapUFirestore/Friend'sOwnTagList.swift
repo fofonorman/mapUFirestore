@@ -54,23 +54,41 @@ class Friend_sOwnTagList: UITableViewController {
             print("no result! \(error!)")
             return }
             
-            for document in existingSnapShot.documents {
+           
+                
+                for document in existingSnapShot.documents {
 
-               let tagContent = document.data()["tagContent"] as! String
+                   let tagContent = document.data()["tagContent"] as! String
 
-               let thumb = document.data()["thumbUp"] as! [String]
+                   let thumb = document.data()["thumbUp"] as! [String]
 
-               let tagID = document.documentID
-               let likedByYou = false
-               let numberOfLiked = thumb.count
+                   let tagID = document.documentID
+                   let likedByYou = false
+                   let numberOfLiked = thumb.count
 
-               let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent, thumbUpByYou: likedByYou)
+                   let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent, thumbUpByYou: likedByYou)
 
-                self.tagListTheUserGot.append(tagListMember)
-                self.tableView.reloadData()
-            }
+                    self.tagListTheUserGot.append(tagListMember)
+                    self.tableView.reloadData()
+
+                }
             
-        })   }
+            existingSnapShot.documentChanges.forEach { diff in
+                  
+                if (diff.type == .modified) {
+                print(diff.document.data())
+                
+                }
+                
+                }
+            
+          
+            
+        })
+        
+
+        
+    }
     
     
     
