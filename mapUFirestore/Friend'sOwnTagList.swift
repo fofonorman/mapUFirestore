@@ -18,7 +18,7 @@ class Friend_sOwnTagList: UITableViewController {
         super.viewDidLoad()
 
         loadTagList()
-
+        
     }
 
     // MARK: - Table view data source
@@ -48,7 +48,7 @@ class Friend_sOwnTagList: UITableViewController {
         }
 
     func loadTagList() {
-        
+//        要取消監聽
         
         API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").addSnapshotListener({ (querySnapshot, error) in
             
@@ -59,8 +59,7 @@ class Friend_sOwnTagList: UITableViewController {
             
             self.tagListTheUserGot.removeAll()
 
-               
-                for document in existingSnapShot.documents {
+            for document in existingSnapShot.documents {
 
                  if let tagContent = document.data()["tagContent"] {
                  
@@ -82,23 +81,8 @@ class Friend_sOwnTagList: UITableViewController {
 
                   
                 }
-            
-//            existingSnapShot.documentChanges.forEach { diff in
-//
-//                if (diff.type == .modified) {
-//                    self.tagListTheUserGot.removeAll()
-//                    self.tagListTheUserGot.append(diff)
-//                    self.tableView.reloadData()
-//
-//                }
-//
-//                }
-            
-          
-            
+               
         })
-        
-
         
     }
     

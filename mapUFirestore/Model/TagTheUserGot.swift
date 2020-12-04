@@ -12,6 +12,7 @@ class TagTheUserGot {
     var tagID: String?
     var tagContent: String?
     var thumbUpByYou: Bool?
+    var thumbByWhom: [String]?
     }
 
 
@@ -31,3 +32,6 @@ extension TagTheUserGot {
     }
     
 }
+
+
+
