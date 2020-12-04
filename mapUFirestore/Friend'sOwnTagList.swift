@@ -7,10 +7,12 @@
 
 import UIKit
 import FirebaseFirestoreSwift
+import FirebaseFirestore
 
 class Friend_sOwnTagList: UITableViewController {
 
     var tagListTheUserGot = [TagTheUserGot]()
+    var test = [QueryDocumentSnapshot]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +49,7 @@ class Friend_sOwnTagList: UITableViewController {
 
     func loadTagList() {
         
+        
         API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").addSnapshotListener({ (querySnapshot, error) in
             
           guard let existingSnapShot = querySnapshot else {
@@ -54,33 +57,42 @@ class Friend_sOwnTagList: UITableViewController {
             print("no result! \(error!)")
             return }
             
-           
-                
+            self.tagListTheUserGot.removeAll()
+
+               
                 for document in existingSnapShot.documents {
 
-                   let tagContent = document.data()["tagContent"] as! String
+                 if let tagContent = document.data()["tagContent"] {
+                 
+                    let thumb = document.data()["thumbUp"] as! [String]
 
-                   let thumb = document.data()["thumbUp"] as! [String]
+                    let tagID = document.documentID
+                    let likedByYou = false
+                    let numberOfLiked = thumb.count
 
-                   let tagID = document.documentID
-                   let likedByYou = false
-                   let numberOfLiked = thumb.count
+                    let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent as! String, thumbUpByYou: likedByYou)
 
-                   let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent, thumbUpByYou: likedByYou)
+                     
+                     self.tagListTheUserGot.append(tagListMember)
+                     self.tableView.reloadData()
 
-                    self.tagListTheUserGot.append(tagListMember)
-                    self.tableView.reloadData()
+                 }else {
+                    print("no result")
+                 }
 
+                  
                 }
             
-            existingSnapShot.documentChanges.forEach { diff in
-                  
-                if (diff.type == .modified) {
-                print(diff.document.data())
-                
-                }
-                
-                }
+//            existingSnapShot.documentChanges.forEach { diff in
+//
+//                if (diff.type == .modified) {
+//                    self.tagListTheUserGot.removeAll()
+//                    self.tagListTheUserGot.append(diff)
+//                    self.tableView.reloadData()
+//
+//                }
+//
+//                }
             
           
             

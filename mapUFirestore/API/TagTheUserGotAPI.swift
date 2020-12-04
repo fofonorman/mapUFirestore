@@ -21,12 +21,7 @@ class TagTheUserGotAPI{
                     guard let snapshot = snapshot else {
                         return
                     }
-            API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").getDocuments { (snapshot, error) in
-     
-                 guard let snapshot = snapshot else {
-                     return
-                 }
-     
+                
                  for document in snapshot.documents {
      
                     let tagContent = document.data()["tagContent"] as! String
@@ -102,4 +97,4 @@ class TagTheUserGotAPI{
     
     
 
-}
+
