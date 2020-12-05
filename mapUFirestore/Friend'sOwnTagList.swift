@@ -57,31 +57,36 @@ class Friend_sOwnTagList: UITableViewController {
             print("no result! \(error!)")
             return }
             
-            self.tagListTheUserGot.removeAll()
+            //            self.tagListTheUserGot.removeAll()
 
-            for document in existingSnapShot.documents {
-
-                 if let tagContent = document.data()["tagContent"] {
+            existingSnapShot.documentChanges.forEach({ (documentChange) in
+                  if documentChange.type == .added {
+                     print(documentChange.document.data())
+                    
+                    for document in documentChange.document.data() {
                  
-                    let thumb = document.data()["thumbUp"] as! [String]
+                    if let tagContent = documentChange.document.data()["tagContent"] {
+                    
+                      let thumb = documentChange.document.data()["thumbUp"] as! [String]
+                    
+                      let tagID = documentChange.document.documentID
+                      let likedByYou = false
+                      let numberOfLiked = thumb.count
+                    
+                      let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent as! String, thumbUpByYou: likedByYou)
+                    
+                    
+                      self.tagListTheUserGot.append(tagListMember)
+                      self.tableView.reloadData()
+                    
+                       }else { print("no result")
+                   
+                       }
+                       }
+                    
+                  }
+               })
 
-                    let tagID = document.documentID
-                    let likedByYou = false
-                    let numberOfLiked = thumb.count
-
-                    let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent as! String, thumbUpByYou: likedByYou)
-
-                     
-                     self.tagListTheUserGot.append(tagListMember)
-                     self.tableView.reloadData()
-
-                 }else {
-                    print("no result")
-                 }
-
-                  
-                }
-               
         })
         
     }

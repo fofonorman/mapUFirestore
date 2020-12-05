@@ -221,7 +221,7 @@ class InteractWithDBViewController: UIViewController {
     
     
     func actionsAfterClickFriendToVote (withUID uid: String, withTagContent tagContent: String, withTagID tagID: String) {
-        
+//        如果對象已經被投過此標籤了，要設計預期效果
         db.collection("userList").document(uid).collection("TagIGot").document(TagInstanceForVote?.tagID as! String).setData(["tagContent": TagInstanceForVote?.tagContent])
         
         db.collection("tagPoolDefault").document(tagID).updateData(["whoGotThisTag": FieldValue.arrayUnion([uid])])
