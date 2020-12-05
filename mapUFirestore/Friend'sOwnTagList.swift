@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseFirestoreSwift
 import FirebaseFirestore
+import FirebaseAuth
 
 class Friend_sOwnTagList: UITableViewController {
 
@@ -17,6 +18,15 @@ class Friend_sOwnTagList: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        Auth.auth().signInAnonymously { (authresult,error) in
+            if error == nil{
+                API.UserRef.db.collection("userList").document(authresult!.user.uid).setData(["name": "fakeUser"])
+                
+            print("signed-in \(authresult!.user.uid)")
+           }else{
+           print(error!.localizedDescription)
+        }}
+        
         loadTagList()
         
     }
