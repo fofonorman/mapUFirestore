@@ -60,6 +60,7 @@ class Friend_sOwnTagList: UITableViewController {
     func loadTagList() {
 //        要取消監聽
         
+             
         API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").addSnapshotListener({ (querySnapshot, error) in
             
           guard let existingSnapShot = querySnapshot else {
