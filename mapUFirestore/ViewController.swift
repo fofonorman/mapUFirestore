@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ViewController: UIViewController, UITextFieldDelegate {
 
@@ -25,6 +26,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //        self.GenQRcode.setImage(UIImage(named : "kkkgi"), for: UIControl.State.normal) // 預設狀態下要顯示的圖片
 //                self.GenQRcode.setImage(UIImage(named : "testPic"), for: UIControl.State.selected)
         // 選取狀態下要顯示的圖片
+        
+//        //匿名登入
+//        Auth.auth().signInAnonymously { (authresult,error) in
+//            if error == nil{
+//                API.UserRef.db.collection("userList").document(authresult!.user.uid).setData(["DDDD": "EEEEE"])
+//
+//            print("signed-in \(authresult!.user.uid)")
+//           }else{
+//           print(error!.localizedDescription)
+//        }}
             
 
    

@@ -35,31 +35,32 @@ class InteractWithDBViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        //匿名登入
-        Auth.auth().signInAnonymously { (authresult,error) in
-            if error == nil{
-                self.db.collection("userList").document(authresult!.user.uid).setData(["DDDD": "EEEEE"])
-                
-            print("signed-in \(authresult!.user.uid)")
-           }else{
-           print(error!.localizedDescription)
-        }}
+        
+//        //匿名登入
+//        Auth.auth().signInAnonymously { (authresult,error) in
+//            if error == nil{
+                API.UserRef.db.collection("userList").document(Auth.auth().currentUser!.uid).setData(["999": "ccc"], merge: true)
+//
+            print("signed-in \(Auth.auth().currentUser!.uid)")
+//           }else{
+//           print(error!.localizedDescription)
+//        }}
         
         fetchTagPool(completionHandler: { tags in
-          
+
             self.tagsForVoteList = tags!
-            
+
             self.assignNewTagInstanceToFrontEnd()
-            
+
         })
-        
+
        fetchFollowingList(completionHandler: { userArr in
 
         self.FollowingList = userArr!
-        
+
         self.assignNewFollowingInstanceToFrontEnd()
-   
-        
+
+
         }
        )
         
@@ -97,7 +98,7 @@ class InteractWithDBViewController: UIViewController {
         var result = [User]()
 
              
-            API.FollowingList.fetchFollowingList(withID: Auth.auth().currentUser!.uid) { users in
+        API.FollowingList.fetchFollowingList(withID: Auth.auth().currentUser!.uid) { users in
                 result.append(users)
 
                 DispatchQueue.main.async() {
@@ -222,6 +223,19 @@ class InteractWithDBViewController: UIViewController {
     
     func actionsAfterClickFriendToVote (withUID uid: String, withTagContent tagContent: String, withTagID tagID: String) {
 //        如果對象已經被投過此標籤了，要設計預期效果
+       
+        db.collection("userList").document(uid).collection("TagIGot").getDocuments { (querySnapshot, error) in
+            
+            guard let existingSnapShot = querySnapshot else { print("no result!")
+                return}
+            
+            let tagIGotList = [String]()
+               
+            print(existingSnapShot.documents.count)
+        
+                
+        }
+        
         db.collection("userList").document(uid).collection("TagIGot").document(TagInstanceForVote?.tagID as! String).setData(["tagContent": TagInstanceForVote?.tagContent])
         
         db.collection("tagPoolDefault").document(tagID).updateData(["whoGotThisTag": FieldValue.arrayUnion([uid])])
