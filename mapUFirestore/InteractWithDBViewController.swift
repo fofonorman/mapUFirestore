@@ -36,10 +36,17 @@ class InteractWithDBViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
+        let userData: [String: Any] = [
+        
+            "name": "fakeUser",
+            "school": "fakeSchool"
+        
+        ]
+        
 //        //匿名登入
 //        Auth.auth().signInAnonymously { (authresult,error) in
 //            if error == nil{
-                API.UserRef.db.collection("userList").document(Auth.auth().currentUser!.uid).setData(["999": "ccc"], merge: true)
+                API.UserRef.db.collection("userList").document(Auth.auth().currentUser!.uid).setData(userData, merge: true)
 //
             print("signed-in \(Auth.auth().currentUser!.uid)")
 //           }else{
@@ -222,7 +229,7 @@ class InteractWithDBViewController: UIViewController {
     
     
     func actionsAfterClickFriendToVote (withUID uid: String, withTagContent tagContent: String, withTagID tagID: String) {
-//        如果對象已經被投過此標籤了，要設計預期效果
+//        如果對象已經被投過此標籤了，要設計預期效果，尚未完成
        
         db.collection("userList").document(uid).collection("TagIGot").getDocuments { (querySnapshot, error) in
             
@@ -236,7 +243,15 @@ class InteractWithDBViewController: UIViewController {
                 
         }
         
-        db.collection("userList").document(uid).collection("TagIGot").document(TagInstanceForVote?.tagID as! String).setData(["tagContent": TagInstanceForVote?.tagContent])
+        let tagListData: [String: Any] = [
+        
+            "tagContent": TagInstanceForVote?.tagContent,
+            "thumbUp": [String](),
+            "likedByYou": false
+        
+        ]
+        
+        db.collection("userList").document(uid).collection("TagIGot").document((TagInstanceForVote?.tagID!)!).setData(tagListData, merge: true)
         
         db.collection("tagPoolDefault").document(tagID).updateData(["whoGotThisTag": FieldValue.arrayUnion([uid])])
         
