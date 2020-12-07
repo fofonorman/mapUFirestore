@@ -512,6 +512,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="upload"/>
+                                <connections>
+                                    <action selector="uploadImage:" destination="vYW-j6-cPO" eventType="touchUpInside" id="K7S-B8-bXj"/>
+                                    <action selector="uploadImage:" destination="be1-zv-Nc3" eventType="touchUpInside" id="dlh-kO-P86"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpP-L5-WCt">
                                 <rect key="frame" x="165" y="730" width="85" height="51"/>
@@ -532,6 +536,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qSM-Zq-RFc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="be1-zv-Nc3" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="2bv-9Y-Dy2">
                     <connections>
                         <action selector="photoImage:" destination="vYW-j6-cPO" id="J82-UQ-D16"/>

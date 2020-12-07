@@ -70,6 +70,12 @@ class PhotoCollectionView: UICollectionViewController, UICollectionViewDelegateF
         return 1
     }
     
+   
+    
+
+    
+    
+    
     // MARK: UICollectionViewDelegate
 
     /*
@@ -102,3 +108,6 @@ class PhotoCollectionView: UICollectionViewController, UICollectionViewDelegateF
     */
 
 }
+
+
+
