@@ -26,12 +26,21 @@ class AccessPhoto: UIViewController {
     
     
     @IBAction func selectPhoto(_ sender: UIButton) {
-        
+        theSrouceToAccessPhoto()
+
         
     }
     
 
     @IBAction func photoImage(_ sender: UITapGestureRecognizer) {
+        
+      theSrouceToAccessPhoto()
+        
+                
+    }
+    
+    
+    func theSrouceToAccessPhoto() {
         
         let controller = UIAlertController(title: "拍照?從照片選取?從相簿選取?", message: "", preferredStyle: .alert)
             controller.view.tintColor = UIColor.gray
@@ -59,8 +68,8 @@ class AccessPhoto: UIViewController {
 
             self.present(controller, animated: true, completion: nil)
         
-                
     }
+    
     
     /// 開啟相機
     func takePicture() {

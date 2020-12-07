@@ -239,7 +239,7 @@ class InteractWithDBViewController: UIViewController {
             let tagIGotList = [String]()
                
             print(existingSnapShot.documents.count)
-        
+            print(uid)
                 
         }
         

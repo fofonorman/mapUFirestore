@@ -20,7 +20,7 @@ class Friend_sOwnTagList: UITableViewController {
 
         Auth.auth().signInAnonymously { (authresult,error) in
             if error == nil{
-                API.UserRef.db.collection("userList").document(authresult!.user.uid).setData(["name": "fakeUser"])
+                API.UserRef.db.collection("userList").document(authresult!.user.uid).setData(["name": "\(authresult!.user.uid)"])
                 
             print("signed-in \(authresult!.user.uid)")
            }else{
@@ -59,8 +59,7 @@ class Friend_sOwnTagList: UITableViewController {
 
     func loadTagList() {
 //        要取消監聽
-        
-             
+         
         API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").addSnapshotListener({ (querySnapshot, error) in
             
           guard let existingSnapShot = querySnapshot else {
@@ -74,11 +73,8 @@ class Friend_sOwnTagList: UITableViewController {
                   if documentChange.type == .added {
                      print(documentChange.document.data())
                     
-                    for document in documentChange.document.data() {
-                 
-                    if let tagContent = documentChange.document.data()["tagContent"] {
-                    
-                      let thumb = documentChange.document.data()["thumbUp"] as! [String]
+                    if let tagContent = documentChange.document.data()["tagContent"],
+                       let thumb = documentChange.document.data()["thumbUp"] as? [String] {
                     
                       let tagID = documentChange.document.documentID
                       let likedByYou = false
@@ -86,18 +82,14 @@ class Friend_sOwnTagList: UITableViewController {
                     
                       let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent as! String, thumbUpByYou: likedByYou)
                     
-                    
                       self.tagListTheUserGot.append(tagListMember)
-                      self.tableView.reloadData()
-                    
-                       }else { print("no result")
-                   
-                       }
-                       }
+                    } else {
+                        return
+                    }
                     
                   }
                })
-
+            self.tableView.reloadData()
         })
         
     }
