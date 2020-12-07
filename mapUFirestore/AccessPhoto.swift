@@ -8,7 +8,7 @@
 import UIKit
 import PhotosUI
 import FirebaseFirestore
-
+import FirebaseStorage
 
 class AccessPhoto: UIViewController {
 
@@ -186,11 +186,12 @@ extension PhotoCollectionView: UIImagePickerControllerDelegate, UINavigationCont
             // 當判斷有 selectedImage 時，我們會在 if 判斷式裡將圖片上傳
             if let selectedImage = selectedImageFromPicker {
                 
-                let storageRef = FIRStorage.storage().reference().child("AppCodaFireUpload").child("\(uniqueString).png")
+                let storageRef = Storage.storage().reference().child("AppCodaFireUpload").child("\(uniqueString).png")
                     
-                    if let uploadData = UIImagePNGRepresentation(selectedImage) {
+                if let uploadData = selectedImage.pngData() {
                         // 這行就是 FirebaseStorage 關鍵的存取方法。
-                        storageRef.put(uploadData, metadata: nil, completion: { (data, error) in
+                    
+                    storageRef.putData(uploadData, metadata: nil, completion: { (data, error) in
                             
                             if error != nil {
                                 
@@ -200,7 +201,8 @@ extension PhotoCollectionView: UIImagePickerControllerDelegate, UINavigationCont
                             }
                             
                             // 連結取得方式就是：data?.downloadURL()?.absoluteString。
-                            if let uploadImageUrl = data?.downloadURL()?.absoluteString {
+                        if let uploadImageUrl =
+                        {
                                 
                                 // 我們可以 print 出來看看這個連結事不是我們剛剛所上傳的照片。
                                 print("Photo Url: \(uploadImageUrl)")
