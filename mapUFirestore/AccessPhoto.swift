@@ -200,13 +200,19 @@ extension PhotoCollectionView: UIImagePickerControllerDelegate, UINavigationCont
                                 return
                             }
                             
-                            // 連結取得方式就是：data?.downloadURL()?.absoluteString。
-                        if let uploadImageUrl =
-                        {
-                                
-                                // 我們可以 print 出來看看這個連結事不是我們剛剛所上傳的照片。
-                                print("Photo Url: \(uploadImageUrl)")
+                            // 連結取得方式
+                         storageRef.downloadURL{ (url, error) in
+                            
+                            guard let downloadURL = url else {
+                                print("Failed to get URL!")
+                                return
                             }
+                   // 我們可以 print 出來看看這個連結事不是我們剛剛所上傳的照片。
+                            print("Photo Url: \(downloadURL)")
+                            
+                            
+                        }
+                        
                         })
                     }            }
             
