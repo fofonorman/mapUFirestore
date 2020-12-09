@@ -58,7 +58,7 @@ class Friend_sOwnTagList: UITableViewController {
         }
 
     func loadTagList() {
-//        要取消監聽
+//        記得要取消監聽
          
         API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").addSnapshotListener({ (querySnapshot, error) in
             
@@ -71,7 +71,6 @@ class Friend_sOwnTagList: UITableViewController {
 
             existingSnapShot.documentChanges.forEach({ (documentChange) in
                   if documentChange.type == .added {
-                     print(documentChange.document.data())
                     
                     if let tagContent = documentChange.document.data()["tagContent"],
                        let thumb = documentChange.document.data()["thumbUp"] as? [String] {
@@ -83,15 +82,31 @@ class Friend_sOwnTagList: UITableViewController {
                       let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent as! String, thumbUpByYou: likedByYou)
                     
                       self.tagListTheUserGot.append(tagListMember)
-                    } else {
-                        return
+                    
+                    } else if documentChange.type == .modified {
+                        
+                        if let thumb = documentChange.document.data()["thumbUp"] as? [String] {
+                            
+                            let tagID = documentChange.document.documentID
+                            let numberOfLiked = thumb.count
+                            
+                            let tagTheUserGot = self.tagListTheUserGot.first { (tagTheUserGot) -> Bool in
+                                
+                                tagTheUserGot.tagID == tagID
+                                
+                            }
+                            tagTheUserGot?.numberOfThumbs = numberOfLiked
+                        }
+                        
+                       
                     }
                     
                   }
+                
+                self.tableView.reloadData()
                })
-            self.tableView.reloadData()
+            
         })
-        
     }
     
     
