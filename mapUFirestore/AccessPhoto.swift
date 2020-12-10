@@ -14,7 +14,8 @@ class AccessPhoto: UIViewController {
 
     let imagePickerController = UIImagePickerController()
     let storageRef = Storage.storage().reference()
-
+    
+    
     
     @IBOutlet weak var photoImageView: UIImageView!
     
@@ -25,7 +26,48 @@ class AccessPhoto: UIViewController {
         
         imagePickerController.delegate = self
         testUpload()
+        uploadSampleFromPeterPan()
     }
+    
+    
+    func uploadSampleFromPeterPan() {
+        let fileReference = self.storageRef.child("001.png")
+
+        if let data = try? Data(contentsOf: Bundle.main.url(forResource: "peter", withExtension: "png")!) {
+           fileReference.putData(data, metadata: nil) { (metadata, error) in
+              guard let _ = metadata, error == nil else {
+                 return
+              }
+              fileReference.downloadURL(completion: { (url, error) in
+                 guard let downloadURL = url else {
+                    return
+                 }
+                 print(downloadURL)
+              })
+           }
+        }
+    }
+    
+    
+//    彼得潘的sample code:上傳檔案 & 將檔案路徑存在 database
+//    func uploadPhoto(completion: @escaping (URL?) -> () ) {
+//
+//            let fileReference = Storage.storage().reference().child(UUID().uuidString + ".jpg")
+//
+//
+//            if let data = photoButton.image(for: .normal)?.jpegData(compressionQuality: 0.9) {
+//                fileReference.putData(data, metadata: nil) { (_, error) in
+//                    guard error == nil else {
+//                        print("upload error")
+//                        return
+//                    }
+//                    fileReference.downloadURL { (url, error) in
+//                        completion(url)
+//                    }
+//                }
+//            }
+//    }
+    
     
     
     @IBAction func selectPhoto(_ sender: UIButton) {

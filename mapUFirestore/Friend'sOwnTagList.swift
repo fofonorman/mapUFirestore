@@ -51,7 +51,7 @@ class Friend_sOwnTagList: UITableViewController {
             
         cell.tagContent.text = tagListTheUserGot[indexPath.row].tagContent!
         
-        cell.numberOfLike.text = String(tagListTheUserGot[indexPath.row].numberOfThumbs!) as! String
+        cell.numberOfLike.text = String(tagListTheUserGot[indexPath.row].numberOfThumbs!)
 
         return cell
 
@@ -70,6 +70,7 @@ class Friend_sOwnTagList: UITableViewController {
             //            self.tagListTheUserGot.removeAll()
 
             existingSnapShot.documentChanges.forEach({ (documentChange) in
+                
                   if documentChange.type == .added {
                     
                     if let tagContent = documentChange.document.data()["tagContent"],
@@ -82,7 +83,7 @@ class Friend_sOwnTagList: UITableViewController {
                       let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent as! String, thumbUpByYou: likedByYou)
                     
                       self.tagListTheUserGot.append(tagListMember)
-                    
+                    }
                     } else if documentChange.type == .modified {
                         
                         if let thumb = documentChange.document.data()["thumbUp"] as? [String] {
@@ -98,14 +99,10 @@ class Friend_sOwnTagList: UITableViewController {
                             tagTheUserGot?.numberOfThumbs = numberOfLiked
                         }
                         
-                       
                     }
-                    
-                  }
-                
-                self.tableView.reloadData()
+                             
                })
-            
+            self.tableView.reloadData()
         })
     }
     
