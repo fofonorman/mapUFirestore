@@ -13,6 +13,7 @@ class DennyUploadPhotoViewController: UIViewController, UIImagePickerControllerD
 
     let storageRef = Storage.storage().reference()
 
+    @IBOutlet weak var avatar: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,8 +21,19 @@ class DennyUploadPhotoViewController: UIViewController, UIImagePickerControllerD
         // Do any additional setup after loading the view.
         
         Auth.auth().signInAnonymously(completion: nil)
-        uploadPhoto { (url) in print(url)}
+
+        
+        
     }
+    
+    func displayImage() {
+        
+//        用getdata方式來測試取得圖素網址可否正確下載並顯示於前端
+        
+       
+        
+    }
+    
     
     @IBAction func uploadPic(_ sender: UIButton) {
         
