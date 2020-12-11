@@ -7,14 +7,15 @@
 
 import UIKit
 import PhotosUI
-import FirebaseFirestore
+import FirebaseFirestoreSwift
 import FirebaseStorage
+import FirebaseAuth
 
 class AccessPhoto: UIViewController {
 
     let imagePickerController = UIImagePickerController()
     let storageRef = Storage.storage().reference()
-    
+
     
     
     @IBOutlet weak var photoImageView: UIImageView!
@@ -23,30 +24,60 @@ class AccessPhoto: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+        Auth.auth().signInAnonymously(completion: nil)
         imagePickerController.delegate = self
-        testUpload()
-        uploadSampleFromPeterPan()
     }
     
     
-    func uploadSampleFromPeterPan() {
-        let fileReference = self.storageRef.child("001.png")
-
-        if let data = try? Data(contentsOf: Bundle.main.url(forResource: "peter", withExtension: "png")!) {
-           fileReference.putData(data, metadata: nil) { (metadata, error) in
-              guard let _ = metadata, error == nil else {
-                 return
-              }
-              fileReference.downloadURL(completion: { (url, error) in
-                 guard let downloadURL = url else {
-                    return
-                 }
-                 print(downloadURL)
-              })
-           }
+    
+        func uploadSampleFromPeterPan() {
+            let fileReference = self.storageRef.child("001.jpeg")
+    
+            let image = UIImage(named: "001")
+            if let imageData = image?.jpegData(compressionQuality: 0.9) {
+                
+                fileReference.putData(imageData, metadata: nil) { (metadata, error) in
+                   guard let _ = metadata, error == nil else {
+                      print("no metadata")
+                      return
+                   }
+                   fileReference.downloadURL(completion: { (url, error) in
+                      guard let downloadURL = url else {
+                         print("no URL")
+                         return
+                      }
+                      print(downloadURL)
+                   })
+                }
+                
+            }
+    
         }
-    }
+    
+    
+//    彼得潘的上傳檔案範例，但會報錯閃退
+//    func uploadSampleFromPeterPan() {
+//        let fileReference = self.storageRef.child("001.jpeg")
+//
+//        let image = UIImage(named: "001")
+//        let imageData = image?.jpegData(compressionQuality: 0.9)
+//
+//        if let data = try? Data(contentsOf: Bundle.main.url(forResource: "001", withExtension: "jpeg")!) {
+//           fileReference.putData(data, metadata: nil) { (metadata, error) in
+//              guard let _ = metadata, error == nil else {
+//                 print("no metadata")
+//                 return
+//              }
+//              fileReference.downloadURL(completion: { (url, error) in
+//                 guard let downloadURL = url else {
+//                    print("no URL")
+//                    return
+//                 }
+//                 print(downloadURL)
+//              })
+//           }
+//        }
+//    }
     
     
 //    彼得潘的sample code:上傳檔案 & 將檔案路徑存在 database
@@ -69,7 +100,17 @@ class AccessPhoto: UIViewController {
 //    }
     
     
+    @IBAction func DennyTeacherUploadPic(_ sender: UIButton) {
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = false
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
+    }
     
+  
+
     @IBAction func selectPhoto(_ sender: UIButton) {
         theSrouceToAccessPhoto()
 

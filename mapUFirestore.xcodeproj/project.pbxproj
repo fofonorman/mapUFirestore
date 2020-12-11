@@ -22,6 +22,7 @@
 		9649C8B52573DF4A00587927 /* Friend'sOwnTagList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9649C8B42573DF4A00587927 /* Friend'sOwnTagList.swift */; };
 		9649C8BA2573E3C400587927 /* Friend'sOwnTagListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9649C8B92573E3C400587927 /* Friend'sOwnTagListCell.swift */; };
 		964A9595257136250013E617 /* AccessPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964A9594257136250013E617 /* AccessPhoto.swift */; };
+		964C0CB025839EF1002C0195 /* DennyUploadPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C0CAF25839EF1002C0195 /* DennyUploadPhotoViewController.swift */; };
 		965C65F9257E56C60048AEF5 /* PhotoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C65F8257E56C60048AEF5 /* PhotoCollectionView.swift */; };
 		965C65FE257E56FA0048AEF5 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C65FD257E56FA0048AEF5 /* PhotoCollectionViewCell.swift */; };
 		965C6607257E69F40048AEF5 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 965C6606257E69F40048AEF5 /* FirebaseFirestoreSwift */; };
@@ -80,6 +81,7 @@
 		9649C8B42573DF4A00587927 /* Friend'sOwnTagList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Friend'sOwnTagList.swift"; sourceTree = "<group>"; };
 		9649C8B92573E3C400587927 /* Friend'sOwnTagListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Friend'sOwnTagListCell.swift"; sourceTree = "<group>"; };
 		964A9594257136250013E617 /* AccessPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPhoto.swift; sourceTree = "<group>"; };
+		964C0CAF25839EF1002C0195 /* DennyUploadPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DennyUploadPhotoViewController.swift; sourceTree = "<group>"; };
 		965C65F8257E56C60048AEF5 /* PhotoCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionView.swift; sourceTree = "<group>"; };
 		965C65FD257E56FA0048AEF5 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		966AD46225558A58002EEF9B /* InteractWithDBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractWithDBViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				966AD46225558A58002EEF9B /* InteractWithDBViewController.swift */,
 				9649C8B42573DF4A00587927 /* Friend'sOwnTagList.swift */,
 				965C65FD257E56FA0048AEF5 /* PhotoCollectionViewCell.swift */,
+				964C0CAF25839EF1002C0195 /* DennyUploadPhotoViewController.swift */,
 				965C65F8257E56C60048AEF5 /* PhotoCollectionView.swift */,
 				9649C8B92573E3C400587927 /* Friend'sOwnTagListCell.swift */,
 				9683C86D2549C55000A5C8A1 /* Model */,
@@ -373,6 +376,7 @@
 				9683C8772549C59000A5C8A1 /* User.swift in Sources */,
 				9683C85F2549C4A700A5C8A1 /* UserAPI.swift in Sources */,
 				9644DD4F256E9050000601B9 /* TagTheUserGot.swift in Sources */,
+				964C0CB025839EF1002C0195 /* DennyUploadPhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
