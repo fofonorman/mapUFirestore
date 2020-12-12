@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 private let reuseIdentifier = "Cell"
 
@@ -70,7 +71,7 @@ class PhotoCollectionView: UICollectionViewController, UICollectionViewDelegateF
         return 1
     }
     
-   
+
     
 
     
@@ -109,5 +110,58 @@ class PhotoCollectionView: UICollectionViewController, UICollectionViewDelegateF
 
 }
 
-
+extension PhotoCollectionView: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+            func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    
+                var selectedImageFromPicker: UIImage?
+    
+                // 取得從 UIImagePickerController 選擇的檔案
+                if let pickedImage = info[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage {
+    
+                    selectedImageFromPicker = pickedImage
+                }
+    
+                // 可以自動產生一組獨一無二的 ID 號碼，方便等一下上傳圖片的命名
+                let uniqueString = NSUUID().uuidString
+    
+                // 當判斷有 selectedImage 時，我們會在 if 判斷式裡將圖片上傳
+                if let selectedImage = selectedImageFromPicker {
+    
+                    let storageRef = Storage.storage().reference().child("AppCodaFireUpload").child("\(uniqueString).png")
+    
+                    if let uploadData = selectedImage.pngData() {
+                            // 這行就是 FirebaseStorage 關鍵的存取方法。
+    
+                        storageRef.putData(uploadData, metadata: nil, completion: { (data, error) in
+    
+                                if error != nil {
+    
+                                    // 若有接收到錯誤，我們就直接印在 Console 就好，在這邊就不另外做處理。
+                                    print("Error: \(error!.localizedDescription)")
+                                    return
+                                }
+    
+                                // 連結取得方式
+                             storageRef.downloadURL{ (url, error) in
+    
+                                guard let downloadURL = url else {
+                                    print("Failed to get URL!")
+                                    return
+                                }
+                       // 我們可以 print 出來看看這個連結事不是我們剛剛所上傳的照片。
+                                print("Photo Url: \(downloadURL)")
+    
+    
+                            }
+    
+                            })
+                        }            }
+    
+                dismiss(animated: true, completion: nil)
+            }
+    
+    
+    
+        }
 
