@@ -21,14 +21,51 @@ class DennyUploadPhotoViewController: UIViewController, UIImagePickerControllerD
         // Do any additional setup after loading the view.
         
         Auth.auth().signInAnonymously(completion: nil)
-
+        print(Auth.auth().currentUser?.uid)
         
+//        uploadSampleFromPeterPan()
+        displayImage()
         
     }
     
     func displayImage() {
         
-//        用getdata方式來測試取得圖素網址可否正確下載並顯示於前端
+//       成功用getdata方式來取得圖素網址下載並顯示於前端
+        
+        if let userUID = Auth.auth().currentUser?.uid {
+           
+            let db = Firestore.firestore()
+            db.collection("userList").document(userUID).getDocument { (document, error) in
+               if let document = document, document.exists {
+                
+                var theUIImage: UIImage? = nil
+                
+                if let linkString = document.data()!["ProfileImage"] as? String {
+                    
+                    if let imageURL = URL.init(string: linkString){
+                        
+                        do{ let data = try Data.init(contentsOf: imageURL)
+                            theUIImage = UIImage(data: data)
+                            
+                        }catch{
+                            
+                        }
+                    }
+                    
+                }
+                        self.avatar.image = theUIImage
+
+                print(document.data()!["ProfileImage"]!)
+               } else {
+                  print("Document does not exist")
+               }
+            }
+            
+        }
+  
+        
+        
+        
         
        
         
@@ -85,7 +122,7 @@ class DennyUploadPhotoViewController: UIViewController, UIImagePickerControllerD
                      print("no URL")
                      return
                   }
-                  print(downloadURL)
+                  print("this is \(downloadURL)")
                })
             }
             
