@@ -24,7 +24,10 @@ class AccessPhoto: UIViewController, UINavigationControllerDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        Auth.auth().signInAnonymously(completion: nil)
+        Auth.auth().signInAnonymously(completion: { _,_  in
+            
+            print(Auth.auth().currentUser?.uid)
+        })
         imagePickerController.delegate = self
     }
     
@@ -66,7 +69,7 @@ class AccessPhoto: UIViewController, UINavigationControllerDelegate {
         imagePicker.sourceType = .photoLibrary
 //        設定為不可編輯此asset
         imagePicker.allowsEditing = false
-//        顯示圖素之處設定為self，這個寫法比還待確認其意義
+//        顯示圖素之處設定為self，這個寫法還待確認其意義
         imagePicker.delegate = self
 //        跳出選擇asset的彈窗
         present(imagePicker, animated: true, completion: nil)
@@ -252,9 +255,10 @@ extension AccessPhoto: UIImagePickerControllerDelegate {
                         })
                      }
                  }
+            self.photoImageView.image = image
+
             }
             
-//            self.photoImageView.image = image
         picker.dismiss(animated: true)
         }
         
