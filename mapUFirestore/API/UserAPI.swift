@@ -24,15 +24,15 @@ class UserAPI {
         let userListRef = db.collection("userList")
         
         
-//      將uid輸入後撈出name再填入 certainUser class
+//      將uid輸入後撈出name & userAvatarURL 再填入 certainUser class
         userListRef.document(uid).getDocument { (document, error) in
             
             if let name = document?.data()?["name"] {
                 
 
                 let uid = document?.documentID
-
-                let certainUser = User.certainUser(uid: uid!, displayName: name as! String)
+                let userAvatar = document?.data()!["ProfileImage"]
+                let certainUser = User.certainUser(uid: uid!, displayName: name as! String, userAvatarURL: userAvatar as! String)
                         completion(certainUser)
 
             } else {

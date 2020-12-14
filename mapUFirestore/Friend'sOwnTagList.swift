@@ -20,7 +20,9 @@ class Friend_sOwnTagList: UITableViewController {
 
         Auth.auth().signInAnonymously { (authresult,error) in
             if error == nil{
-                API.UserRef.db.collection("userList").document(authresult!.user.uid).setData(["name": "\(authresult!.user.uid)"])
+                API.UserRef.db.collection("userList").document(authresult!.user.uid).updateData(["school": "nice school",
+                    "habit": "trip"]
+                )
                 
             print("signed-in \(authresult!.user.uid)")
            }else{
@@ -108,27 +110,27 @@ class Friend_sOwnTagList: UITableViewController {
     
     
     
-    typealias TagListTheUserGot = ([TagTheUserGot]?) -> Void
-
-    //撈出tagIGot底下所有資料匯入class並作為日後存取相關資料所用
-    func fetchTagListTheUserGot(completionHandler: @escaping TagListTheUserGot) {
-        
-        var result = [TagTheUserGot]()
-
-        API.TagTheUserGot.fetchTagTheUserGotList { tag in
-           
-            result.append(tag)
-
-                DispatchQueue.main.async() {
-                    if result.isEmpty {
-                        completionHandler(nil)
-                    }else {
-                        completionHandler(result)
-
-                      }
-        }
-    }
-    }
+//    typealias TagListTheUserGot = ([TagTheUserGot]?) -> Void
+//
+//    //撈出tagIGot底下所有資料匯入class並作為日後存取相關資料所用
+//    func fetchTagListTheUserGot(completionHandler: @escaping TagListTheUserGot) {
+//
+//        var result = [TagTheUserGot]()
+//
+//        API.TagTheUserGot.fetchTagTheUserGotList { tag in
+//
+//            result.append(tag)
+//
+//                DispatchQueue.main.async() {
+//                    if result.isEmpty {
+//                        completionHandler(nil)
+//                    }else {
+//                        completionHandler(result)
+//
+//                      }
+//        }
+//    }
+//    }
    
     
 }

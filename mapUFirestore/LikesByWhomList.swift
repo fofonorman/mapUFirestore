@@ -8,10 +8,20 @@
 import UIKit
 
 class LikesByWhomList: UITableViewController {
+    
+    var likesByWhomList = [User]()
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        loadLikesByWhomList(completion:{
+            
+            result in
+            self.likesByWhomList = result!
+        
+           
+        } )
+    
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -28,7 +38,8 @@ class LikesByWhomList: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 2
+        print(likesByWhomList.count)
+        return likesByWhomList.count
     }
 
     
@@ -37,10 +48,57 @@ class LikesByWhomList: UITableViewController {
             return UITableViewCell()
         }
 
+        cell.UserNameLabel.text = self.likesByWhomList[indexPath.row].displayName
+            
+        cell.UserAvtar.image = UIImage(named: "001")
                 return cell
     }
     
+    
+    typealias loadLikesByWhom = ([User]?) -> Void
+    
+    func loadLikesByWhomList(completion: @escaping loadLikesByWhom) {
+        
+        var result = [User]()
+        
+       API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").addSnapshotListener({ (querySnapshot, error) in
+            
+            guard let existingSnapShot = querySnapshot else {
+              
+              print("no result! \(error!)")
+              return }
+       
+              existingSnapShot.documentChanges.forEach({ (documentChange) in
+                  
+                    if documentChange.type == .added {
+                        
+                        if let thumbUp = documentChange.document.data()["thumbUp"] as? [String] {
+                            
+                            for userUID in thumbUp {
+                                
+                                API.UserRef.observeUser(withID: userUID, completion: { userData in result.append(userData)
+                                    
+                                    DispatchQueue.main.async() {
+                                                        if result.isEmpty {
+                                                            completion(nil)
+                                                        }else {
+                                                            completion(result)
+                                    
+                                                          }
+                                            }
+                                    
+                                   
+             })
 
+       }
+             }}
+                          
+         })
+        
+    })
+        
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

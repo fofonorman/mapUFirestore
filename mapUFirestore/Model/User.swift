@@ -13,23 +13,26 @@ import FirebaseDatabase
 class User {
     var uid: String?
     var displayName: String?
+    var userAvatarURL: String?
     var followingList: [Dictionary<String, Bool>]?
     var followerList: [Dictionary<String, Bool>]?
     }
 
 extension User{
 
-    static func certainUser(uid: String, displayName: String) -> User {
+    static func certainUser(uid: String, displayName: String, userAvatarURL: String) -> User {
            
         let certainUser = User()
         certainUser.uid = uid
         certainUser.displayName = displayName
-
+        certainUser.userAvatarURL = userAvatarURL
+        
         return certainUser
         }
     
 
 }
+
 
 extension User{
     
