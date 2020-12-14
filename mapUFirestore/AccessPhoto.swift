@@ -24,10 +24,13 @@ class AccessPhoto: UIViewController, UINavigationControllerDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        Auth.auth().signInAnonymously(completion: { _,_  in
-            
-            print(Auth.auth().currentUser?.uid)
-        })
+//        Auth.auth().signInAnonymously(completion: { _,_  in
+//
+//            print(Auth.auth().currentUser?.uid)
+//        })／
+        
+                    print(Auth.auth().currentUser?.uid)
+
         imagePickerController.delegate = self
     }
     

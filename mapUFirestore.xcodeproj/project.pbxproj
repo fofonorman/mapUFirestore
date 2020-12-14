@@ -30,6 +30,8 @@
 		965C660B257E69F40048AEF5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 965C660A257E69F40048AEF5 /* FirebaseAuth */; };
 		965C660D257E69F40048AEF5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 965C660C257E69F40048AEF5 /* FirebaseFirestore */; };
 		965C660F257E69F40048AEF5 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 965C660E257E69F40048AEF5 /* FirebaseDatabase */; };
+		9669561A258786BF004C088A /* LikesByWhomList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96695619258786BF004C088A /* LikesByWhomList.swift */; };
+		9669562225878B5F004C088A /* LikesByWhomListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9669562125878B5F004C088A /* LikesByWhomListCell.swift */; };
 		966AD46325558A58002EEF9B /* InteractWithDBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966AD46225558A58002EEF9B /* InteractWithDBViewController.swift */; };
 		9683C8422549BBC200A5C8A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9683C8412549BBC200A5C8A1 /* GoogleService-Info.plist */; };
 		9683C8542549C46A00A5C8A1 /* tagPoolAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683C8532549C46A00A5C8A1 /* tagPoolAPI.swift */; };
@@ -84,6 +86,8 @@
 		964C0CAF25839EF1002C0195 /* DennyUploadPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DennyUploadPhotoViewController.swift; sourceTree = "<group>"; };
 		965C65F8257E56C60048AEF5 /* PhotoCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionView.swift; sourceTree = "<group>"; };
 		965C65FD257E56FA0048AEF5 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		96695619258786BF004C088A /* LikesByWhomList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesByWhomList.swift; sourceTree = "<group>"; };
+		9669562125878B5F004C088A /* LikesByWhomListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesByWhomListCell.swift; sourceTree = "<group>"; };
 		966AD46225558A58002EEF9B /* InteractWithDBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractWithDBViewController.swift; sourceTree = "<group>"; };
 		9683C8412549BBC200A5C8A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9683C8532549C46A00A5C8A1 /* tagPoolAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tagPoolAPI.swift; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 				965C65FD257E56FA0048AEF5 /* PhotoCollectionViewCell.swift */,
 				964C0CAF25839EF1002C0195 /* DennyUploadPhotoViewController.swift */,
 				965C65F8257E56C60048AEF5 /* PhotoCollectionView.swift */,
+				96695619258786BF004C088A /* LikesByWhomList.swift */,
+				9669562125878B5F004C088A /* LikesByWhomListCell.swift */,
 				9649C8B92573E3C400587927 /* Friend'sOwnTagListCell.swift */,
 				9683C86D2549C55000A5C8A1 /* Model */,
 				9683C8522549C45000A5C8A1 /* API */,
@@ -363,11 +369,13 @@
 				963F0731254583DE00E3D11B /* ViewController.swift in Sources */,
 				963F072D254583DE00E3D11B /* AppDelegate.swift in Sources */,
 				964126FA2553E94200F63309 /* ScanViewController.swift in Sources */,
+				9669561A258786BF004C088A /* LikesByWhomList.swift in Sources */,
 				9649C8B52573DF4A00587927 /* Friend'sOwnTagList.swift in Sources */,
 				966AD46325558A58002EEF9B /* InteractWithDBViewController.swift in Sources */,
 				9649C8BA2573E3C400587927 /* Friend'sOwnTagListCell.swift in Sources */,
 				965C65FE257E56FA0048AEF5 /* PhotoCollectionViewCell.swift in Sources */,
 				963F072F254583DE00E3D11B /* SceneDelegate.swift in Sources */,
+				9669562225878B5F004C088A /* LikesByWhomListCell.swift in Sources */,
 				9683C8542549C46A00A5C8A1 /* tagPoolAPI.swift in Sources */,
 				9683C8642549C4BB00A5C8A1 /* FollowingListAPI.swift in Sources */,
 				9683C86F2549C56500A5C8A1 /* Tag.swift in Sources */,
