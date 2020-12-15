@@ -14,19 +14,14 @@ class LikesByWhomList: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadLikesByWhomList(completion:{
+        loadLikesByWhomList(completion: { result in
             
-            result in
             self.likesByWhomList = result!
-        
-           
-        } )
-    
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+            print("\(self.likesByWhomList) in viewDidLoad")
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+            
+        })
+
     }
 
     // MARK: - Table view data source
@@ -38,19 +33,30 @@ class LikesByWhomList: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        print(likesByWhomList.count)
-        return likesByWhomList.count
+        
+        guard !self.likesByWhomList.isEmpty else {
+            print("no value inside likesByWhom")
+            return 5
+        }
+
+            return likesByWhomList.count
+
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? LikesByWhomListCell else {
             return UITableViewCell()
+        }
+        
+        guard !self.likesByWhomList.isEmpty else {
+            print("no value in cell")
+            return cell
         }
 
         cell.UserNameLabel.text = self.likesByWhomList[indexPath.row].displayName
             
         cell.UserAvtar.image = UIImage(named: "001")
+
                 return cell
     }
     
@@ -58,9 +64,8 @@ class LikesByWhomList: UITableViewController {
     typealias loadLikesByWhom = ([User]?) -> Void
     
     func loadLikesByWhomList(completion: @escaping loadLikesByWhom) {
-        
         var result = [User]()
-        
+    
        API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").addSnapshotListener({ (querySnapshot, error) in
             
             guard let existingSnapShot = querySnapshot else {
@@ -74,19 +79,20 @@ class LikesByWhomList: UITableViewController {
                         
                         if let thumbUp = documentChange.document.data()["thumbUp"] as? [String] {
                             
+//                            print(" \(thumbUp) in API")
+                            
+//                     把有按過讚的用戶uid拿去撈用戶的頭像跟顯示名稱
                             for userUID in thumbUp {
                                 
                                 API.UserRef.observeUser(withID: userUID, completion: { userData in result.append(userData)
                                     
                                     DispatchQueue.main.async() {
-                                                        if result.isEmpty {
-                                                            completion(nil)
-                                                        }else {
-                                                            completion(result)
-                                    
-                                                          }
-                                            }
-                                    
+                                        if result.isEmpty {
+                                            completion(nil)
+                                        }else {
+                                            completion(result)
+                                          }
+                            }
                                    
              })
 
@@ -94,7 +100,7 @@ class LikesByWhomList: UITableViewController {
              }}
                           
          })
-        
+        self.tableView.reloadData()
     })
         
     }

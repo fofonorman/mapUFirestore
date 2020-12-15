@@ -69,8 +69,6 @@ class Friend_sOwnTagList: UITableViewController {
             print("no result! \(error!)")
             return }
             
-            //            self.tagListTheUserGot.removeAll()
-
             existingSnapShot.documentChanges.forEach({ (documentChange) in
                 
                   if documentChange.type == .added {

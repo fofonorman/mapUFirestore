@@ -53,7 +53,7 @@ class InteractWithDBViewController: UIViewController {
 //           print(error!.localizedDescription)
 //        }}
         
-        fetchTagPool(completionHandler: { tags in
+        fetchTagPool(completion: { tags in
 
             self.tagsForVoteList = tags!
 
@@ -82,7 +82,7 @@ class InteractWithDBViewController: UIViewController {
     typealias TagArrayClosure = ([Tag]?) -> Void
 
     //撈出tagPool底下所有資料匯入class並作為日後存取相關資料所用
-    func fetchTagPool(completionHandler: @escaping TagArrayClosure) {
+    func fetchTagPool(completion: @escaping TagArrayClosure) {
         var result = [Tag]()
 
             API.Tag.observeTagPool { tag in
@@ -90,9 +90,9 @@ class InteractWithDBViewController: UIViewController {
 
                 DispatchQueue.main.async() {
                     if result.isEmpty {
-                        completionHandler(nil)
+                        completion(nil)
                     }else {
-                        completionHandler(result)
+                        completion(result)
                       }
         }
     }
