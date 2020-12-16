@@ -408,7 +408,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MaC-WV-7yj">
-                                <rect key="frame" x="123" y="606" width="168" height="180"/>
+                                <rect key="frame" x="113" y="599" width="168" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="beforeLike"/>
                                 <connections>
@@ -459,14 +459,19 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="3l4-sf-8MJ">
-                                            <rect key="frame" x="20" y="69" width="46" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3l4-sf-8MJ">
+                                            <rect key="frame" x="72" y="41" width="55" height="58"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Button"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="1"/>
+                                            <state key="normal" title="Button" image="beforeLike"/>
+                                            <connections>
+                                                <action selector="LikeBtn:" destination="pXa-oL-Vz7" eventType="touchUpInside" id="Ayz-5y-3Xc"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="LikeImage" destination="3l4-sf-8MJ" id="yVj-b6-QU1"/>
                                     <outlet property="numberOfLike" destination="Zmr-aH-HWx" id="5aJ-Ry-1om"/>
                                     <outlet property="tagContent" destination="NVc-a1-Aeg" id="2u7-Ja-YwQ"/>
                                     <segue destination="XZN-pM-xAs" kind="show" id="bVd-2V-pN0"/>

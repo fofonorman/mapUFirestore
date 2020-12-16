@@ -17,6 +17,7 @@ class LikesByWhomList: UITableViewController {
         loadLikesByWhomList(completion: { result in
             
             self.likesByWhomList = result!
+//            self.tableView.reloadData()
             print("\(self.likesByWhomList) in viewDidLoad")
 
             
@@ -33,7 +34,7 @@ class LikesByWhomList: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        
+
         guard !self.likesByWhomList.isEmpty else {
             print("no value inside likesByWhom")
             return 5
@@ -42,12 +43,16 @@ class LikesByWhomList: UITableViewController {
             return likesByWhomList.count
 
     }
-
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? LikesByWhomListCell else {
+        
+       
+     guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? LikesByWhomListCell else {
             return UITableViewCell()
         }
         
+       
         guard !self.likesByWhomList.isEmpty else {
             print("no value in cell")
             return cell
@@ -91,6 +96,7 @@ class LikesByWhomList: UITableViewController {
                                             completion(nil)
                                         }else {
                                             completion(result)
+                                            self.tableView.reloadData()
                                           }
                             }
                                    
@@ -100,9 +106,10 @@ class LikesByWhomList: UITableViewController {
              }}
                           
          })
-        self.tableView.reloadData()
+//        self.tableView.reloadData()
+
     })
-        
+//        self.tableView.reloadData()
     }
     
     /*
