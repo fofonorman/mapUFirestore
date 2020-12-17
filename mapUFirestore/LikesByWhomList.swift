@@ -70,7 +70,7 @@ class LikesByWhomList: UITableViewController {
     
     func loadLikesByWhomList(completion: @escaping loadLikesByWhom) {
         var result = [User]()
-    
+//    應該要將被點擊的那個標籤文件ID作為值傳送到這個method來讀取thumbUp，才會是每個標籤各自被按讚的清單結果
        API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").addSnapshotListener({ (querySnapshot, error) in
             
             guard let existingSnapShot = querySnapshot else {
