@@ -10,7 +10,8 @@ import UIKit
 class LikesByWhomList: UITableViewController {
     
     var likesByWhomList = [User]()
-
+    var friendOwnTagID: String?
+    var infoFromPreviousPage: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,6 @@ class LikesByWhomList: UITableViewController {
 //            self.tableView.reloadData()
             print("\(self.likesByWhomList) in viewDidLoad")
 
-            
         })
 
     }
@@ -70,47 +70,46 @@ class LikesByWhomList: UITableViewController {
     
     func loadLikesByWhomList(completion: @escaping loadLikesByWhom) {
         var result = [User]()
-//    應該要將被點擊的那個標籤文件ID作為值傳送到這個method來讀取thumbUp，才會是每個標籤各自被按讚的清單結果
-       API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").addSnapshotListener({ (querySnapshot, error) in
+//    應該要將被點擊的那個標籤文件ID作為值傳送到這個method來讀取thumbUp，才會是每個標籤各自被按讚的清單結果。下方method要再往下走一層到標籤那層的document才對
+        
+      
+               
+        API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").document(self.friendOwnTagID!).getDocument(completion:{ (querySnapshot, error) in
             
             guard let existingSnapShot = querySnapshot else {
               
               print("no result! \(error!)")
               return }
        
-              existingSnapShot.documentChanges.forEach({ (documentChange) in
-                  
-                    if documentChange.type == .added {
-                        
-                        if let thumbUp = documentChange.document.data()["thumbUp"] as? [String] {
-                            
-//                            print(" \(thumbUp) in API")
-                            
-//                     把有按過讚的用戶uid拿去撈用戶的頭像跟顯示名稱
-                            for userUID in thumbUp {
-                                
-                                API.UserRef.observeUser(withID: userUID, completion: { userData in result.append(userData)
-                                    
-                                    DispatchQueue.main.async() {
-                                        if result.isEmpty {
-                                            completion(nil)
-                                        }else {
-                                            completion(result)
-                                            self.tableView.reloadData()
-                                          }
-                            }
-                                   
-             })
+            if let thumbUp = existingSnapShot.data()?["thumbUp"] as? [String] {
+                
+                print(thumbUp)
+                //  把有按過讚的用戶uid拿去撈用戶的頭像跟顯示名稱
+            for userUID in thumbUp {
 
-       }
-             }}
-                          
-         })
-//        self.tableView.reloadData()
+              API.UserRef.observeUser(withID: userUID, completion: { userData in result.append(userData)
 
-    })
-//        self.tableView.reloadData()
-    }
+                  DispatchQueue.main.async() {
+                    if result.isEmpty {
+                      completion(nil)
+                       }else {
+                      completion(result)
+                       self.tableView.reloadData()
+                         }
+                }
+                
+              })
+ }
+                
+            }
+            
+        })
+    
+    
+        }
+    
+        
+    
     
     /*
     // Override to support conditional editing of the table view.
@@ -156,5 +155,6 @@ class LikesByWhomList: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
 
 }

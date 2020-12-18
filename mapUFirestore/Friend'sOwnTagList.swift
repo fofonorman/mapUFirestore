@@ -13,7 +13,6 @@ import FirebaseAuth
 class Friend_sOwnTagList: UITableViewController {
 
     var tagListTheUserGot = [TagTheUserGot]()
-    var test = [QueryDocumentSnapshot]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,9 +50,6 @@ class Friend_sOwnTagList: UITableViewController {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? Friend_sOwnTagListCell  else { return  UITableViewCell() }
             
-        
-        
-        
         cell.tagContent.text = tagListTheUserGot[indexPath.row].tagContent!
         
         cell.numberOfLike.text = String(tagListTheUserGot[indexPath.row].numberOfThumbs!)
@@ -61,6 +57,37 @@ class Friend_sOwnTagList: UITableViewController {
         return cell
 
         }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "GoToLikesByWhomList", sender: nil )
+        
+    }
+    
+    
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "GoToLikesByWhomList"{
+            
+        if let likesByWhomList = segue.destination as? LikesByWhomList {
+            if let selectedRow = tableView.indexPathForSelectedRow?.row{
+                
+                likesByWhomList.infoFromPreviousPage = tagListTheUserGot[selectedRow].tagID
+
+            }
+            
+                
+            }
+            
+        }
+        
+     
+        
+    }
+    
+    
 
     func loadTagList() {
 //        記得要取消監聽
@@ -109,29 +136,7 @@ class Friend_sOwnTagList: UITableViewController {
         })
     }
     
-    
-    
-//    typealias TagListTheUserGot = ([TagTheUserGot]?) -> Void
-//
-//    //撈出tagIGot底下所有資料匯入class並作為日後存取相關資料所用
-//    func fetchTagListTheUserGot(completionHandler: @escaping TagListTheUserGot) {
-//
-//        var result = [TagTheUserGot]()
-//
-//        API.TagTheUserGot.fetchTagTheUserGotList { tag in
-//
-//            result.append(tag)
-//
-//                DispatchQueue.main.async() {
-//                    if result.isEmpty {
-//                        completionHandler(nil)
-//                    }else {
-//                        completionHandler(result)
-//
-//                      }
-//        }
-//    }
-//    }
+
    
     
 }
@@ -175,14 +180,6 @@ class Friend_sOwnTagList: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
 
 

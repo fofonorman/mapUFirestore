@@ -10,9 +10,8 @@ import UIKit
 class LikesByWhomListCell: UITableViewCell {
 
     @IBOutlet weak var UserAvtar: UIImageView!
-    
-    
     @IBOutlet weak var UserNameLabel: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

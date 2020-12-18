@@ -474,7 +474,7 @@
                                     <outlet property="LikeImage" destination="3l4-sf-8MJ" id="yVj-b6-QU1"/>
                                     <outlet property="numberOfLike" destination="Zmr-aH-HWx" id="5aJ-Ry-1om"/>
                                     <outlet property="tagContent" destination="NVc-a1-Aeg" id="2u7-Ja-YwQ"/>
-                                    <segue destination="XZN-pM-xAs" kind="show" id="bVd-2V-pN0"/>
+                                    <segue destination="XZN-pM-xAs" kind="show" identifier="GoToLikesByWhomList" id="bVd-2V-pN0"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
