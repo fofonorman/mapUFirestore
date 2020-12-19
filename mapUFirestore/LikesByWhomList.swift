@@ -72,7 +72,7 @@ class LikesByWhomList: UITableViewController {
         var result = [User]()
 //    應該要將被點擊的那個標籤文件ID作為值傳送到這個method來讀取thumbUp，才會是每個標籤各自被按讚的清單結果。下方method要再往下走一層到標籤那層的document才對
         
-      
+        self.friendOwnTagID = self.infoFromPreviousPage
                
         API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").document(self.friendOwnTagID!).getDocument(completion:{ (querySnapshot, error) in
             
