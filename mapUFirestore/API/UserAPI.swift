@@ -29,7 +29,6 @@ class UserAPI {
             
             if let name = document?.data()?["name"] {
                 
-
                 let uid = document?.documentID
                 let userAvatar = document?.data()!["ProfileImage"]
                 let certainUser = User.certainUser(uid: uid!, displayName: name as! String, userAvatarURL: userAvatar as! String)

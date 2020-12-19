@@ -22,12 +22,12 @@ class Friend_sOwnTagListCell: UITableViewCell {
         
         //                  成功撈出tumbUp了，接下來處理怎麼
         //    撈thumbUp陣列＞比對陣列中是否有currentUserUID>讚圖相對應顯示
-        self.LikeImage.setImage(UIImage(named : "beforeLike"), for: UIControl.State.normal) // 預設狀態下要顯示的圖片
-                self.LikeImage.setImage(UIImage(named : "afterLike"), for: UIControl.State.selected) // 選取狀態下要顯示的圖片
+//        self.LikeImage.setImage(UIImage(named : "beforeLike"), for: UIControl.State.normal) // 預設狀態下要顯示的圖片
+//                self.LikeImage.setImage(UIImage(named : "afterLike"), for: UIControl.State.selected) // 選取狀態下要顯示的圖片
         
        
 
-        queryThumbUp(withUID: "GOhc9KTUoSXRtPx3TKt9")
+//        queryThumbUp(withUID: "GOhc9KTUoSXRtPx3TKt9")
         
     }
 

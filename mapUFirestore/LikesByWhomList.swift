@@ -11,16 +11,12 @@ class LikesByWhomList: UITableViewController {
     
     var likesByWhomList = [User]()
     var friendOwnTagID: String?
-    var infoFromPreviousPage: String?
+    var infoFromPreviousPage: TagTheUserGot?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadLikesByWhomList(completion: { result in
-            
-            self.likesByWhomList = result!
-//            self.tableView.reloadData()
-            print("\(self.likesByWhomList) in viewDidLoad")
-
+             self.likesByWhomList = result!
         })
 
     }
@@ -35,11 +31,6 @@ class LikesByWhomList: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
 
-        guard !self.likesByWhomList.isEmpty else {
-            print("no value inside likesByWhom")
-            return 5
-        }
-
             return likesByWhomList.count
 
     }
@@ -52,12 +43,6 @@ class LikesByWhomList: UITableViewController {
             return UITableViewCell()
         }
         
-       
-        guard !self.likesByWhomList.isEmpty else {
-            print("no value in cell")
-            return cell
-        }
-
         cell.UserNameLabel.text = self.likesByWhomList[indexPath.row].displayName
             
         cell.UserAvtar.image = UIImage(named: "001")
@@ -72,7 +57,7 @@ class LikesByWhomList: UITableViewController {
         var result = [User]()
 //    應該要將被點擊的那個標籤文件ID作為值傳送到這個method來讀取thumbUp，才會是每個標籤各自被按讚的清單結果。下方method要再往下走一層到標籤那層的document才對
         
-        self.friendOwnTagID = self.infoFromPreviousPage
+        self.friendOwnTagID = self.infoFromPreviousPage?.tagID
                
         API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").document(self.friendOwnTagID!).getDocument(completion:{ (querySnapshot, error) in
             
@@ -83,7 +68,6 @@ class LikesByWhomList: UITableViewController {
        
             if let thumbUp = existingSnapShot.data()?["thumbUp"] as? [String] {
                 
-                print(thumbUp)
                 //  把有按過讚的用戶uid拿去撈用戶的頭像跟顯示名稱
             for userUID in thumbUp {
 
@@ -98,8 +82,7 @@ class LikesByWhomList: UITableViewController {
                          }
                 }
                 
-              })
- }
+              })}
                 
             }
             

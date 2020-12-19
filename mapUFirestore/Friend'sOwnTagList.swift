@@ -13,6 +13,7 @@ import FirebaseAuth
 class Friend_sOwnTagList: UITableViewController {
 
     var tagListTheUserGot = [TagTheUserGot]()
+    var infoFromPreviousPage: TagTheUserGot?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +54,17 @@ class Friend_sOwnTagList: UITableViewController {
         cell.tagContent.text = tagListTheUserGot[indexPath.row].tagContent!
         
         cell.numberOfLike.text = String(tagListTheUserGot[indexPath.row].numberOfThumbs!)
+        
+        if tagListTheUserGot[indexPath.row].thumbUpByYou == true {
+            
+            cell.LikeImage.setImage(UIImage(named : "afterLike"), for: UIControl.State.normal)
+            
+        } else {
+            
+            cell.LikeImage.setImage(UIImage(named : "beforeLike"), for: UIControl.State.normal)
+            
+        }
+        
 
         return cell
 
@@ -74,16 +86,13 @@ class Friend_sOwnTagList: UITableViewController {
         if let likesByWhomList = segue.destination as? LikesByWhomList {
             if let selectedRow = tableView.indexPathForSelectedRow?.row{
                 
-                likesByWhomList.infoFromPreviousPage = tagListTheUserGot[selectedRow].tagID
+                likesByWhomList.infoFromPreviousPage = tagListTheUserGot[selectedRow]
 
             }
             
-                
             }
             
         }
-        
-     
         
     }
     
@@ -91,7 +100,8 @@ class Friend_sOwnTagList: UITableViewController {
 
     func loadTagList() {
 //        記得要取消監聽
-         
+        if let currentUserUID = Auth.auth().currentUser?.uid{
+        
         API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").addSnapshotListener({ (querySnapshot, error) in
             
           guard let existingSnapShot = querySnapshot else {
@@ -107,7 +117,7 @@ class Friend_sOwnTagList: UITableViewController {
                        let thumb = documentChange.document.data()["thumbUp"] as? [String] {
                     
                       let tagID = documentChange.document.documentID
-                      let likedByYou = false
+                      let likedByYou = thumb.contains(currentUserUID)
                       let numberOfLiked = thumb.count
                     
                       let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent as! String, thumbUpByYou: likedByYou)
@@ -139,7 +149,7 @@ class Friend_sOwnTagList: UITableViewController {
 
    
     
-}
+    }}
     
     
     
