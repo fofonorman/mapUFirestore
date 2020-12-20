@@ -41,13 +41,16 @@ class Friend_sOwnTagListCell: UITableViewCell {
 
     @IBAction func LikeBtn(_ sender: UIButton) {
         
-        if !self.LikeImage.isSelected {
+        if self.LikeImage.currentImage == UIImage(named : "afterLike") {
             
-            print("add one more like")
-            
-        }else {
+            self.LikeImage.setImage(UIImage(named : "beforeLike"), for: UIControl.State.normal)
             
             print("revoke the like")
+
+        }else {
+            self.LikeImage.setImage(UIImage(named : "afterLike"), for: UIControl.State.normal)
+            print("add one more like")
+
         }
         
         
