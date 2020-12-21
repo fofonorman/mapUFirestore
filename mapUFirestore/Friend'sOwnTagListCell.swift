@@ -20,11 +20,6 @@ class Friend_sOwnTagListCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-     //                  成功撈出tumbUp了，接下來處理怎麼
-     //        queryThumbUp(withUID: "GOhc9KTUoSXRtPx3TKt9")
-        
-    
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -39,7 +34,6 @@ class Friend_sOwnTagListCell: UITableViewCell {
             self.delegate = nil
         }
     
-//    按下按鈕後要將讚數寫入或從資料庫中撤回＞畫面要做相對應的讚數數字更新
 
     @IBAction func LikeBtn(_ sender: UIButton) {
         
@@ -49,41 +43,13 @@ class Friend_sOwnTagListCell: UITableViewCell {
 //
 //        }else {
 //            self.LikeImage.setImage(UIImage(named : "afterLike"), for: UIControl.State.normal)
-
+//
 //        }
         
         self.delegate?.likeBtn(cell: self, numberOfLike: self.numberOfLike.text as! String)
         
     }
     
-////  撈每個tag裡的thumbUp陣列
-//    func queryThumbUp(withUID UID: String) {
-//
-//        API.UserRef.db.collection("userList").document(UID).collection("TagIGot").addSnapshotListener({ (querySnapshot, error) in
-//
-//            guard let existingSnapShot = querySnapshot else {
-//
-//                print("no result! \(error!)")
-//                return }
-//
-//            existingSnapShot.documentChanges.forEach({ (documentChange) in
-//
-//                if documentChange.type == .added {
-//
-//                let thumb = documentChange.document.data()["thumbUp"] as? [String]
-//                    print(thumb)
-//                }else{
-//                print("no value in thumbUp Array")
-//
-//                }
-//
-//            })
-//
-//        })
-//
-//    }
-    
-
 }
 
 

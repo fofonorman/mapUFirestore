@@ -97,43 +97,46 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
     }
     
     func likeBtn(cell: Friend_sOwnTagListCell, numberOfLike: String) {
-        
+//        待處理：按過讚的人不能再按讚
+//                 按讚圖素無法根據收回讚而變化
         if let currentUserUID = Auth.auth().currentUser?.uid{
         
         // 這一步驟，讓程式可以紀錄是哪個 cell 的按鈕被點了
-                guard let indexPath = self.tableView.indexPath(for: cell) else {
+        guard let indexPath = self.tableView.indexPath(for: cell) else {
                     // Note, this shouldn't happen - how did the user tap on a button that wasn't on screen?
-                    return
-                }
+            return
+          }
+            
+           if let selectedTagID = tagListTheUserGot[indexPath.row].tagID{
 
                 if cell.LikeImage.currentImage == UIImage(named : "afterLike") {
-        
-                    cell.LikeImage.setImage(UIImage(named : "beforeLike"), for: UIControl.State.normal)
-//                    要將用戶從資料庫中的按讚用戶陣列中移除
-//                    if let indexForRemoveUserUID = self.tagListTheUserGot[indexPath.row].thumbByWhom?.firstIndex(of: currentUserUID) {
-//
-//                    self.tagListTheUserGot[indexPath.row].thumbByWhom?.remove(at: indexForRemoveUserUID)
-//
-//                    print("revoke")
-//                    } else {
-//                        print("no user to remove")
-//                    }
-                        
-                        
-                }else {
-                    cell.LikeImage.setImage(UIImage(named : "afterLike"), for: UIControl.State.normal)
-                    
-                    print("add")
 
+//                  要將用戶從資料庫中的按讚用戶陣列中移除
+                    
+                        API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").document(selectedTagID).updateData(["thumbUp": FieldValue.arrayRemove([currentUserUID])])
+
+
+                        cell.LikeImage.setImage(UIImage(named : "beforeLike"), for: UIControl.State.normal)
+
+                    print("revoke")
+                        
+                    } else {
+                        API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").document(selectedTagID).updateData(["thumbUp": FieldValue.arrayUnion([currentUserUID])])
+                        
+                        print("add")
+                    }
+
+                }else {
+                    print("no tag to thumbUp")
                 }
         
 // 這邊 reloadData 是因為希望使用者按下 cell 裡面的 按鈕 後，數字能及時更新到 cell 裡
-//        self.tableView.reloadData()
-        
+      
         } else {
 //            請用戶重新登入
         }
-        
+        self.tableView.reloadData()
+
     }
 
     func loadTagList() {
