@@ -58,7 +58,7 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
         if tagListTheUserGot[indexPath.row].thumbUpByYou == true {
             
             cell.LikeImage.setImage(UIImage(named : "afterLike"), for: UIControl.State.normal)
-            
+                        
         } else {
             
             cell.LikeImage.setImage(UIImage(named : "beforeLike"), for: UIControl.State.normal)
@@ -97,13 +97,12 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
     }
     
     func likeBtn(cell: Friend_sOwnTagListCell, numberOfLike: String) {
-//        待處理：按過讚的人不能再按讚
-//                 按讚圖素無法根據收回讚而變化
+
         if let currentUserUID = Auth.auth().currentUser?.uid{
         
         // 這一步驟，讓程式可以紀錄是哪個 cell 的按鈕被點了
         guard let indexPath = self.tableView.indexPath(for: cell) else {
-                    // Note, this shouldn't happen - how did the user tap on a button that wasn't on screen?
+            print("no button in cell selected")
             return
           }
             
@@ -111,33 +110,29 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
 
                 if cell.LikeImage.currentImage == UIImage(named : "afterLike") {
 
-//                  要將用戶從資料庫中的按讚用戶陣列中移除
-                    
                         API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").document(selectedTagID).updateData(["thumbUp": FieldValue.arrayRemove([currentUserUID])])
+ 
+                    cell.LikeImage.imageView?.image = UIImage(named: "beforeLike")
 
 
-                        cell.LikeImage.setImage(UIImage(named : "beforeLike"), for: UIControl.State.normal)
-
-                    print("revoke")
+                    print("revoked")
                         
                     } else {
                         API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").document(selectedTagID).updateData(["thumbUp": FieldValue.arrayUnion([currentUserUID])])
                         
-                        print("add")
+                        cell.LikeImage.imageView?.image = UIImage(named: "afterLike")
+
+//                        print("added")
                     }
 
-                }else {
-                    print("no tag to thumbUp")
-                }
+                }else { print("no tag to thumbUp") }
         
-// 這邊 reloadData 是因為希望使用者按下 cell 裡面的 按鈕 後，數字能及時更新到 cell 裡
-      
         } else {
 //            請用戶重新登入
         }
-        self.tableView.reloadData()
 
-    }
+        self.tableView.reloadData()
+        }
 
     func loadTagList() {
 //        記得要取消監聽
@@ -165,19 +160,22 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
                     
                       self.tagListTheUserGot.append(tagListMember)
                     }
+//                    這段對資料庫即時更新監聽並回傳資料到前端的程式碼待了解
                     } else if documentChange.type == .modified {
                         
                         if let thumb = documentChange.document.data()["thumbUp"] as? [String] {
                             
                             let tagID = documentChange.document.documentID
                             let numberOfLiked = thumb.count
-                            
+                            let likedByYou = thumb.contains(currentUserUID)
+
                             let tagTheUserGot = self.tagListTheUserGot.first { (tagTheUserGot) -> Bool in
                                 
                                 tagTheUserGot.tagID == tagID
                                 
                             }
                             tagTheUserGot?.numberOfThumbs = numberOfLiked
+                            tagTheUserGot?.thumbUpByYou = likedByYou
                         }
                         
                     }
@@ -186,9 +184,6 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
             self.tableView.reloadData()
         })
     }
-    
-
-   
     
     }}
     
