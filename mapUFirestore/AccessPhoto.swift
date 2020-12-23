@@ -241,7 +241,7 @@ extension AccessPhoto: UIImagePickerControllerDelegate {
         
         if let image = info[.originalImage] as? UIImage {
             
-            let fileReference = Storage.storage().reference().child(UUID().uuidString + ".jpg")
+            let fileReference = Storage.storage().reference().child(currentUserUID).child(UUID().uuidString + ".jpg")
                 
             if let imageData = image.jpegData(compressionQuality: 0.9) {
                      fileReference.putData(imageData, metadata: nil) { (_, error) in
