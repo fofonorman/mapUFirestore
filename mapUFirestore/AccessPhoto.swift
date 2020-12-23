@@ -232,11 +232,13 @@ class AccessPhoto: UIViewController, UINavigationControllerDelegate {
 
 }
 
-
+//    執行動作：挑選照片，上傳資料庫，顯示到前端
 extension AccessPhoto: UIImagePickerControllerDelegate {
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         // info 用來取得不同類型的圖片，此 Demo 的型態為 originaImage，其它型態有影片、修改過的圖片等等，這段就是執行“點擊圖片之後，顯示在頁面上”的 method
+        if let currentUserUID = Auth.auth().currentUser?.uid {
+        
         if let image = info[.originalImage] as? UIImage {
             
             let fileReference = Storage.storage().reference().child(UUID().uuidString + ".jpg")
@@ -253,6 +255,7 @@ extension AccessPhoto: UIImagePickerControllerDelegate {
                                print("no URL")
                                return
                             }
+                            API.UserRef.db.collection("userList").document(currentUserUID).setData(["ProfileImage": "\(downloadURL)"], merge: true)
                             print("this is \(downloadURL)")
                              
                         })
@@ -264,7 +267,7 @@ extension AccessPhoto: UIImagePickerControllerDelegate {
             
         picker.dismiss(animated: true)
         }
-        
+    }
      
     }
 

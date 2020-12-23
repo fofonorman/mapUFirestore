@@ -168,7 +168,7 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
                             let tagID = documentChange.document.documentID
                             let numberOfLiked = thumb.count
                             let likedByYou = thumb.contains(currentUserUID)
-
+//這段是監聽並即時更新資料至前端的關鍵程式碼，待了解
                             let tagTheUserGot = self.tagListTheUserGot.first { (tagTheUserGot) -> Bool in
                                 
                                 tagTheUserGot.tagID == tagID
