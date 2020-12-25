@@ -239,9 +239,21 @@ extension AccessPhoto: UIImagePickerControllerDelegate {
         // info 用來取得不同類型的圖片，此 Demo 的型態為 originaImage，其它型態有影片、修改過的圖片等等，這段就是執行“點擊圖片之後，顯示在頁面上”的 method
         if let currentUserUID = Auth.auth().currentUser?.uid {
         
+            let previousAvatarRefToDelete = self.storageRef.child(currentUserUID).child("ProfileImage.jpg")
+            
+            previousAvatarRefToDelete.delete { _ in
+                return
+//                if let existingError = error {
+//                    print("something wrong while deleting you avatar!")
+//                }else{
+//                    print("deleted succesfully!")
+//                }
+                }
+            
         if let image = info[.originalImage] as? UIImage {
             
-            let fileReference = Storage.storage().reference().child(currentUserUID).child("ProfileImage" + UUID().uuidString + ".jpg")
+            let fileReference = Storage.storage().reference().child(currentUserUID).child("ProfileImage" + ".jpg")
+//            UUID().uuidString, 產生UID連結的method
                 
 //                須研究如何直接覆寫到資料夾中，在上傳新的圖之後直接把舊的頭圖刪除
 
@@ -258,20 +270,21 @@ extension AccessPhoto: UIImagePickerControllerDelegate {
                                return
                             }
                             
-                        API.UserRef.db.collection("userList").document(currentUserUID).getDocument {(querySnapshot, error) in
-                                
-                         if let existingSnapShot = querySnapshot {
-                            if let profileImageURL = existingSnapShot.data()?["ProfileImage"] {
-                                let RefToDelet = self.storageRef.child(currentUserUID).child("\(profileImageURL)")
-                                RefToDelet.delete(completion: { error in
-                                    if let error = error {
-                                        print("something wrong while deleting you avatar!")
-                                    }else{
-                                        print("successfully deleted old avatar!")
-                                    }
-                                })
-                                }}
-                                }
+//                        API.UserRef.db.collection("userList").document(currentUserUID).getDocument {(querySnapshot, error) in
+//
+//                         if let existingSnapShot = querySnapshot {
+//                            if let profileImageURL = existingSnapShot.data()?["ProfileImage"] {
+//                                let RefToDelet = self.storageRef.child(currentUserUID).child("\(profileImageURL)")
+//                                RefToDelet.delete(completion: { error in
+//                                    if let error = error {
+//                                        print("something wrong while deleting you avatar!")
+//                                    }else{
+//                                        print("successfully deleted old avatar!")
+//                                    }
+//                                })
+//                                }}
+//                                }
+                            
                             
                             API.UserRef.db.collection("userList").document(currentUserUID).setData(["ProfileImage": "\(downloadURL)"], merge: true)
                             print("this is \(downloadURL)")
