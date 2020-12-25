@@ -598,6 +598,10 @@
                                     <action selector="DennyTeacherUploadPic:" destination="vYW-j6-cPO" eventType="touchUpInside" id="20P-oI-pWE"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XYB-eb-X6p">
+                                <rect key="frame" x="46" y="410" width="98" height="91"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5Uy-Wu-gPW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -605,6 +609,7 @@
                     <navigationItem key="navigationItem" id="tsX-eB-sV3"/>
                     <connections>
                         <outlet property="photoImageView" destination="FGR-2d-STt" id="o36-ru-jRY"/>
+                        <outlet property="testImageFromURL" destination="XYB-eb-X6p" id="hWb-dY-9GS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qSM-Zq-RFc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -615,7 +620,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="6438" y="1032"/>
+            <point key="canvasLocation" x="6437.68115942029" y="1031.9196428571429"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UdD-yM-d88">

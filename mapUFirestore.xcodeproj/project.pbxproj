@@ -23,6 +23,7 @@
 		9649C8BA2573E3C400587927 /* Friend'sOwnTagListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9649C8B92573E3C400587927 /* Friend'sOwnTagListCell.swift */; };
 		964A9595257136250013E617 /* AccessPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964A9594257136250013E617 /* AccessPhoto.swift */; };
 		964C0CB025839EF1002C0195 /* DennyUploadPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C0CAF25839EF1002C0195 /* DennyUploadPhotoViewController.swift */; };
+		9659503E2596414700FD953D /* SDWebImageWebPCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 9659503D2596414700FD953D /* SDWebImageWebPCoder */; };
 		965C65F9257E56C60048AEF5 /* PhotoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C65F8257E56C60048AEF5 /* PhotoCollectionView.swift */; };
 		965C65FE257E56FA0048AEF5 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C65FD257E56FA0048AEF5 /* PhotoCollectionViewCell.swift */; };
 		965C6607257E69F40048AEF5 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 965C6606257E69F40048AEF5 /* FirebaseFirestoreSwift */; };
@@ -107,6 +108,7 @@
 			files = (
 				965C660F257E69F40048AEF5 /* FirebaseDatabase in Frameworks */,
 				965C6607257E69F40048AEF5 /* FirebaseFirestoreSwift in Frameworks */,
+				9659503E2596414700FD953D /* SDWebImageWebPCoder in Frameworks */,
 				965C660D257E69F40048AEF5 /* FirebaseFirestore in Frameworks */,
 				965C660B257E69F40048AEF5 /* FirebaseAuth in Frameworks */,
 				965C6609257E69F40048AEF5 /* FirebaseStorage in Frameworks */,
@@ -242,6 +244,7 @@
 				965C660A257E69F40048AEF5 /* FirebaseAuth */,
 				965C660C257E69F40048AEF5 /* FirebaseFirestore */,
 				965C660E257E69F40048AEF5 /* FirebaseDatabase */,
+				9659503D2596414700FD953D /* SDWebImageWebPCoder */,
 			);
 			productName = mapUFirestore;
 			productReference = 963F0729254583DE00E3D11B /* mapUFirestore.app */;
@@ -316,6 +319,7 @@
 			mainGroup = 963F0720254583DE00E3D11B;
 			packageReferences = (
 				965C6605257E69F40048AEF5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				9659503C2596414700FD953D /* XCRemoteSwiftPackageReference "SDWebImageWebPCoder" */,
 			);
 			productRefGroup = 963F072A254583DE00E3D11B /* Products */;
 			projectDirPath = "";
@@ -719,6 +723,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9659503C2596414700FD953D /* XCRemoteSwiftPackageReference "SDWebImageWebPCoder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageWebPCoder.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
 		965C6605257E69F40048AEF5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -730,6 +742,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9659503D2596414700FD953D /* SDWebImageWebPCoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9659503C2596414700FD953D /* XCRemoteSwiftPackageReference "SDWebImageWebPCoder" */;
+			productName = SDWebImageWebPCoder;
+		};
 		965C6606257E69F40048AEF5 /* FirebaseFirestoreSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 965C6605257E69F40048AEF5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

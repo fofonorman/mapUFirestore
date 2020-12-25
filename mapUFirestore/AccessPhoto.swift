@@ -11,11 +11,13 @@ import FirebaseFirestoreSwift
 import FirebaseStorage
 import FirebaseAuth
 
+
 class AccessPhoto: UIViewController, UINavigationControllerDelegate {
 
     let imagePickerController = UIImagePickerController()
     let storageRef = Storage.storage().reference()
 
+    @IBOutlet weak var testImageFromURL: UIImageView!
     
     
     @IBOutlet weak var photoImageView: UIImageView!
@@ -28,6 +30,12 @@ class AccessPhoto: UIViewController, UINavigationControllerDelegate {
 //
 //            print(Auth.auth().currentUser?.uid)
 //        })／
+        
+//     測試從圖片URL轉成顯示於前端的圖片
+       let photoURLString = "https://firebasestorage.googleapis.com/v0/b/mapufirestore.appspot.com/o/G53HUXuPtBPvgdm2KxlR7dCE0SD3%2FProfileImage.jpg?alt=media&token=21e191c7-29f1-42da-aa09-ef2e2c2015f5"
+        
+        let photoURL = URL(string: photoURLString)
+        self.testImageFromURL.sd_setImage(with: photoURL, completed: nil)
         
                     print(Auth.auth().currentUser?.uid)
 
