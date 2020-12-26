@@ -44,35 +44,6 @@ class AccessPhoto: UIViewController, UINavigationControllerDelegate {
     
     
     
-        func uploadSampleFromPeterPan() {
-            let fileReference = self.storageRef.child("001.jpeg")
-    
-            let image = UIImage(named: "001")
-            if let imageData = image?.jpegData(compressionQuality: 0.9) {
-                
-                fileReference.putData(imageData, metadata: nil) { (metadata, error) in
-                   guard let _ = metadata, error == nil else {
-                      print("no metadata")
-                      return
-                   }
-                   fileReference.downloadURL(completion: { (url, error) in
-                      guard let downloadURL = url else {
-                         print("no URL")
-                         return
-                      }
-                      print(downloadURL)
-                   })
-                }
-                
-            }
-    
-        }
-    
-
-    
-
-    
-    
     @IBAction func DennyTeacherUploadPic(_ sender: UIButton) {
 //        實例化一個選擇asset的class
         let imagePicker = UIImagePickerController()
@@ -202,32 +173,6 @@ class AccessPhoto: UIViewController, UINavigationControllerDelegate {
     }
     
     
-    //    測試官方sample code
-    func testUpload() {
-    // File located on disk
-    let localFile = URL(string: "file://images/002.jpg")!
-
-    // Create a reference to the file you want to upload
-    let riversRef = Storage.storage().reference().child("images/002.jpg")
-
-    // Upload the file to the path "images/rivers.jpg"
-    let uploadTask = riversRef.putFile(from: localFile, metadata: nil) { metadata, error in
-      guard let metadata = metadata else {
-        // Uh-oh, an error occurred!
-        return
-      }
-      // Metadata contains file metadata such as size, content-type.
-      let size = metadata.size
-      // You can also access to download URL after upload.
-      riversRef.downloadURL { (url, error) in
-        guard let downloadURL = url else {
-          // Uh-oh, an error occurred!
-          return
-        }
-        print(downloadURL)
-      }
-    }}
-    
     /*
     // MARK: - Navigation
 
@@ -249,13 +194,13 @@ extension AccessPhoto: UIImagePickerControllerDelegate {
         
             let previousAvatarRefToDelete = self.storageRef.child(currentUserUID).child("ProfileImage.jpg")
             
-            previousAvatarRefToDelete.delete { _ in
-                return
-//                if let existingError = error {
-//                    print("something wrong while deleting you avatar!")
-//                }else{
-//                    print("deleted succesfully!")
-//                }
+            previousAvatarRefToDelete.delete { error in
+
+                if let existingError = error {
+                    print("\(String(describing: error))")
+                }else{
+                    print("deleted succesfully!")
+                }
                 }
             
         if let image = info[.originalImage] as? UIImage {
@@ -263,8 +208,6 @@ extension AccessPhoto: UIImagePickerControllerDelegate {
             let fileReference = Storage.storage().reference().child(currentUserUID).child("ProfileImage" + ".jpg")
 //            UUID().uuidString, 產生UID連結的method
                 
-//                須研究如何直接覆寫到資料夾中，在上傳新的圖之後直接把舊的頭圖刪除
-
             if let imageData = image.jpegData(compressionQuality: 0.9) {
                      fileReference.putData(imageData, metadata: nil) { (_, error) in
                          guard error == nil else {
@@ -278,22 +221,7 @@ extension AccessPhoto: UIImagePickerControllerDelegate {
                                return
                             }
                             
-//                        API.UserRef.db.collection("userList").document(currentUserUID).getDocument {(querySnapshot, error) in
-//
-//                         if let existingSnapShot = querySnapshot {
-//                            if let profileImageURL = existingSnapShot.data()?["ProfileImage"] {
-//                                let RefToDelet = self.storageRef.child(currentUserUID).child("\(profileImageURL)")
-//                                RefToDelet.delete(completion: { error in
-//                                    if let error = error {
-//                                        print("something wrong while deleting you avatar!")
-//                                    }else{
-//                                        print("successfully deleted old avatar!")
-//                                    }
-//                                })
-//                                }}
-//                                }
-                            
-                            
+                     
                             API.UserRef.db.collection("userList").document(currentUserUID).setData(["ProfileImage": "\(downloadURL)"], merge: true)
                             print("this is \(downloadURL)")
                              
@@ -310,60 +238,3 @@ extension AccessPhoto: UIImagePickerControllerDelegate {
      
     }
 
-
-//extension AccessPhoto: UINavigationControllerDelegate { }
-
-//extension PhotoCollectionView: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-//        
-//        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//            
-//            var selectedImageFromPicker: UIImage?
-//            
-//            // 取得從 UIImagePickerController 選擇的檔案
-//            if let pickedImage = info[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage {
-//                
-//                selectedImageFromPicker = pickedImage
-//            }
-//            
-//            // 可以自動產生一組獨一無二的 ID 號碼，方便等一下上傳圖片的命名
-//            let uniqueString = NSUUID().uuidString
-//            
-//            // 當判斷有 selectedImage 時，我們會在 if 判斷式裡將圖片上傳
-//            if let selectedImage = selectedImageFromPicker {
-//                
-//                let storageRef = Storage.storage().reference().child("AppCodaFireUpload").child("\(uniqueString).png")
-//                    
-//                if let uploadData = selectedImage.pngData() {
-//                        // 這行就是 FirebaseStorage 關鍵的存取方法。
-//                    
-//                    storageRef.putData(uploadData, metadata: nil, completion: { (data, error) in
-//                            
-//                            if error != nil {
-//                                
-//                                // 若有接收到錯誤，我們就直接印在 Console 就好，在這邊就不另外做處理。
-//                                print("Error: \(error!.localizedDescription)")
-//                                return
-//                            }
-//                            
-//                            // 連結取得方式
-//                         storageRef.downloadURL{ (url, error) in
-//                            
-//                            guard let downloadURL = url else {
-//                                print("Failed to get URL!")
-//                                return
-//                            }
-//                   // 我們可以 print 出來看看這個連結事不是我們剛剛所上傳的照片。
-//                            print("Photo Url: \(downloadURL)")
-//                            
-//                            
-//                        }
-//                        
-//                        })
-//                    }            }
-//            
-//            dismiss(animated: true, completion: nil)
-//        }
-//    
-//    
-//    
-//    }
