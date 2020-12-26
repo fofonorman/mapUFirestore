@@ -18,8 +18,6 @@ class AccessPhoto: UIViewController, UINavigationControllerDelegate {
     let storageRef = Storage.storage().reference()
 
     @IBOutlet weak var testImageFromURL: UIImageView!
-    
-    
     @IBOutlet weak var photoImageView: UIImageView!
     
     override func viewDidLoad() {

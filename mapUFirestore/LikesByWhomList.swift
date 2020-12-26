@@ -44,8 +44,16 @@ class LikesByWhomList: UITableViewController {
         }
         
         cell.UserNameLabel.text = self.likesByWhomList[indexPath.row].displayName
-            
-        cell.UserAvtar.image = UIImage(named: "001")
+        
+        guard let photoURLString = self.likesByWhomList[indexPath.row].userAvatarURL else {
+            print("no avtar URL")
+            return UITableViewCell()
+        }
+        let photoURL = URL(string: photoURLString)
+        cell.UserAvtar.sd_setImage(with: photoURL, completed: nil)
+       
+        
+//        cell.UserAvtar.image = UIImage(named: "001")
 
                 return cell
     }
@@ -55,7 +63,6 @@ class LikesByWhomList: UITableViewController {
     
     func loadLikesByWhomList(completion: @escaping loadLikesByWhom) {
         var result = [User]()
-//    應該要將被點擊的那個標籤文件ID作為值傳送到這個method來讀取thumbUp，才會是每個標籤各自被按讚的清單結果。下方method要再往下走一層到標籤那層的document才對
         
         self.friendOwnTagID = self.infoFromPreviousPage?.tagID
                
