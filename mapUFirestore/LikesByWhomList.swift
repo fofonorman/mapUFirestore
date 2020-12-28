@@ -63,7 +63,7 @@ class LikesByWhomList: UITableViewController {
         
         self.friendOwnTagID = self.infoFromPreviousPage?.tagID
                
-        API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").document(self.friendOwnTagID!).getDocument(completion:{ (querySnapshot, error) in
+        API.UserRef.db.collection("userList").document(API.UserRef.currentUserUID!).collection("TagIGot").document(self.friendOwnTagID!).getDocument(completion:{ (querySnapshot, error) in
             
             guard let existingSnapShot = querySnapshot else {
               

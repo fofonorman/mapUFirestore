@@ -58,7 +58,7 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
         if tagListTheUserGot[indexPath.row].ifRead == false {
             cell.backgroundColor = UIColor.systemGray
         } else {
-            cell.backgroundColor = UIColor.systemBackground
+            cell.backgroundColor = UIColor.systemRed
 
         }
 
@@ -80,6 +80,12 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         performSegue(withIdentifier: "GoToLikesByWhomList", sender: nil )
+                
+//        if API.UserRef.currentUserUID != nil,
+//           let selectedRow = tableView.indexPathForSelectedRow?.row {
+//
+//        API.UserRef.db.collection("userList").document(API.UserRef.currentUserUID!).collection("TagIGot").document("\(tagListTheUserGot[selectedRow].tagID)").updateData(["ifRead": true])
+//        }
         
     }
     
@@ -95,14 +101,15 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
             if let selectedRow = tableView.indexPathForSelectedRow?.row{
                 
                 likesByWhomList.infoFromPreviousPage = tagListTheUserGot[selectedRow]
-
-            }
+                
+                API.UserRef.db.collection("userList").document(API.UserRef.currentUserUID!).collection("TagIGot").document(tagListTheUserGot[selectedRow].tagID!).updateData(["ifRead": true])            }
             
             }
             
         }
         
     }
+//    GOhc
     
     func likeBtn(cell: Friend_sOwnTagListCell, numberOfLike: String) {
 
@@ -118,7 +125,7 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
 
                 if cell.LikeImage.currentImage == UIImage(named : "afterLike") {
 
-                        API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").document(selectedTagID).updateData(["thumbUp": FieldValue.arrayRemove([currentUserUID])])
+                        API.UserRef.db.collection("userList").document(currentUserUID).collection("TagIGot").document(selectedTagID).updateData(["thumbUp": FieldValue.arrayRemove([currentUserUID])])
  
                     cell.LikeImage.imageView?.image = UIImage(named: "beforeLike")
 
@@ -126,7 +133,7 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
                     print("revoked")
                         
                     } else {
-                        API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").document(selectedTagID).updateData(["thumbUp": FieldValue.arrayUnion([currentUserUID])])
+                        API.UserRef.db.collection("userList").document(currentUserUID).collection("TagIGot").document(selectedTagID).updateData(["thumbUp": FieldValue.arrayUnion([currentUserUID])])
                         
                         cell.LikeImage.imageView?.image = UIImage(named: "afterLike")
 
@@ -146,7 +153,7 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
 //        記得要取消監聽
         if let currentUserUID = Auth.auth().currentUser?.uid{
         
-        API.UserRef.db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").addSnapshotListener({ (querySnapshot, error) in
+        API.UserRef.db.collection("userList").document(currentUserUID).collection("TagIGot").addSnapshotListener({ (querySnapshot, error) in
             
           guard let existingSnapShot = querySnapshot else {
             
@@ -173,7 +180,8 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
 //                    這段對資料庫即時更新監聽並回傳資料到前端的程式碼待了解
                     } else if documentChange.type == .modified {
                         
-                        if let thumb = documentChange.document.data()["thumbUp"] as? [String] {
+                        if let thumb = documentChange.document.data()["thumbUp"] as? [String],
+                           let ifRead = documentChange.document.data()["ifRead"] as? Bool{
                             
                             let tagID = documentChange.document.documentID
                             let numberOfLiked = thumb.count
@@ -186,6 +194,7 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
                             }
                             tagTheUserGot?.numberOfThumbs = numberOfLiked
                             tagTheUserGot?.thumbUpByYou = likedByYou
+                            tagTheUserGot?.ifRead = ifRead
                         }
                         
                     }

@@ -13,8 +13,8 @@ import FirebaseFirestore
 
 class UserAPI {
 
-    let currentUser = Auth.auth().currentUser
     let db = Firestore.firestore()
+    let currentUserUID = Auth.auth().currentUser?.uid
     
     
     func observeUser(withID uid: String, completion: @escaping (User) -> Void ) {
@@ -41,9 +41,19 @@ class UserAPI {
 
                 }
                 
-            }
+    }
+    
+//    嘗試寫一個API來擔任“確保用戶為currentUser登入狀態
+//    func checkIfValidCurrentUser(completion: @escaping () -> Void) {
+//
+//        if let currentUserUID = currentUser?.uid {
+//            completion
+//        }
+//
+//    }
             
             
         }
+
         
 
