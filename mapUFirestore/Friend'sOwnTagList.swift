@@ -58,7 +58,7 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
         if tagListTheUserGot[indexPath.row].ifRead == false {
             cell.backgroundColor = UIColor.systemGray
         } else {
-            cell.backgroundColor = UIColor.systemRed
+            cell.backgroundColor = UIColor.systemBackground
 
         }
 
@@ -81,12 +81,6 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
 
         performSegue(withIdentifier: "GoToLikesByWhomList", sender: nil )
                 
-//        if API.UserRef.currentUserUID != nil,
-//           let selectedRow = tableView.indexPathForSelectedRow?.row {
-//
-//        API.UserRef.db.collection("userList").document(API.UserRef.currentUserUID!).collection("TagIGot").document("\(tagListTheUserGot[selectedRow].tagID)").updateData(["ifRead": true])
-//        }
-        
     }
     
     
@@ -109,7 +103,6 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
         }
         
     }
-//    GOhc
     
     func likeBtn(cell: Friend_sOwnTagListCell, numberOfLike: String) {
 
