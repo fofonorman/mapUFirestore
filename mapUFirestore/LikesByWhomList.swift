@@ -52,9 +52,6 @@ class LikesByWhomList: UITableViewController {
         let photoURL = URL(string: photoURLString)
         cell.UserAvtar.sd_setImage(with: photoURL, completed: nil)
        
-        
-//        cell.UserAvtar.image = UIImage(named: "001")
-
                 return cell
     }
     

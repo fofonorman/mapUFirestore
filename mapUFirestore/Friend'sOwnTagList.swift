@@ -55,6 +55,8 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
         
         cell.numberOfLike.text = String(tagListTheUserGot[indexPath.row].numberOfThumbs!)
         
+        cell.backgroundColor = UIColor.systemGray
+
         if tagListTheUserGot[indexPath.row].thumbUpByYou == true {
             
             cell.LikeImage.setImage(UIImage(named : "afterLike"), for: UIControl.State.normal)
@@ -71,6 +73,7 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
         }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
         performSegue(withIdentifier: "GoToLikesByWhomList", sender: nil )
         
     }

@@ -24,9 +24,8 @@ class TagTheUserGotAPI{
                 
                  for document in snapshot.documents {
      
-                    let tagContent = document.data()["tagContent"] as! String
-     
-                    let thumb = document.data()["thumbUp"] as! [String]
+                   if let tagContent = document.data()["tagContent"] as? String,
+                      let thumb = document.data()["thumbUp"] as? [String]{
      
                     let tagID = document.documentID
                     let likedByYou = thumb.contains("G53HUXuPtBPvgdm2KxlR7dCE0SD3")
@@ -36,7 +35,7 @@ class TagTheUserGotAPI{
      
                          completion(tagListMember)
      
-                 }
+                   }}
      
                  }}
  

@@ -247,8 +247,9 @@ class InteractWithDBViewController: UIViewController {
         
             "tagContent": TagInstanceForVote?.tagContent,
             "thumbUp": [String](),
-            "likedByYou": false
-        
+            "likedByYou": false,
+            "ifRead": false
+
         ]
         
         db.collection("userList").document(uid).collection("TagIGot").document((TagInstanceForVote?.tagID!)!).setData(tagListData, merge: true)
