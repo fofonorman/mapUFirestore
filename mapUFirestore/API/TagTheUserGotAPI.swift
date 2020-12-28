@@ -25,13 +25,14 @@ class TagTheUserGotAPI{
                  for document in snapshot.documents {
      
                    if let tagContent = document.data()["tagContent"] as? String,
-                      let thumb = document.data()["thumbUp"] as? [String]{
+                      let thumb = document.data()["thumbUp"] as? [String],
+                      let ifRead = document.data()["ifRead"] as? Bool{
      
                     let tagID = document.documentID
                     let likedByYou = thumb.contains("G53HUXuPtBPvgdm2KxlR7dCE0SD3")
                     let numberOfLiked = thumb.count
-     
-                    let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent, thumbUpByYou: likedByYou)
+               
+                    let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent, thumbUpByYou: likedByYou, ifRead: ifRead)
      
                          completion(tagListMember)
      

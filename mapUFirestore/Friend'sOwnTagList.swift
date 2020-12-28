@@ -55,7 +55,12 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
         
         cell.numberOfLike.text = String(tagListTheUserGot[indexPath.row].numberOfThumbs!)
         
-        cell.backgroundColor = UIColor.systemGray
+        if tagListTheUserGot[indexPath.row].ifRead == false {
+            cell.backgroundColor = UIColor.systemGray
+        } else {
+            cell.backgroundColor = UIColor.systemBackground
+
+        }
 
         if tagListTheUserGot[indexPath.row].thumbUpByYou == true {
             
@@ -153,13 +158,15 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
                   if documentChange.type == .added {
                     
                     if let tagContent = documentChange.document.data()["tagContent"],
-                       let thumb = documentChange.document.data()["thumbUp"] as? [String] {
+                       let thumb = documentChange.document.data()["thumbUp"] as? [String],
+                       let ifRead = documentChange.document.data()["ifRead"] as? Bool     {
                     
                       let tagID = documentChange.document.documentID
                       let likedByYou = thumb.contains(currentUserUID)
                       let numberOfLiked = thumb.count
-                    
-                      let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent as! String, thumbUpByYou: likedByYou)
+                     
+                        
+                        let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent as! String, thumbUpByYou: likedByYou, ifRead: ifRead)
                     
                       self.tagListTheUserGot.append(tagListMember)
                     }

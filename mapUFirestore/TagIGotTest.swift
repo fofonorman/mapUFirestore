@@ -30,14 +30,14 @@ class TagIGotTest: ViewController {
 
     @IBAction func thumbUp(_ sender: UIButton) {
         
-        fetchTagTheUserGotList() { (result) in
-
-            
-            self.tagContent.text = result.tagContent
-            self.numberOfThumbUp.text = String(result.numberOfThumbs!)
-
-            
-             }
+//        fetchTagTheUserGotList() { (result) in
+//
+//            
+//            self.tagContent.text = result.tagContent
+//            self.numberOfThumbUp.text = String(result.numberOfThumbs!)
+//
+//            
+//             }
         
         self.thumbUpImage.isSelected = !sender.isSelected
         
@@ -46,33 +46,33 @@ class TagIGotTest: ViewController {
     
    
     
-    func fetchTagTheUserGotList(completion: @escaping (TagTheUserGot) -> Void) {
-        
-        db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").getDocuments { (snapshot, error) in
-            
-            guard let snapshot = snapshot else {
-                return
-            }
-
-            for document in snapshot.documents {
-                
-               let tagContent = document.data()["tagContent"] as! String
-                    
-               let thumb = document.data()["thumbUp"] as! [String]
-                
-               let tagID = document.documentID
-               let likedByYou = false
-               let numberOfLiked = thumb.count
-         
-               let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent, thumbUpByYou: likedByYou)
-                    
-                    completion(tagListMember)
-                    
-            }
-                
-            }
-            
-        }
+//    func fetchTagTheUserGotList(completion: @escaping (TagTheUserGot) -> Void) {
+//
+//        db.collection("userList").document("GOhc9KTUoSXRtPx3TKt9").collection("TagIGot").getDocuments { (snapshot, error) in
+//
+//            guard let snapshot = snapshot else {
+//                return
+//            }
+//
+//            for document in snapshot.documents {
+//
+//               let tagContent = document.data()["tagContent"] as! String
+//
+//               let thumb = document.data()["thumbUp"] as! [String]
+//
+//               let tagID = document.documentID
+//               let likedByYou = false
+//               let numberOfLiked = thumb.count
+//
+//               let tagListMember = TagTheUserGot.TagListInMyFollowingUser(numberOfThumbs: numberOfLiked, tagID: tagID, tagContent: tagContent, thumbUpByYou: likedByYou)
+//
+//                    completion(tagListMember)
+//
+//            }
+//
+//            }
+//
+//        }
         }
         
     

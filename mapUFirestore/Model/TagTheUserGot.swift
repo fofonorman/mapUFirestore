@@ -19,25 +19,7 @@ class TagTheUserGot {
 
 extension TagTheUserGot {
     
-    static func TagListInMyFollowingUser(numberOfThumbs: Int, tagID: String, tagContent: String, thumbUpByYou: Bool) -> TagTheUserGot {
-        
-        let tagList = TagTheUserGot()
-        
-        tagList.numberOfThumbs = numberOfThumbs
-        tagList.tagContent = tagContent
-        tagList.tagID = tagID
-        tagList.thumbUpByYou = thumbUpByYou
-        
-        return tagList
-
-    }
-    
-}
-
-
-extension TagTheUserGot {
-    
-    static func myTagList(numberOfThumbs: Int, tagID: String, tagContent: String, thumbUpByYou: Bool, ifRead: Bool) -> TagTheUserGot {
+    static func TagListInMyFollowingUser(numberOfThumbs: Int, tagID: String, tagContent: String, thumbUpByYou: Bool, ifRead: Bool) -> TagTheUserGot {
         
         let tagList = TagTheUserGot()
         
@@ -46,12 +28,31 @@ extension TagTheUserGot {
         tagList.tagID = tagID
         tagList.thumbUpByYou = thumbUpByYou
         tagList.ifRead = ifRead
-        
+
         return tagList
-        
-        
+
     }
     
-    
 }
+
+//
+//extension TagTheUserGot {
+//
+//    static func myTagList(numberOfThumbs: Int, tagID: String, tagContent: String, thumbUpByYou: Bool, ifRead: Bool) -> TagTheUserGot {
+//
+//        let tagList = TagTheUserGot()
+//
+//        tagList.numberOfThumbs = numberOfThumbs
+//        tagList.tagContent = tagContent
+//        tagList.tagID = tagID
+//        tagList.thumbUpByYou = thumbUpByYou
+//        tagList.ifRead = ifRead
+//
+//        return tagList
+//
+//
+//    }
+//
+//
+//}
 
