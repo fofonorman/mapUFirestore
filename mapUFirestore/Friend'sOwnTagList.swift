@@ -87,7 +87,7 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         
-        ref?.removeAllObservers()
+        API.UserRef.databaseRef?.removeAllObservers()
     }
     
     // MARK: - Navigation
