@@ -8,12 +8,13 @@
 import UIKit
 import FirebaseFirestoreSwift
 import FirebaseFirestore
-import FirebaseAuth
+import Firebase
 
 class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate {
 
     var tagListTheUserGot = [TagTheUserGot]()
     var infoFromPreviousPage: TagTheUserGot?
+    var ref: DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +84,11 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
                 
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        
+        ref?.removeAllObservers()
+    }
     
     // MARK: - Navigation
 
