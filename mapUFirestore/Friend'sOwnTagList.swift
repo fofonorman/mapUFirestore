@@ -110,6 +110,7 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
         
     }
     
+       
     func likeBtn(cell: Friend_sOwnTagListCell, numberOfLike: String) {
 
         if let currentUserUID = Auth.auth().currentUser?.uid{
@@ -149,10 +150,10 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
         }
 
     func loadTagList() {
-//        記得要取消監聽
+        
         if let currentUserUID = Auth.auth().currentUser?.uid{
         
-        API.UserRef.db.collection("userList").document(currentUserUID).collection("TagIGot").addSnapshotListener({ (querySnapshot, error) in
+            API.UserRef.db.collection("userList").document(currentUserUID).collection("TagIGot").order(by: "ifRead", descending: false).addSnapshotListener({ (querySnapshot, error) in
             
           guard let existingSnapShot = querySnapshot else {
             
