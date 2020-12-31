@@ -36,6 +36,7 @@
 		9683C8772549C59000A5C8A1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683C8762549C59000A5C8A1 /* User.swift */; };
 		96F51BB32557EF86006D44D5 /* UIAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F51BB22557EF86006D44D5 /* UIAlertViewController.swift */; };
 		96F52CF5256D45D400C06FF3 /* TagIGotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F52CF4256D45D400C06FF3 /* TagIGotTest.swift */; };
+		96FF4FED259E25B700BCED46 /* LoginPractice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FF4FEC259E25B700BCED46 /* LoginPractice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		9683C8762549C59000A5C8A1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		96F51BB22557EF86006D44D5 /* UIAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertViewController.swift; sourceTree = "<group>"; };
 		96F52CF4256D45D400C06FF3 /* TagIGotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagIGotTest.swift; sourceTree = "<group>"; };
+		96FF4FEC259E25B700BCED46 /* LoginPractice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPractice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 				963F0730254583DE00E3D11B /* ViewController.swift */,
 				964126F92553E94200F63309 /* ScanViewController.swift */,
 				964A9594257136250013E617 /* AccessPhoto.swift */,
+				96FF4FEC259E25B700BCED46 /* LoginPractice.swift */,
 				966AD46225558A58002EEF9B /* InteractWithDBViewController.swift */,
 				9649C8B42573DF4A00587927 /* Friend'sOwnTagList.swift */,
 				9649C8B92573E3C400587927 /* Friend'sOwnTagListCell.swift */,
@@ -357,6 +360,7 @@
 				9683C8542549C46A00A5C8A1 /* tagPoolAPI.swift in Sources */,
 				9683C8642549C4BB00A5C8A1 /* FollowingListAPI.swift in Sources */,
 				9683C86F2549C56500A5C8A1 /* Tag.swift in Sources */,
+				96FF4FED259E25B700BCED46 /* LoginPractice.swift in Sources */,
 				9683C8692549C4F500A5C8A1 /* API.swift in Sources */,
 				96F51BB32557EF86006D44D5 /* UIAlertViewController.swift in Sources */,
 				9683C8772549C59000A5C8A1 /* User.swift in Sources */,
