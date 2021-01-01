@@ -41,6 +41,33 @@ class LoginPractice: UIViewController {
     }
     
     
+    @IBAction func checkSignIn(_ sender: Any) {
+        if let verificationCode = VerificationField.text,
+           let verificationID = UserDefaults.standard.string(forKey: "authVerificationID") {
+            let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: verificationCode)
+            Auth.auth().signIn(with: credential, completion: {(user, error) in
+                if error == nil {
+                    self.updateUserStatus()
+                    self.view.endEditing(true)
+                } else {
+                    print("login failed!!")
+                }
+                })
+            
+        }
+        }
+    
+    
+    @IBAction func logOut(_ sender: Any) {
+        
+        do {
+            try Auth.auth().signOut()
+                updateUserStatus()
+           } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     
     
     func updateUserStatus() {
