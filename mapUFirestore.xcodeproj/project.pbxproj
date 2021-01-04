@@ -56,6 +56,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9629D0B325A3351500282E2D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		963F0729254583DE00E3D11B /* mapUFirestore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mapUFirestore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		963F072C254583DE00E3D11B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -216,6 +229,7 @@
 				963F0725254583DE00E3D11B /* Sources */,
 				963F0726254583DE00E3D11B /* Frameworks */,
 				963F0727254583DE00E3D11B /* Resources */,
+				9629D0B325A3351500282E2D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
