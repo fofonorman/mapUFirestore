@@ -19,16 +19,20 @@ class LoginPractice: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
     @IBOutlet weak var countryPicker: UIPickerView!
     @IBOutlet weak var countryCode: UITextField!
     
-    let countryArray: [(countryName: String, countryCode: String)] = [("AA", "11"), ("BB", "22"), ("CC", "33"), ("DD", "44"), ("EE", "55"), ("FF", "66")]
+    let countryArray: [(countryName: String, countryCode: String)] = [("AA", "+886"), ("BB", "+22"), ("CC", "+33"), ("DD", "+4"), ("EE", "+55"), ("FF", "+66")]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         countryCode.text = countryArray[0].countryCode
         countryCode.inputView = countryPicker
+        countryPicker.isHidden = true
+        updateUserStatus()
+           // Do any additional setup after loading the view.
+    }
         
-//        updateUserStatus()
-        // Do any additional setup after loading the view.
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -47,21 +51,37 @@ class LoginPractice: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         countryCode.text = countryArray[row].countryCode
     }
     
+    
+  
+    @IBAction func tapCountryCode(_ sender: Any) {
+        countryPicker.isHidden = false
+        
+    }
+    
     @IBAction func checkPhoneNumber(_ sender: Any) {
-        if let phoneNumber = PhoneNumberField.text {
+        
+        guard PhoneNumberField.text != nil else {
+            print("no number!")
+            return }
+        
+        let phoneNumber = "\(countryCode.text!)" + "\(PhoneNumberField.text!)"
+    
             //須再實作檢查號碼格式
             PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil, completion: { (verificationID, error) in
                 if error == nil {
                     UserDefaults.standard.setValue(verificationID, forKey: "authVerificationID")
 //                    self.showMsg(messgae: "請收簡訊")
                     self.view.endEditing(true)
+                    print(phoneNumber)
+
                 } else {
+//                    可以把下方列印的錯誤訊息顯示在前端
                     print("error! \(error!.localizedDescription)")
                 }
                 
             })
             
-        }
+        
     }
     
     
@@ -71,7 +91,7 @@ class LoginPractice: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
             let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: verificationCode)
             Auth.auth().signIn(with: credential, completion: {(user, error) in
                 if error == nil {
-//                    self.updateUserStatus()
+                    self.updateUserStatus()
                     self.view.endEditing(true)
                 } else {
                     print("login failed!!")
@@ -86,7 +106,7 @@ class LoginPractice: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         
         do {
             try Auth.auth().signOut()
-//                updateUserStatus()
+                updateUserStatus()
            } catch {
             print(error.localizedDescription)
         }
@@ -94,7 +114,7 @@ class LoginPractice: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
     
 
     
-//    func updateUserStatus() {
+    func updateUserStatus() {
 //        if let user = Auth.auth().currentUser {
 //            let last4Char = (user.phoneNumber! as NSString).substring(from: 9)
 //
@@ -103,8 +123,8 @@ class LoginPractice: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
 //        } else {
 //            loginStatusLabel.text = "請登入"
 //        }
-//
-//    }
+
+    }
     
   
     
