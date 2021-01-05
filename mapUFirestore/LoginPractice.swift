@@ -28,6 +28,8 @@ class LoginPractice: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         countryCode.inputView = countryPicker
         countryPicker.isHidden = true
         updateUserStatus()
+        
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(closekeyboard)))
            // Do any additional setup after loading the view.
     }
         
@@ -51,11 +53,12 @@ class LoginPractice: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         countryCode.text = countryArray[row].countryCode
     }
     
-    
+    @objc func closekeyboard() {
+        self.view.endEditing(true)
+    }
   
-    @IBAction func tapCountryCode(_ sender: Any) {
+    @IBAction func tapToSelectCountryCode(_ sender: Any) {
         countryPicker.isHidden = false
-        
     }
     
     @IBAction func checkPhoneNumber(_ sender: Any) {
