@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import CoreTelephony
 
-class LoginPractice: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class LoginPractice: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
   
     
 
@@ -28,9 +28,12 @@ class LoginPractice: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         countryCode.inputView = countryPicker
         countryPicker.isHidden = true
         updateUserStatus()
+//        countryCode.becomeFirstResponder()
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
         
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(closekeyboard)))
-           // Do any additional setup after loading the view.
+        // Do any additional setup after loading the view.
     }
         
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -53,12 +56,20 @@ class LoginPractice: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         countryCode.text = countryArray[row].countryCode
     }
     
-    @objc func closekeyboard() {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        DispatchQueue.main.async {
+            self.countryPicker.isHidden = false
+        }
+    }
+    
+   
+    
+    @objc func dismissKeyboard()  {
         self.view.endEditing(true)
     }
   
     @IBAction func tapToSelectCountryCode(_ sender: Any) {
-        countryPicker.isHidden = false
+//        countryPicker.isHidden = false
     }
     
     @IBAction func checkPhoneNumber(_ sender: Any) {
