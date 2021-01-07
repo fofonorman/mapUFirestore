@@ -78,11 +78,11 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
 
         }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        performSegue(withIdentifier: "GoToLikesByWhomList", sender: nil )
-                
-    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        performSegue(withIdentifier: "GoToLikesByWhomList", sender: nil )
+//                
+//    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseStorage
 
 private let reuseIdentifier = "Cell"
 
