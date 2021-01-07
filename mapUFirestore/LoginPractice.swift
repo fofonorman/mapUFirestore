@@ -7,12 +7,9 @@
 
 import UIKit
 import FirebaseAuth
-import CoreTelephony
 
 class LoginPractice: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
   
-    
-
     @IBOutlet weak var PhoneNumberField: UITextField!
     @IBOutlet weak var VerificationField: UITextField!
     @IBOutlet weak var loginStatusLabel: UILabel!
@@ -26,9 +23,8 @@ class LoginPractice: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         super.viewDidLoad()
         countryCode.text = countryArray[0].countryCode
         countryCode.inputView = countryPicker
-        countryPicker.isHidden = true
         updateUserStatus()
-//        countryCode.becomeFirstResponder()
+        countryPicker.isHidden = true
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -36,9 +32,9 @@ class LoginPractice: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         // Do any additional setup after loading the view.
     }
         
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        self.view.endEditing(true)
+//    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -58,20 +54,20 @@ class LoginPractice: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         DispatchQueue.main.async {
+            self.countryPicker.reloadAllComponents()
             self.countryPicker.isHidden = false
+
         }
+
+
     }
     
-   
     
     @objc func dismissKeyboard()  {
         self.view.endEditing(true)
     }
   
-    @IBAction func tapToSelectCountryCode(_ sender: Any) {
-//        countryPicker.isHidden = false
-    }
-    
+      
     @IBAction func checkPhoneNumber(_ sender: Any) {
         
         guard PhoneNumberField.text != nil else {
