@@ -188,7 +188,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="More to vote"/>
                                 <connections>
-                                    <segue destination="i6B-2T-Pwd" kind="show" id="vgv-Ia-z7C"/>
+                                    <segue destination="i6B-2T-Pwd" kind="show" identifier="GoToFollowingListToVote" id="vgv-Ia-z7C"/>
                                 </connections>
                             </button>
                         </subviews>

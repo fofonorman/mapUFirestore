@@ -70,12 +70,17 @@ class InteractWithDBViewController: UIViewController {
 
         }
        )
-        
-          
-        
+           
     }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "GoToFollowingListToVote"{
+            
+            if let followingList = segue.destination as? FollowingListToVote {
+// 繼續撰寫轉到下個頁面的實作
+            }
+        }
+    }
   
     
     

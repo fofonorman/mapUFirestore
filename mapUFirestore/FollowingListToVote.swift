@@ -96,21 +96,8 @@ class FollowingListToVote: UITableViewController {
 //
 //    }
     
-    func loadFollowingList() {
-// 應該要把InteractWithDBViewController class 裡的 全域變數 FollowingList 利用 segue 傳到這個 class
-        
-//        if let currentUser = Auth.auth().currentUser {
-//
-//            API.FollowingList.fetchFollowingList(withID: currentUser.uid, completion: <#T##(User) -> Void#>)
-//
-//        } else {
-////            跳出 請重新登入 訊息視窗，按下後跳到登入畫面
-//            print("Please login first!")
-//        }
-//
-//
-//
-    }
+
+    
     
 
 }
