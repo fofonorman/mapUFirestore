@@ -16,11 +16,9 @@ class UserAPI {
     let db = Firestore.firestore()
     let currentUserUID = Auth.auth().currentUser?.uid
     let databaseRef: DatabaseReference? = nil
-    
+
     func observeUser(withID uid: String, completion: @escaping (User) -> Void ) {
         
-        
-
         let userListRef = db.collection("userList")
         
         
