@@ -24,8 +24,7 @@ class LoginPractice: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         countryCode.text = countryArray[0].countryCode
         countryCode.inputView = countryPicker
         updateUserStatus()
-        countryPicker.isHidden = true
-
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         

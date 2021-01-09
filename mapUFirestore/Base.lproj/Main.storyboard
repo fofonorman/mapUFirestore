@@ -193,14 +193,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PAH-9m-87n">
-                                <rect key="frame" x="0.0" y="627" width="414" height="235"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="j1m-iE-Unm" id="Zhc-C2-Ptb"/>
-                                    <outlet property="delegate" destination="j1m-iE-Unm" id="UJ3-8b-z5V"/>
-                                </connections>
-                            </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PhoneNumber" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zt9-v9-SyU">
                                 <rect key="frame" x="34" y="116" width="191" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -221,6 +213,14 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lXt-eu-Cys" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <pickerView contentMode="scaleToFill" id="PAH-9m-87n">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="235"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <outlet property="dataSource" destination="j1m-iE-Unm" id="Zhc-C2-Ptb"/>
+                        <outlet property="delegate" destination="j1m-iE-Unm" id="UJ3-8b-z5V"/>
+                    </connections>
+                </pickerView>
             </objects>
             <point key="canvasLocation" x="1445" y="1104"/>
         </scene>
