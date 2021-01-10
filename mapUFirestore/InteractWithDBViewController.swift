@@ -77,19 +77,14 @@ class InteractWithDBViewController: UIViewController {
         if segue.identifier == "GoToFollowingListToVote"{
             
             if let followingListToVote = segue.destination as? FollowingListToVote {
-// 繼續撰寫轉到下個頁面的實作
                 followingListToVote.infoFromPreviousPage = sender as? [User]
-           print("\(sender) from sender")
             }
         }
     }
   
     @IBAction func GoToFollowingListToVote(_ sender: UIButton) {
         
-        let AA = self.FollowingList
-            performSegue(withIdentifier: "GoToFollowingListToVote", sender: AA)
-      
-        print("\(AA) from button !!!")
+            performSegue(withIdentifier: "GoToFollowingListToVote", sender: self.FollowingList)
       
     }
     
