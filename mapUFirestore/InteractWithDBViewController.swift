@@ -76,12 +76,22 @@ class InteractWithDBViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "GoToFollowingListToVote"{
             
-            if let followingList = segue.destination as? FollowingListToVote {
+            if let followingListToVote = segue.destination as? FollowingListToVote {
 // 繼續撰寫轉到下個頁面的實作
+                followingListToVote.infoFromPreviousPage = sender as? [User]
+           print("\(sender) from sender")
             }
         }
     }
   
+    @IBAction func GoToFollowingListToVote(_ sender: UIButton) {
+        
+        let AA = self.FollowingList
+            performSegue(withIdentifier: "GoToFollowingListToVote", sender: AA)
+      
+        print("\(AA) from button !!!")
+      
+    }
     
     
     typealias TagArrayClosure = ([Tag]?) -> Void

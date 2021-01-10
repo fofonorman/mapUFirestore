@@ -120,7 +120,7 @@
             </objects>
             <point key="canvasLocation" x="5356.521739130435" y="87.723214285714278"/>
         </scene>
-        <!--Item-->
+        <!--Interact WithDB View Controller-->
         <scene sceneID="3bz-uz-O2M">
             <objects>
                 <viewController id="pQu-7l-s2X" customClass="InteractWithDBViewController" customModule="mapUFirestore" customModuleProvider="target" sceneMemberID="viewController">
@@ -188,6 +188,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="More to vote"/>
                                 <connections>
+                                    <action selector="GoToFollowingListToVote:" destination="pQu-7l-s2X" eventType="touchUpInside" id="m1e-xg-wVP"/>
                                     <segue destination="i6B-2T-Pwd" kind="show" identifier="GoToFollowingListToVote" id="vgv-Ia-z7C"/>
                                 </connections>
                             </button>
@@ -195,7 +196,6 @@
                         <viewLayoutGuide key="safeArea" id="Cjg-h7-SYQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="yZL-dj-fxR"/>
                     <navigationItem key="navigationItem" id="Ali-Me-YYf"/>
                     <connections>
                         <outlet property="FriendBtnA" destination="xXD-Gb-QMo" id="kuD-am-K6Q"/>
@@ -206,31 +206,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xQa-g1-2il" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2626" y="823"/>
+            <point key="canvasLocation" x="3534.7826086956525" y="822.99107142857144"/>
         </scene>
         <!--Following List To Vote-->
         <scene sceneID="jg7-Qh-a9m">
             <objects>
                 <tableViewController id="i6B-2T-Pwd" customClass="FollowingListToVote" customModule="mapUFirestore" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lYF-SY-POX">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FollowingListToVoteCell" rowHeight="99" id="nZv-U9-Zre" customClass="FollowingListToVoteCell" customModule="mapUFirestore" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="99"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FollowingListToVoteCell" rowHeight="43.5" id="nZv-U9-Zre" customClass="FollowingListToVoteCell" customModule="mapUFirestore" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nZv-U9-Zre" id="IIN-aq-W2d">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mUQ-fP-4HR">
-                                            <rect key="frame" x="118" y="56" width="76" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yWd-Cv-62a">
                                             <rect key="frame" x="310" y="31" width="90" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -240,6 +233,13 @@
                                             <rect key="frame" x="34" y="18" width="61" height="62"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mUQ-fP-4HR">
+                                            <rect key="frame" x="114" y="11" width="76" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -257,7 +257,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LCt-O2-qhR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3491.3043478260875" y="826.33928571428567"/>
+            <point key="canvasLocation" x="4401.449275362319" y="826.33928571428567"/>
         </scene>
         <!--Item-->
         <scene sceneID="Rsj-3L-PLz">
@@ -354,7 +354,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1SP-88-IBK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8113.04347826087" y="1046.6517857142858"/>
+            <point key="canvasLocation" x="9023.188405797102" y="1046.6517857142858"/>
         </scene>
         <!--VOTE-->
         <scene sceneID="H6w-rT-vIR">
@@ -437,7 +437,7 @@
                     <connections>
                         <segue destination="tGc-3h-rE7" kind="relationship" relationship="viewControllers" id="sRU-hc-QAd"/>
                         <segue destination="vS5-HZ-XAG" kind="relationship" relationship="viewControllers" id="aVe-7g-wbN"/>
-                        <segue destination="pQu-7l-s2X" kind="relationship" relationship="viewControllers" id="8w0-Ic-rZ5"/>
+                        <segue destination="C78-3R-7Fs" kind="relationship" relationship="viewControllers" id="8w0-Ic-rZ5"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BUX-kU-odh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -486,7 +486,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iJj-Xc-ad5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4754" y="826"/>
+            <point key="canvasLocation" x="5663.768115942029" y="825.66964285714278"/>
         </scene>
         <!--AAA-->
         <scene sceneID="Tob-j7-LvV">
@@ -546,7 +546,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4D0-sF-Zj9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4531.884057971015" y="1683.4821428571429"/>
+            <point key="canvasLocation" x="4538" y="1683"/>
         </scene>
         <!--RRR-->
         <scene sceneID="bEl-QS-Nid">
@@ -679,7 +679,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="6437.68115942029" y="1031.9196428571429"/>
+            <point key="canvasLocation" x="7347.826086956522" y="1031.9196428571429"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UdD-yM-d88">
@@ -697,7 +697,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rhf-6I-nKP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5532" y="1032"/>
+            <point key="canvasLocation" x="6442.0289855072469" y="1031.9196428571429"/>
         </scene>
         <!--Denny Upload Photo View Controller-->
         <scene sceneID="uc1-iK-geo">
@@ -754,6 +754,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DJT-0R-0t0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3621.739130434783" y="1683.4821428571429"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="tVO-Xq-UJY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="C78-3R-7Fs" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="yZL-dj-fxR"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="v4y-yO-2qY">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="pQu-7l-s2X" kind="relationship" relationship="rootViewController" id="rCw-fg-QYm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Kn-fG-vyN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2624.6376811594205" y="822.99107142857144"/>
         </scene>
     </scenes>
     <resources>

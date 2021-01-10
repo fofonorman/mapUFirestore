@@ -11,9 +11,11 @@ import Firebase
 
 class FollowingListToVote: UITableViewController {
 
+    var infoFromPreviousPage: [User]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("\(self.infoFromPreviousPage) on list")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -30,7 +32,7 @@ class FollowingListToVote: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return infoFromPreviousPage?.count ?? 0
     }
 
     
@@ -39,7 +41,7 @@ class FollowingListToVote: UITableViewController {
             return UITableViewCell()
         }
         
-        
+        cell.UserNameLabel.text = infoFromPreviousPage?[indexPath.row].displayName
 
         // Configure the cell...
 
