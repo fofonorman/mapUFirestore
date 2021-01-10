@@ -74,6 +74,7 @@ class InteractWithDBViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
         if segue.identifier == "GoToFollowingListToVote"{
             
             if let followingListToVote = segue.destination as? FollowingListToVote {
@@ -82,10 +83,9 @@ class InteractWithDBViewController: UIViewController {
         }
     }
   
-    @IBAction func GoToFollowingListToVote(_ sender: UIButton) {
-        
-            performSegue(withIdentifier: "GoToFollowingListToVote", sender: self.FollowingList)
-      
+        @IBAction func GoToFollowingListToVote(_ sender: UIButton) {
+    performSegue(withIdentifier: "GoToFollowingListToVote", sender: self.FollowingList)
+
     }
     
     

@@ -15,7 +15,6 @@ class FollowingListToVote: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("\(self.infoFromPreviousPage) on list")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

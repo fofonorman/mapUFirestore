@@ -188,8 +188,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="More to vote"/>
                                 <connections>
-                                    <action selector="GoToFollowingListToVote:" destination="pQu-7l-s2X" eventType="touchUpInside" id="m1e-xg-wVP"/>
-                                    <segue destination="i6B-2T-Pwd" kind="show" identifier="GoToFollowingListToVote" id="vgv-Ia-z7C"/>
+                                    <action selector="GoToFollowingListToVote:" destination="pQu-7l-s2X" eventType="touchUpInside" id="U92-b2-ZAM"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -202,6 +201,7 @@
                         <outlet property="FriendBtnB" destination="mJJ-kR-59w" id="taU-pi-d3G"/>
                         <outlet property="inputTag" destination="9B0-WJ-FRY" id="WgD-kT-x3g"/>
                         <outlet property="randomTag" destination="R7e-p2-8Zx" id="VV5-d0-0Ay"/>
+                        <segue destination="i6B-2T-Pwd" kind="show" identifier="GoToFollowingListToVote" id="QqN-Jv-qmA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xQa-g1-2il" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
