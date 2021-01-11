@@ -9,8 +9,8 @@ import UIKit
 import Firebase
 
 
-class FollowingListToVote: UITableViewController {
-
+class FollowingListToVote: UITableViewController, FollowingListToVoteCellDelegate {
+    
     var infoFromPreviousPage: [User]?
     
     override func viewDidLoad() {
@@ -42,8 +42,17 @@ class FollowingListToVote: UITableViewController {
         
         cell.UserNameLabel.text = infoFromPreviousPage?[indexPath.row].displayName
 
-        // Configure the cell...
-
+        guard let photoURLString = self.infoFromPreviousPage?[indexPath.row].userAvatarURL else {
+            print("no avatar!")
+            return UITableViewCell()
+        }
+        
+        let photoURL = URL(string: photoURLString)
+        cell.UserAvatar.sd_setImage(with: photoURL, completed: nil)
+        
+        cell.checkbox.setImage(UIImage(named: "uncheckedBox"), for: UIControl.State.normal)
+        
+        cell.delegate = self
         return cell
     }
     
@@ -53,6 +62,40 @@ class FollowingListToVote: UITableViewController {
         API.UserRef.databaseRef?.removeAllObservers()
     }
 
+    func checkboxBtn(cell: FollowingListToVoteCell, userUID: String) {
+       
+        if let currentUserUID = Auth.auth().currentUser?.uid{
+        
+        // 這一步驟，讓程式可以紀錄是哪個 cell 的按鈕被點了
+        guard let indexPath = self.tableView.indexPath(for: cell) else {
+            print("no button in cell selected")
+            return
+          }
+            if let selecteduserUID = self.infoFromPreviousPage?[indexPath.row].uid {
+                
+                if cell.checkbox.currentImage == UIImage(named: "uncheckedBox") {
+                    
+                    cell.checkbox.imageView?.image = UIImage(named: "checkedbox")
+                    print("go to check box")
+                    print(selecteduserUID)
+                    
+                } else {
+                    
+                    cell.checkbox.imageView?.image = UIImage(named: "uncheckedBox")
+                    print("go to uncheck box")
+
+                }
+                
+            }
+            
+        } else {
+//            請用戶重新登入
+
+        }
+        self.tableView.reloadData()
+
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
