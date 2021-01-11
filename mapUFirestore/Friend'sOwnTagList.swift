@@ -127,16 +127,11 @@ class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate 
 
                         API.UserRef.db.collection("userList").document(currentUserUID).collection("TagIGot").document(selectedTagID).updateData(["thumbUp": FieldValue.arrayRemove([currentUserUID])])
  
-                    cell.LikeImage.imageView?.image = UIImage(named: "beforeLike")
-
-
                     print("revoked")
                         
                     } else {
                         API.UserRef.db.collection("userList").document(currentUserUID).collection("TagIGot").document(selectedTagID).updateData(["thumbUp": FieldValue.arrayUnion([currentUserUID])])
                         
-                        cell.LikeImage.imageView?.image = UIImage(named: "afterLike")
-
 //                        print("added")
                     }
 

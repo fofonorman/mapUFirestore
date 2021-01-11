@@ -63,36 +63,33 @@ class FollowingListToVote: UITableViewController, FollowingListToVoteCellDelegat
     }
 
     func checkboxBtn(cell: FollowingListToVoteCell, userUID: String) {
-       
+
+
         if let currentUserUID = Auth.auth().currentUser?.uid{
-        
+
         // 這一步驟，讓程式可以紀錄是哪個 cell 的按鈕被點了
         guard let indexPath = self.tableView.indexPath(for: cell) else {
             print("no button in cell selected")
             return
           }
             if let selecteduserUID = self.infoFromPreviousPage?[indexPath.row].uid {
-                
+
                 if cell.checkbox.currentImage == UIImage(named: "uncheckedBox") {
-                    
-                    cell.checkbox.imageView?.image = UIImage(named: "checkedbox")
-                    print("go to check box")
-                    print(selecteduserUID)
-                    
+                    cell.checkbox.setImage(UIImage(named: "checkedbox"), for: .normal)
+       
                 } else {
-                    
-                    cell.checkbox.imageView?.image = UIImage(named: "uncheckedBox")
+                    cell.checkbox.setImage(UIImage(named: "uncheckedBox"), for: .normal)
+
                     print("go to uncheck box")
 
                 }
-                
+
             }
-            
+
         } else {
 //            請用戶重新登入
 
         }
-        self.tableView.reloadData()
 
     }
     
