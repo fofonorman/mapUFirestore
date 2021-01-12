@@ -19,7 +19,17 @@ class FollowingListToVote: UITableViewController, FollowingListToVoteCellDelegat
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+//         self.navigationItem.rightBarButtonItem = self.editButtonItem
+      
+        // 導覽列右邊按鈕
+        let rightButton = UIBarButtonItem(
+          title:"Vote",
+          style:.plain,
+          target:self,
+          action:#selector(FollowingListToVote.setting)
+          )
+        // 加到導覽列中
+        self.navigationItem.rightBarButtonItem = rightButton
     }
 
     // MARK: - Table view data source
@@ -62,6 +72,12 @@ class FollowingListToVote: UITableViewController, FollowingListToVoteCellDelegat
         API.UserRef.databaseRef?.removeAllObservers()
     }
 
+    @objc func setting() {
+//        self.navigationController?.pushViewController(
+//          SettingViewController(), animated: true)
+        print("confrim!!!")
+    }
+    
     func checkboxBtn(cell: FollowingListToVoteCell, userUID: String) {
 
 

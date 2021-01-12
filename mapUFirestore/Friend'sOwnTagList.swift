@@ -13,7 +13,6 @@ import Firebase
 class Friend_sOwnTagList: UITableViewController, Friend_sOwnTagListCellDelegate {
 
     var tagListTheUserGot = [TagTheUserGot]()
-//    var infoFromPreviousPage: TagTheUserGot?
     var ref: DatabaseReference?
     
     override func viewDidLoad() {
