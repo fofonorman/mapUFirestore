@@ -34,6 +34,7 @@
 		9669561A258786BF004C088A /* LikesByWhomList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96695619258786BF004C088A /* LikesByWhomList.swift */; };
 		9669562225878B5F004C088A /* LikesByWhomListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9669562125878B5F004C088A /* LikesByWhomListCell.swift */; };
 		966AD46325558A58002EEF9B /* InteractWithDBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966AD46225558A58002EEF9B /* InteractWithDBViewController.swift */; };
+		9678290025ADF6AE000B694F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967828FF25ADF6AE000B694F /* Helper.swift */; };
 		967894D325A8852400CEE9DB /* FollowingListToVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967894D225A8852400CEE9DB /* FollowingListToVote.swift */; };
 		9683C8422549BBC200A5C8A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9683C8412549BBC200A5C8A1 /* GoogleService-Info.plist */; };
 		9683C8542549C46A00A5C8A1 /* tagPoolAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683C8532549C46A00A5C8A1 /* tagPoolAPI.swift */; };
@@ -92,6 +93,7 @@
 		96695619258786BF004C088A /* LikesByWhomList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesByWhomList.swift; sourceTree = "<group>"; };
 		9669562125878B5F004C088A /* LikesByWhomListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesByWhomListCell.swift; sourceTree = "<group>"; };
 		966AD46225558A58002EEF9B /* InteractWithDBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractWithDBViewController.swift; sourceTree = "<group>"; };
+		967828FF25ADF6AE000B694F /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		967894D225A8852400CEE9DB /* FollowingListToVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingListToVote.swift; sourceTree = "<group>"; };
 		9683C8412549BBC200A5C8A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9683C8532549C46A00A5C8A1 /* tagPoolAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tagPoolAPI.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				963F072C254583DE00E3D11B /* AppDelegate.swift */,
+				967828FF25ADF6AE000B694F /* Helper.swift */,
 				96F51BB22557EF86006D44D5 /* UIAlertViewController.swift */,
 				963F072E254583DE00E3D11B /* SceneDelegate.swift */,
 				96F52CF4256D45D400C06FF3 /* TagIGotTest.swift */,
@@ -376,6 +379,7 @@
 				96E473B125A88AA300FB1CD1 /* FollowingListToVoteCell.swift in Sources */,
 				963F0737254583DE00E3D11B /* mapUFirestore.xcdatamodeld in Sources */,
 				9644DD54256E9DA8000601B9 /* TagTheUserGotAPI.swift in Sources */,
+				9678290025ADF6AE000B694F /* Helper.swift in Sources */,
 				96F52CF5256D45D400C06FF3 /* TagIGotTest.swift in Sources */,
 				963F0731254583DE00E3D11B /* ViewController.swift in Sources */,
 				963F072D254583DE00E3D11B /* AppDelegate.swift in Sources */,

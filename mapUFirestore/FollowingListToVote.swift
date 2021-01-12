@@ -12,6 +12,8 @@ import Firebase
 class FollowingListToVote: UITableViewController, FollowingListToVoteCellDelegate {
     
     var infoFromPreviousPage: [User]?
+    var checkedUsers: [User]?
+    var checkedUserUID: [String]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,13 +75,12 @@ class FollowingListToVote: UITableViewController, FollowingListToVoteCellDelegat
     }
 
     @objc func setting() {
-//        self.navigationController?.pushViewController(
-//          SettingViewController(), animated: true)
-        print("confrim!!!")
+//        print(self.checkedUsers?.count)
+//        InteractWithDBViewController.shared.actionsAfterClickFriendToVote(withUID: <#T##String#>, withTagContent: <#T##String#>, withTagID: <#T##String#>)
+        
     }
     
     func checkboxBtn(cell: FollowingListToVoteCell, userUID: String) {
-
 
         if let currentUserUID = Auth.auth().currentUser?.uid{
 
@@ -92,7 +93,12 @@ class FollowingListToVote: UITableViewController, FollowingListToVoteCellDelegat
 
                 if cell.checkbox.currentImage == UIImage(named: "uncheckedBox") {
                     cell.checkbox.setImage(UIImage(named: "checkedbox"), for: .normal)
-       
+                
+                    checkedUserUID?.append("555555")
+                    
+                    print(self.checkedUserUID)
+//                    print(self.checkedUsers?.count)
+                    
                 } else {
                     cell.checkbox.setImage(UIImage(named: "uncheckedBox"), for: .normal)
 

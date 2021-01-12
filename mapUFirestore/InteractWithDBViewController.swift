@@ -12,7 +12,7 @@ import FirebaseDatabase
 
 class InteractWithDBViewController: UIViewController {
     
-    
+    static let shared = InteractWithDBViewController()
     @IBOutlet weak var randomTag: UILabel!
     @IBOutlet weak var inputTag: UITextField!
     
@@ -26,7 +26,7 @@ class InteractWithDBViewController: UIViewController {
     var tagsForVoteList = [Tag]()
 
     let db = Firestore.firestore()
-    var followingListArrRandomIndex = 0
+//    var followingListArrRandomIndex = 0
 
 //    let db = Firestore.firestore()
 //    var userListRef: DocumentReference?
@@ -130,17 +130,6 @@ class InteractWithDBViewController: UIViewController {
     }
     
     
-    
-    
-    func outputRandomTagInstance(tagArr: [Tag]) -> Tag {
-        
-        return tagArr[2]
-
-//            shuffledArr = self.tagArr.shuffled()
-
-        }
-    
-    
     @IBAction func tagSubmitBtn(_ sender: UIButton) {
         
         let data = ["tagContent": self.inputTag.text]
@@ -201,8 +190,6 @@ class InteractWithDBViewController: UIViewController {
 //      按下投票鈕時，透過 actionsAfterClickFriendToVote() 將資料存入資料庫
         actionsAfterClickFriendToVote(withUID: self.FollowingListInstance?.uid as! String, withTagContent: self.TagInstanceForVote?.tagContent as! String, withTagID: self.TagInstanceForVote?.tagID as! String)
         
-        assignNewTagInstanceToFrontEnd()
-        assignNewFollowingInstanceToFrontEnd()
     }
     
     
@@ -210,29 +197,24 @@ class InteractWithDBViewController: UIViewController {
         
         actionsAfterClickFriendToVote(withUID: self.FollowingListInstance?.uid as! String, withTagContent: self.TagInstanceForVote?.tagContent as! String, withTagID: self.TagInstanceForVote?.tagID as! String)
         
-        assignNewTagInstanceToFrontEnd()
-        assignNewFollowingInstanceToFrontEnd()
-        
     }
     
     
     
     func assignNewTagInstanceToFrontEnd() {
-          
-        
+                  
         self.TagInstanceForVote = self.tagsForVoteList.randomElement()
-        
         self.randomTag.text = self.TagInstanceForVote?.tagContent
         
     }
     
     func assignNewFollowingInstanceToFrontEnd() {
     
-    self.FollowingListInstance = self.FollowingList.randomElement()
-    self.FriendBtnA.setTitle(self.FollowingListInstance?.displayName, for: .normal)
+       self.FollowingListInstance = self.FollowingList.randomElement()
+       self.FriendBtnA.setTitle(self.FollowingListInstance?.displayName, for: .normal)
     
-        self.FollowingListInstance = self.FollowingList.randomElement()
-        self.FriendBtnB.setTitle(self.FollowingListInstance?.displayName, for: .normal)
+       self.FollowingListInstance = self.FollowingList.randomElement()
+       self.FriendBtnB.setTitle(self.FollowingListInstance?.displayName, for: .normal)
         
         
     }
@@ -243,14 +225,9 @@ class InteractWithDBViewController: UIViewController {
        
         db.collection("userList").document(uid).collection("TagIGot").getDocuments { (querySnapshot, error) in
             
-            guard let existingSnapShot = querySnapshot else { print("no result!")
+            guard let _ = querySnapshot else { print("no result!")
                 return}
             
-            let tagIGotList = [String]()
-               
-            print(existingSnapShot.documents.count)
-            print(uid)
-                
         }
         
         let tagListData: [String: Any] = [
@@ -266,9 +243,11 @@ class InteractWithDBViewController: UIViewController {
         
         db.collection("tagPoolDefault").document(tagID).updateData(["whoGotThisTag": FieldValue.arrayUnion([uid])])
         
-        
+        assignNewTagInstanceToFrontEnd()
+        assignNewFollowingInstanceToFrontEnd()
         
     }
+    
     
     @IBAction func testBtn(_ sender: UIButton) {
         test(withID: "VvJTZHoJ3B4PUcMGJ8E0")
