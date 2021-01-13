@@ -26,11 +26,11 @@ class FollowingListToVoteCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    // 覆寫 prepareForReuse()方法，避免 cell 滾出螢幕外被重複調用時，圖片亂掉
-//    override func prepareForReuse() {
-//            super.prepareForReuse()
-//            self.delegate = nil
-//        }
+//     覆寫 prepareForReuse()方法，避免 cell 滾出螢幕外被重複調用時，圖片亂掉
+    override func prepareForReuse() {
+            super.prepareForReuse()
+            self.delegate = nil
+        }
 
     
     @IBAction func checkboxBtn(_ sender: UIButton) {

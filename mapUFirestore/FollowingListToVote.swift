@@ -12,7 +12,7 @@ import Firebase
 class FollowingListToVote: UITableViewController, FollowingListToVoteCellDelegate {
     
     var infoFromPreviousPage: [User]?
-    var checkedUsers: [User]?
+    var checkedUsers = [User]()
     var checkedUserUID: [String]?
     
     override func viewDidLoad() {
@@ -85,28 +85,32 @@ class FollowingListToVote: UITableViewController, FollowingListToVoteCellDelegat
         if let currentUserUID = Auth.auth().currentUser?.uid{
 
         // 這一步驟，讓程式可以紀錄是哪個 cell 的按鈕被點了
-        guard let indexPath = self.tableView.indexPath(for: cell) else {
+        guard let indexPath = self.tableView.indexPath(for: cell),
+              let selectedUser = self.infoFromPreviousPage?[indexPath.row] else {
             print("no button in cell selected")
             return
           }
-            if let selecteduserUID = self.infoFromPreviousPage?[indexPath.row].uid {
-
+            
                 if cell.checkbox.currentImage == UIImage(named: "uncheckedBox") {
                     cell.checkbox.setImage(UIImage(named: "checkedbox"), for: .normal)
-                
-                    checkedUserUID?.append("555555")
-                    
-                    print(self.checkedUserUID)
-//                    print(self.checkedUsers?.count)
-                    
+                    self.checkedUsers.append(selectedUser)
+//
                 } else {
                     cell.checkbox.setImage(UIImage(named: "uncheckedBox"), for: .normal)
-
+                    guard let indexToDelete = self.checkedUsers.firstIndex(where: { $0 === selectedUser } ) else {
+                        print("no user to delete!")
+                        return
+                    }
+                    
+                    self.checkedUsers.remove(at: indexToDelete)
+                    
+                    print(self.checkedUsers[indexToDelete].displayName)
+                    print(self.checkedUsers.count)
+                    
+//                    self.checkedUsers.remove
                     print("go to uncheck box")
 
                 }
-
-            }
 
         } else {
 //            請用戶重新登入
