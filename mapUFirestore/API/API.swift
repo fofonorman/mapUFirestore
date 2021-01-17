@@ -12,7 +12,8 @@ struct API {
     static var FollowingList = FollowingListAPI()
     static var UserRef = UserAPI()
     static var TagTheUserGot = TagTheUserGotAPI()
-
+    static var shared = sharedFunc()
+    
 }
 
 

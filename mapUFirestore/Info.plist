@@ -39,6 +39,8 @@
 	<string>Please share your camera.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Please share your photo</string>
+	<key>NSContactsUsageDescription</key>
+	<string>APP needs to access contact</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

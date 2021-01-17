@@ -36,6 +36,7 @@
 		9683C8772549C59000A5C8A1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683C8762549C59000A5C8A1 /* User.swift */; };
 		96F51BB32557EF86006D44D5 /* UIAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F51BB22557EF86006D44D5 /* UIAlertViewController.swift */; };
 		96F52CF5256D45D400C06FF3 /* TagIGotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F52CF4256D45D400C06FF3 /* TagIGotTest.swift */; };
+		96F93ABA25B486A7007D6EA8 /* sharedFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F93AB925B486A7007D6EA8 /* sharedFunc.swift */; };
 		96FF4FED259E25B700BCED46 /* LoginPractice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FF4FEC259E25B700BCED46 /* LoginPractice.swift */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +102,7 @@
 		9683C8762549C59000A5C8A1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		96F51BB22557EF86006D44D5 /* UIAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertViewController.swift; sourceTree = "<group>"; };
 		96F52CF4256D45D400C06FF3 /* TagIGotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagIGotTest.swift; sourceTree = "<group>"; };
+		96F93AB925B486A7007D6EA8 /* sharedFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sharedFunc.swift; sourceTree = "<group>"; };
 		96FF4FEC259E25B700BCED46 /* LoginPractice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPractice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -205,6 +207,7 @@
 				9683C85E2549C4A700A5C8A1 /* UserAPI.swift */,
 				9683C8632549C4BB00A5C8A1 /* FollowingListAPI.swift */,
 				9644DD53256E9DA8000601B9 /* TagTheUserGotAPI.swift */,
+				96F93AB925B486A7007D6EA8 /* sharedFunc.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				964126FA2553E94200F63309 /* ScanViewController.swift in Sources */,
 				9649C8B52573DF4A00587927 /* Friend'sOwnTagList.swift in Sources */,
 				966AD46325558A58002EEF9B /* InteractWithDBViewController.swift in Sources */,
+				96F93ABA25B486A7007D6EA8 /* sharedFunc.swift in Sources */,
 				9649C8BA2573E3C400587927 /* Friend'sOwnTagListCell.swift in Sources */,
 				963F072F254583DE00E3D11B /* SceneDelegate.swift in Sources */,
 				9683C8542549C46A00A5C8A1 /* tagPoolAPI.swift in Sources */,
