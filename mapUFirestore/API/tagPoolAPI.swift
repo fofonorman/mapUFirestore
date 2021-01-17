@@ -11,13 +11,10 @@ import FirebaseFirestore
 
 class TagPoolAPI {
     
-      
-    let db = Firestore.firestore()
-    
     
     func observeTagPool(completion: @escaping (Tag) -> Void) {
-   
-        let tagPoolRef = db.collection("tagPoolDefault")
+        
+        let tagPoolRef = API.UserRef.db.collection("tagPoolDefault")
        
         
         tagPoolRef.getDocuments { (querySnapshot, error) in
@@ -39,19 +36,7 @@ class TagPoolAPI {
            }
         }
 
-        
-        
-        
-//        tagPoolRef.observe(.childAdded, with: {(snapshot) in
-//
-//            if let dic = snapshot.value as? [String: Any] {
-//                let tagIDs = snapshot.key
-//                let newTag = Tag.typeOneTag(ID: tagIDs, dic: dic)
-//                completion(newTag)
-//
-//            }
-//
-//        })
+
     }
     }
     

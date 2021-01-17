@@ -28,7 +28,7 @@ class FollowingListToVote: UITableViewController, FollowingListToVoteCellDelegat
           title:"Vote",
           style:.plain,
           target:self,
-          action:#selector(FollowingListToVote.setting)
+          action:#selector(FollowingListToVote.toVote)
           )
         // 加到導覽列中
         self.navigationItem.rightBarButtonItem = rightButton
@@ -74,7 +74,7 @@ class FollowingListToVote: UITableViewController, FollowingListToVoteCellDelegat
         API.UserRef.databaseRef?.removeAllObservers()
     }
 
-    @objc func setting() {
+    @objc func toVote() {
 //        print(self.checkedUsers?.count)
 //        InteractWithDBViewController.shared.actionsAfterClickFriendToVote(withUID: <#T##String#>, withTagContent: <#T##String#>, withTagID: <#T##String#>)
         
@@ -94,24 +94,24 @@ class FollowingListToVote: UITableViewController, FollowingListToVoteCellDelegat
                 if cell.checkbox.currentImage == UIImage(named: "uncheckedBox") {
                     cell.checkbox.setImage(UIImage(named: "checkedbox"), for: .normal)
                     self.checkedUsers.append(selectedUser)
-//
+                    print(selectedUser.displayName)
+                    print(self.checkedUsers.count)
                 } else {
                     cell.checkbox.setImage(UIImage(named: "uncheckedBox"), for: .normal)
-                    guard let indexToDelete = self.checkedUsers.firstIndex(where: { $0 === selectedUser } ) else {
+                    guard let indexToDelete = self.checkedUsers.firstIndex(where: { $0 === selectedUser })
+                        
+                    else {
                         print("no user to delete!")
                         return
                     }
-                    
                     self.checkedUsers.remove(at: indexToDelete)
                     
                     print(self.checkedUsers[indexToDelete].displayName)
                     print(self.checkedUsers.count)
                     
-//                    self.checkedUsers.remove
                     print("go to uncheck box")
 
                 }
-
         } else {
 //            請用戶重新登入
 

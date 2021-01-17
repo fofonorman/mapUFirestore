@@ -18,7 +18,7 @@ class UserAPI {
     let databaseRef: DatabaseReference? = nil
 
     func observeUser(withID uid: String, completion: @escaping (User) -> Void ) {
-        
+
         let userListRef = db.collection("userList")
         
         

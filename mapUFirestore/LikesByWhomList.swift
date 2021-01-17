@@ -55,7 +55,7 @@ class LikesByWhomList: UITableViewController {
                 return cell
     }
     
-    
+      
     typealias loadLikesByWhom = ([User]?) -> Void
     
     func loadLikesByWhomList(completion: @escaping loadLikesByWhom) {
