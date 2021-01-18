@@ -14,8 +14,13 @@ import FirebaseAuth
 class FollowingListAPI {
 
     func fetchFollowingList(withID uid: String, completion: @escaping (User) -> Void) {
+
+        guard let currentUserUID = Auth.auth().currentUser?.uid else {
+            return
+            print("please login")
+//            要補上重新登入
+        }
         
-        //      要補上else處理方式
         API.UserRef.db.collection("userList")
 .document(uid).collection("FollowingList").getDocuments { (querySnapshot, error) in
             

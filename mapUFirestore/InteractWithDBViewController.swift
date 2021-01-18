@@ -43,15 +43,14 @@ class InteractWithDBViewController: UIViewController {
         
         ]
         
-//        //匿名登入
-//        Auth.auth().signInAnonymously { (authresult,error) in
-//            if error == nil{
-                API.UserRef.db.collection("userList").document(Auth.auth().currentUser!.uid).setData(userData, merge: true)
-//
+        //匿名登入
+        Auth.auth().signInAnonymously { (authresult,error) in
+            if error == nil{
+                API.UserRef.db.collection("userList").document(                authresult!.user.uid).setData(userData, merge: true)
             print("signed-in \(Auth.auth().currentUser!.uid)")
-//           }else{
-//           print(error!.localizedDescription)
-//        }}
+           }else{
+           print(error!.localizedDescription)
+        }}
         
         fetchTagPool(completion: { tags in
 
