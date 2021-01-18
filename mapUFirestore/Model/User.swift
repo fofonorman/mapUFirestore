@@ -15,6 +15,10 @@ class User {
     var displayName: String?
     var followingList: [Dictionary<String, Bool>]?
     var followerList: [Dictionary<String, Bool>]?
+    var familyName: String?
+    var givenName: String?
+    var phone: [String: String]?
+    
     }
 
 extension User{
@@ -51,5 +55,21 @@ extension User{
     }
     
 }
+
+extension User {
+        
+    static func virtualFollowingList(familyName: String, givenName: String, phone: [String: String]) -> User {
+        
+        let userInvirtualFollowingList = User()
+        userInvirtualFollowingList.familyName = familyName
+        userInvirtualFollowingList.givenName = givenName
+        userInvirtualFollowingList.phone = phone
+        
+        return userInvirtualFollowingList
+        
+    }
+    
+    
+    }
 
 

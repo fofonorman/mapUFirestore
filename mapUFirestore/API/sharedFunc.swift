@@ -11,7 +11,7 @@ import Contacts
 
 class sharedFunc{
     
-    func loadContactData() {
+    func loadContactData(completion: @escaping (User) -> Void) {
         //获取授权状态
                 let status = CNContactStore.authorizationStatus(for: .contacts)
                 //判断当前授权状态
@@ -36,30 +36,30 @@ class sharedFunc{
                         (contact : CNContact, stop : UnsafeMutablePointer<ObjCBool>) -> Void in
                          
                         //获取姓名
-                        let lastName = contact.familyName
-                        let firstName = contact.givenName
-                        print("姓名：\(lastName)\(firstName)")
-                         
-                        //获取昵称
-                        let nikeName = contact.nickname
-                        print("昵称：\(nikeName)")
+                        let familyName = contact.familyName
+                        let givenName = contact.givenName
+//                        print("姓名：\(familyName)\(givenName)")
                          
                         //获取电话号码
-                        print("电话：")
+//                        print("电话：")
                         for phone in contact.phoneNumbers {
                             //获得标签名（转为能看得懂的本地标签名，比如work、home）
-                            var label = "未知标签"
+                            var phoneLabel = "unknownLabel"
                             if phone.label != nil {
-                                label = CNLabeledValue<NSString>.localizedString(forLabel:
+                                phoneLabel = CNLabeledValue<NSString>.localizedString(forLabel:
                                     phone.label!)
                             }
                              
                             //获取号码
-                            let value = phone.value.stringValue
-                            print("\t\(label)：\(value)")
+                            let phoneNumber = phone.value.stringValue
+                            
+                            let userInvirtualList = User.virtualFollowingList(familyName: familyName, givenName: givenName, phone: [phoneLabel: phoneNumber])
+                            
+                                completion(userInvirtualList)
+//                            print("\t\(phoneLabel)：\(phoneNumber)")
                         }
                  
-                        print("----------------")
+//                        print("----------------")
                          
                     })
                 } catch {

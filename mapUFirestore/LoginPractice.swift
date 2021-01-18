@@ -7,7 +7,6 @@
 
 import UIKit
 import FirebaseAuth
-import Contacts
 
 class LoginPractice: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
   
@@ -29,13 +28,10 @@ class LoginPractice: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
-        CNContactStore().requestAccess(for: .contacts) { (isRight, error) in
-                    if isRight {
-                        //授权成功加载数据。
-                        API.shared.loadContactData()
-                    }
-                }        // Do any additional setup after loading the view.
+       
+             // Do any additional setup after loading the view.
     }
+    
         
 //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 //        self.view.endEditing(true)

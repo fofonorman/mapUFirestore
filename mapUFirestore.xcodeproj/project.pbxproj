@@ -23,6 +23,7 @@
 		9649C8BA2573E3C400587927 /* Friend'sOwnTagListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9649C8B92573E3C400587927 /* Friend'sOwnTagListCell.swift */; };
 		964A9595257136250013E617 /* AccessPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964A9594257136250013E617 /* AccessPhoto.swift */; };
 		966AD46325558A58002EEF9B /* InteractWithDBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966AD46225558A58002EEF9B /* InteractWithDBViewController.swift */; };
+		9674ACB525B5B66B004A9696 /* AccessContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9674ACB425B5B66B004A9696 /* AccessContacts.swift */; };
 		9683C8422549BBC200A5C8A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9683C8412549BBC200A5C8A1 /* GoogleService-Info.plist */; };
 		9683C8482549BC4A00A5C8A1 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9683C8472549BC4A00A5C8A1 /* FirebaseFirestoreSwift */; };
 		9683C84A2549BC4A00A5C8A1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9683C8492549BC4A00A5C8A1 /* FirebaseAuth */; };
@@ -93,6 +94,7 @@
 		9649C8B92573E3C400587927 /* Friend'sOwnTagListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Friend'sOwnTagListCell.swift"; sourceTree = "<group>"; };
 		964A9594257136250013E617 /* AccessPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPhoto.swift; sourceTree = "<group>"; };
 		966AD46225558A58002EEF9B /* InteractWithDBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractWithDBViewController.swift; sourceTree = "<group>"; };
+		9674ACB425B5B66B004A9696 /* AccessContacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessContacts.swift; sourceTree = "<group>"; };
 		9683C8412549BBC200A5C8A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9683C8532549C46A00A5C8A1 /* tagPoolAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tagPoolAPI.swift; sourceTree = "<group>"; };
 		9683C85E2549C4A700A5C8A1 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				964126F92553E94200F63309 /* ScanViewController.swift */,
 				964A9594257136250013E617 /* AccessPhoto.swift */,
 				96FF4FEC259E25B700BCED46 /* LoginPractice.swift */,
+				9674ACB425B5B66B004A9696 /* AccessContacts.swift */,
 				966AD46225558A58002EEF9B /* InteractWithDBViewController.swift */,
 				9649C8B42573DF4A00587927 /* Friend'sOwnTagList.swift */,
 				9649C8B92573E3C400587927 /* Friend'sOwnTagListCell.swift */,
@@ -363,6 +366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9674ACB525B5B66B004A9696 /* AccessContacts.swift in Sources */,
 				964A9595257136250013E617 /* AccessPhoto.swift in Sources */,
 				963F0737254583DE00E3D11B /* mapUFirestore.xcdatamodeld in Sources */,
 				9644DD54256E9DA8000601B9 /* TagTheUserGotAPI.swift in Sources */,
