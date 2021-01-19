@@ -28,25 +28,39 @@ class AccessContacts: UIViewController {
         
         CNContactStore().requestAccess(for: .contacts) { (isRight, error) in
                     if isRight {
-                        //授权成功加载数据。
-                        self.fetchVirtualUserPool(completion: { result in
-                            self.virtualUser = result!
-                            print(self.virtualUser)
-                            
-                        })
-                        
-                        
-                        
-//
-//                        if let currentUserUID = Auth.auth().currentUser?.uid {
-//                            API.UserRef.db.collection("userList").document(currentUserUID).collection("VirtualFollowingList")
+                        //授權成功載入資料
+//                        API.shared.loadContactData() {
+//                            _ in return
 //                        }
                         
-                      
+                        self.fetchVirtualUserPool(completion: { result in
+                            self.virtualUser = result
+
+                            for item in self.virtualUser! {
+                                print(item.familyName)
+                                print(self.virtualUser?.count)
+                                let contactDataInVirtualUser: [String: Any] = [
+                                    "familyName": item.familyName,
+                                    "givenName": item.givenName,
+                                    "phone": item.phone
+                                    ]
+
+                                API.UserRef.db.collection("userList").document(Auth.auth().currentUser!.uid).collection("VirtualFollowingList").addDocument(data: contactDataInVirtualUser) { (error) in
+                                    if error == nil {
+                                        print(self.virtualUser?.count)
+                                    } else {
+                                        print(error?.localizedDescription)
+                                    }
+                                }
+                                 
+                            }
+                            
+//                            print(self.virtualUser)
+
+                        })
                         
                     }
             
-            print(Auth.auth().currentUser?.uid)
             
        }
         

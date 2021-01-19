@@ -12,54 +12,56 @@ import Contacts
 class sharedFunc{
     
     func loadContactData(completion: @escaping (User) -> Void) {
-        //获取授权状态
+        //取得授權狀態
                 let status = CNContactStore.authorizationStatus(for: .contacts)
-                //判断当前授权状态
+                //判斷當前授權狀態
                 guard status == .authorized else { print("no right to access!")
                     return }
         
-        //创建通讯录对象
+        //建立通訊錄對象
                 let store = CNContactStore()
                  
-                //获取Fetch,并且指定要获取联系人中的什么属性
+                //獲取Fetch,並指定要獲取聯繫人的特定屬性
                 let keys = [CNContactFamilyNameKey, CNContactGivenNameKey, CNContactNicknameKey,
                             CNContactPhoneNumbersKey,
                            ]
         
-        //创建请求对象
-                //需要传入一个(keysToFetch: [CNKeyDescriptor]) 包含CNKeyDescriptor类型的数组
+        //建立請求對象
+                //需要傳入一個(keysToFetch: [CNKeyDescriptor]) 包含CNKeyDescriptor類型的陣列
                 let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
                  
-                //遍历所有联系人
+                //遍歷所有聯繫人
                 do {
                     try store.enumerateContacts(with: request, usingBlock: {
                         (contact : CNContact, stop : UnsafeMutablePointer<ObjCBool>) -> Void in
                          
-                        //获取姓名
+                        //取得姓名
                         let familyName = contact.familyName
                         let givenName = contact.givenName
-//                        print("姓名：\(familyName)\(givenName)")
+                        print("姓名：\(familyName)\(givenName)")
                          
-                        //获取电话号码
-//                        print("电话：")
+                        //取得電話號碼
+                        print("電話：")
                         for phone in contact.phoneNumbers {
-                            //获得标签名（转为能看得懂的本地标签名，比如work、home）
+                            //取得標籤名（轉為本地看得懂的標籤，比如work、home）
                             var phoneLabel = "unknownLabel"
                             if phone.label != nil {
                                 phoneLabel = CNLabeledValue<NSString>.localizedString(forLabel:
                                     phone.label!)
                             }
                              
-                            //获取号码
+                            //取得號碼
                             let phoneNumber = phone.value.stringValue
                             
-                            let userInvirtualList = User.virtualFollowingList(familyName: familyName, givenName: givenName, phone: [phoneLabel: phoneNumber])
+                            let phonedata = [[phoneLabel: phoneNumber]]
+                            //將聯繫資料放進 userInvirtualList 類型
+                            let userInVirtualList = User.virtualFollowingList(familyName: familyName, givenName: givenName, phone: phonedata)
                             
-                                completion(userInvirtualList)
-//                            print("\t\(phoneLabel)：\(phoneNumber)")
+                                completion(userInVirtualList)
+                            print("\t\(phoneLabel)：\(phoneNumber)")
                         }
                  
-//                        print("----------------")
+                        print("----------------")
                          
                     })
                 } catch {
