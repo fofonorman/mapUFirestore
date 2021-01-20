@@ -42,6 +42,8 @@ class sharedFunc{
                          
                         //取得電話號碼
                         print("電話：")
+                        var phoneDic = [String: String]()
+
                         for phone in contact.phoneNumbers {
                             //取得標籤名（轉為本地看得懂的標籤，比如work、home）
                             var phoneLabel = "unknownLabel"
@@ -53,17 +55,17 @@ class sharedFunc{
                             //取得號碼
                             let phoneNumber = phone.value.stringValue
                             
-                            let phonedata = [phoneLabel: phoneNumber]
-                            var phoneDataArr: Array<Any>?
-                            phoneDataArr?.append(phonedata)
+                            // 將所有電話號碼存到字典
+                            phoneDic[phoneLabel] = phoneNumber
                             //將聯繫資料放進 userInvirtualList 類型
-//                            let userInVirtualList = User.virtualFollowingList(familyName: familyName, givenName: givenName, phone: phonedata)
+                            let userInVirtualList = User.virtualFollowingList(familyName: familyName, givenName: givenName, phone: phoneDic)
                             
-//                                completion(userInVirtualList)
+                                completion(userInVirtualList)
+
                             print("\t\(phoneLabel)：\(phoneNumber)")
-                            print(phoneDataArr)
                         }
-                 
+                        print(phoneDic)
+
                         print("----------------")
                          
                     })
