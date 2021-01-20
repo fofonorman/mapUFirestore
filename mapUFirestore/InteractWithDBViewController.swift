@@ -47,6 +47,17 @@ class InteractWithDBViewController: UIViewController {
         Auth.auth().signInAnonymously { (authresult,error) in
             if error == nil{
                 API.UserRef.db.collection("userList").document(                authresult!.user.uid).setData(userData, merge: true)
+                
+                self.fetchFollowingList(completionHandler: { userArr in
+
+                 self.FollowingList = userArr!
+
+                 self.assignNewFollowingInstanceToFrontEnd()
+
+
+                 }
+                )
+                
             print("signed-in \(Auth.auth().currentUser!.uid)")
            }else{
            print(error!.localizedDescription)
@@ -60,15 +71,7 @@ class InteractWithDBViewController: UIViewController {
 
         })
 
-       fetchFollowingList(completionHandler: { userArr in
-
-        self.FollowingList = userArr!
-
-        self.assignNewFollowingInstanceToFrontEnd()
-
-
-        }
-       )
+      
            
     }
     
