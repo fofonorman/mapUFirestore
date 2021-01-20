@@ -60,12 +60,12 @@ extension User {
         
     static func virtualFollowingList(familyName: String, givenName: String, phone: [[String: String]]) -> User {
         
-        let userInvirtualFollowingList = User()
-        userInvirtualFollowingList.familyName = familyName
-        userInvirtualFollowingList.givenName = givenName
-        userInvirtualFollowingList.phone = phone
+        let userInVirtualFollowingList = User()
+        userInVirtualFollowingList.familyName = familyName
+        userInVirtualFollowingList.givenName = givenName
+        userInVirtualFollowingList.phone = phone
         
-        return userInvirtualFollowingList
+        return userInVirtualFollowingList
         
     }
     

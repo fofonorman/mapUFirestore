@@ -53,12 +53,15 @@ class sharedFunc{
                             //取得號碼
                             let phoneNumber = phone.value.stringValue
                             
-                            let phonedata = [[phoneLabel: phoneNumber]]
+                            let phonedata = [phoneLabel: phoneNumber]
+                            var phoneDataArr: Array<Any>?
+                            phoneDataArr?.append(phonedata)
                             //將聯繫資料放進 userInvirtualList 類型
-                            let userInVirtualList = User.virtualFollowingList(familyName: familyName, givenName: givenName, phone: phonedata)
+//                            let userInVirtualList = User.virtualFollowingList(familyName: familyName, givenName: givenName, phone: phonedata)
                             
-                                completion(userInVirtualList)
+//                                completion(userInVirtualList)
                             print("\t\(phoneLabel)：\(phoneNumber)")
+                            print(phoneDataArr)
                         }
                  
                         print("----------------")
