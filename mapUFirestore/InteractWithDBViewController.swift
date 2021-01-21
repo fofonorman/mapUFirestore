@@ -124,9 +124,15 @@ class InteractWithDBViewController: UIViewController {
     
     
     @IBAction func tagSubmitBtn(_ sender: UIButton) {
-        
+//        標籤輸入規範：
+//          禁止空格
+//        禁止什麼都沒輸入
+//        是否要禁止其他東西
         let data = ["tagContent": self.inputTag.text]
+        let tab = "\t" as Character
+        tab.isWhitespace
         
+       
         if self.inputTag.text?.isEmpty == true {
             
             let controller = UIAlertController(title: "Failed", message: "Please input a tag.", preferredStyle: .alert)

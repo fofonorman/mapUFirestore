@@ -38,10 +38,10 @@ class sharedFunc{
                         //取得姓名
                         let familyName = contact.familyName
                         let givenName = contact.givenName
-                        print("姓名：\(familyName)\(givenName)")
+//                        print("姓名：\(familyName)\(givenName)")
                          
                         //取得電話號碼
-                        print("電話：")
+//                        print("電話：")
                         var phoneDic = [String: String]()
 
                         for phone in contact.phoneNumbers {
@@ -62,11 +62,12 @@ class sharedFunc{
                             
                                 completion(userInVirtualList)
 
-                            print("\t\(phoneLabel)：\(phoneNumber)")
+//                            print("\t\(phoneLabel)：\(phoneNumber)")
                         }
-                        print(phoneDic)
-
-                        print("----------------")
+                       
+//                        print(phoneDic)
+//
+//                        print("----------------")
                          
                     })
                 } catch {

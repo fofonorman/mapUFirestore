@@ -11,6 +11,7 @@ import FirebaseAuth
 
 class AccessContacts: UIViewController {
 
+    
     var virtualUser: [User]?
     
     override func viewDidLoad() {
@@ -32,15 +33,15 @@ class AccessContacts: UIViewController {
 //                        API.shared.loadContactData() {
 //                            _ in return
 //                        }
-                        
+                     
                         self.fetchVirtualUserPool(completion: { result in
                             self.virtualUser = result
-
-
+                            var contactDataInVirtualUser = [String: Any]()
+                          
                             for item in self.virtualUser! {
-                                print(item.familyName)
-                                print(self.virtualUser?.count)
-                                let contactDataInVirtualUser: [String: Any] = [
+//                                print(item.familyName)
+//                                print(self.virtualUser?.count)
+                                contactDataInVirtualUser = [
                                     "familyName": item.familyName,
                                     "givenName": item.givenName,
                                     "phone": item.phone
@@ -48,27 +49,43 @@ class AccessContacts: UIViewController {
 
                                 API.UserRef.db.collection("userList").document(Auth.auth().currentUser!.uid).collection("VirtualFollowingList").addDocument(data: contactDataInVirtualUser) { (error) in
                                     if error == nil {
-                                        print(self.virtualUser?.count)
+//                                        print(self.virtualUser?.count)
+//                                        print(self.virtualUser)
                                     } else {
                                         print(error?.localizedDescription)
                                     }
                                 }
 
                             }
-
-//                            print(self.virtualUser)
+                            
 
                         })
-                        
+
                     }
-            
             
        }
         
         // Do any additional setup after loading the view.
     }
     
-
+//    練習將兩顆按鈕連結到同一個IBAction
+    @IBAction func testBtn(_ sender: UIButton) {
+        
+        switch sender.tag {
+        case 0:
+            self.add(a: 3, b: 6)
+       
+        case 1:
+            self.add(a: 4, b: 6)
+        default:
+            print("NNNNNN")
+        }
+        
+    }
+    
+    func add(a: Int, b: Int) {
+        print(a + b)
+    }
     /*
     // MARK: - Navigation
 
