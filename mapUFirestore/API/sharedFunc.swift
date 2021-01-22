@@ -61,7 +61,8 @@ class sharedFunc{
                             let userInVirtualList = User.virtualFollowingList(familyName: familyName, givenName: givenName, phone: phoneDic)
                             
                                 completion(userInVirtualList)
-
+//                            print(userInVirtualList.phone)
+//                            print(userInVirtualList.familyName)
 //                            print("\t\(phoneLabel)：\(phoneNumber)")
                         }
                        

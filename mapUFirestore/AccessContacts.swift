@@ -32,37 +32,44 @@ class AccessContacts: UIViewController {
 //                        授權成功載入資料
 //                        API.shared.loadContactData() {
 //                            _ in return
+//
 //                        }
-                     
-                        self.fetchVirtualUserPool(completion: { result in
-                            self.virtualUser = result
-                            var contactDataInVirtualUser = [String: Any]()
-                          
-                            for item in self.virtualUser! {
-//                                print(item.familyName)
-//                                print(self.virtualUser?.count)
-                                contactDataInVirtualUser = [
-                                    "familyName": item.familyName,
-                                    "givenName": item.givenName,
-                                    "phone": item.phone
-                                    ]
+//
+                        self.fetchVirtualUserPool(completion: { (result) in
+//                            self.virtualUser = result
+//                            var contactDataInVirtualUser = [String: Any]()
 
-                                API.UserRef.db.collection("userList").document(Auth.auth().currentUser!.uid).collection("VirtualFollowingList").addDocument(data: contactDataInVirtualUser) { (error) in
-                                    if error == nil {
-//                                        print(self.virtualUser?.count)
-//                                        print(self.virtualUser)
-                                    } else {
-                                        print(error?.localizedDescription)
-                                    }
-                                }
-
-                            }
                             
+                            for i in result! {
+                                
+                                let contactDataInVirtualUser = [
+                                      "familyName": i.familyName!,
+                                      "givenName": i.givenName!,
+                                      "phone": i.phone!
+                                ] as [String : Any]
+                                
+                                print(contactDataInVirtualUser)
+                            }
+                            print("-------------")
 
+//                            for item in result! {
+////                                print(item.phone, item.familyName)
+//////                                print(self.virtualUser?.count)
+
+//
+//                                API.UserRef.db.collection("userList").document(Auth.auth().currentUser!.uid).collection("VirtualFollowingList").addDocument(data: item.phone ?? ["no value": "no value"]) { (error) in
+//                                    if error == nil {
+////                                        print(self.virtualUser?.count)
+//                                        print("write succesfully!")
+//                                    } else {
+//                                        print(error?.localizedDescription)
+//                                    }
+//                                }
+//                            }
                         })
-
+                       
                     }
-            
+    
        }
         
         // Do any additional setup after loading the view.
@@ -109,6 +116,11 @@ class AccessContacts: UIViewController {
                     completion(nil)
                 } else {
                     completion(result)
+//                    print(result)
+//                    for i in result {
+//                        print(i.phone)
+//
+//                    }
                 }
             }
             
