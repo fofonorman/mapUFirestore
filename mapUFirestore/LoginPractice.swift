@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 
+
 class LoginPractice: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
   
     @IBOutlet weak var PhoneNumberField: UITextField!
@@ -27,6 +28,7 @@ class LoginPractice: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
         
        
              // Do any additional setup after loading the view.

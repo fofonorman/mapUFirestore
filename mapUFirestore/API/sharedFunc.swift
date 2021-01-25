@@ -7,11 +7,11 @@
 
 import Foundation
 import Contacts
-
+import Network
 
 class sharedFunc{
     
-    func loadContactData(completion: @escaping (User) -> Void) {
+    func loadContactData(completion: @escaping (User, [String: Any]) -> Void) {
         //取得授權狀態
                 let status = CNContactStore.authorizationStatus(for: .contacts)
                 //判斷當前授權狀態
@@ -57,12 +57,20 @@ class sharedFunc{
                             
                             // 將所有電話號碼存到字典
                             phoneDic[phoneLabel] = phoneNumber
+                            
                             //將聯繫資料放進 userInvirtualList 類型
                             let userInVirtualList = User.virtualFollowingList(familyName: familyName, givenName: givenName, phone: phoneDic)
                             
-                                completion(userInVirtualList)
+                            let contactDataInVirtualUser = [
+                                 "familyName": userInVirtualList.familyName!,
+                                 "givenName": userInVirtualList.givenName!,
+                                 "phone": userInVirtualList.phone!
+                            ] as [String: Any]
+                            
+                                completion(userInVirtualList, contactDataInVirtualUser)
+//                             print(userInVirtualList.familyName)
+//
 //                            print(userInVirtualList.phone)
-//                            print(userInVirtualList.familyName)
 //                            print("\t\(phoneLabel)：\(phoneNumber)")
                         }
                        
@@ -75,6 +83,43 @@ class sharedFunc{
                     print(error)
                 }
             }
+    
+    
+    
+    func checkNetworkStatus() {
+        
+        let monitor = NWPathMonitor()
+        
+        monitor.pathUpdateHandler = { path in
+            
+            
+//            switch path.status {
+//
+//            case .satisfied:
+//                  print("good")
+//            case .requiresConnection:
+//                  print("need connection")
+//            case .unsatisfied:
+//                print("need other connection")
+//
+//            default:
+//                print("default")
+//            }
+            
+            if path.status == .satisfied {
+
+                print("connected")
+            } else {
+                print("no connection!")
+            }
+            
+            monitor.start(queue: DispatchQueue.global())
+
+        }
+        
+    }
+    
+ 
     
     
 }
