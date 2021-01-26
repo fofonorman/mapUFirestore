@@ -62,6 +62,7 @@ class AccessPhoto: UIViewController {
                 
     }
     
+       
     /// 開啟相機
     func takePicture() {
         imagePickerController.sourceType = .camera

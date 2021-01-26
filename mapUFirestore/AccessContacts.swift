@@ -8,32 +8,29 @@
 import UIKit
 import Contacts
 import FirebaseAuth
-import Network
 
 class AccessContacts: UIViewController {
 
     
     var virtualUser: [User]?
     let contactDataSetInVirtualUser = [String : Any]()
-    let monitor = NWPathMonitor()
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        API.shared.checkNetworkStatus()
+        
         //匿名登入
         Auth.auth().signInAnonymously { (authresult,error) in
             if error == nil{
-                API.UserRef.db.collection("userList").document(authresult!.user.uid).setData(["55555": "555555"], merge: true)
+                mapUFirestore.API.UserRef.db.collection("userList").document(authresult!.user.uid).setData(["55555": "555555"], merge: true)
                 
             print("signed-in \(authresult!.user.uid)")
            }else{
            print(error!.localizedDescription)
         }}
         
-        
- 
-        API.shared.checkNetworkStatus()
         
         CNContactStore().requestAccess(for: .contacts) { (isRight, error) in
                     if isRight {
@@ -80,6 +77,9 @@ class AccessContacts: UIViewController {
         
         // Do any additional setup after loading the view.
     }
+    
+   
+    
     
 //    練習將兩顆按鈕連結到同一個IBAction
     @IBAction func testBtn(_ sender: UIButton) {
