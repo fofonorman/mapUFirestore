@@ -13,7 +13,18 @@ class TagIGotTest: ViewController {
     @IBOutlet weak var thumbUpImage: UIButton!
     @IBOutlet weak var tagContent: UILabel!
     @IBOutlet weak var numberOfThumbUp: UILabel!
-
+   
+//    struct Song: Equatable {
+//       var name: String
+//       var singer: String
+//        static func == (lhs: Song, rhs: Song) -> Bool {
+//              return lhs == rhs
+//           }
+//
+//    }
+    
+//    var songs = [Song(name: "一次就好", singer: "楊宗緯"), Song(name: "兩次就好", singer: "楊宗緯"), Song(name: "三次就好", singer: "楊宗緯"), Song(name: "一次就好", singer: "彼得潘")]
+    
     let db = Firestore.firestore()
 
     override func viewDidLoad() {
@@ -24,10 +35,27 @@ class TagIGotTest: ViewController {
         self.thumbUpImage.setImage(UIImage(named : "beforeLike"), for: UIControl.State.normal) // 預設狀態下要顯示的圖片
                 self.thumbUpImage.setImage(UIImage(named : "afterLike"), for: UIControl.State.selected) // 選取狀態下要顯示的圖片
         
-        
+//        getIndex()
     }
     
+//    func getIndex() {
+//        let song1 = Song(name: "一次就好", singer: "彼得潘")
+//            let song2 = Song(name: "一次就好", singer: "楊宗緯")
+//
+//            let index1 = self.songs.firstIndex(of: song1)
+//        let index2 = self.songs.firstIndex(of: song2)
+//
+//
+//        print(index1)
+//        print(index2)
+//
+//
+//    }
+    
 
+    
+    
+    
     @IBAction func thumbUp(_ sender: UIButton) {
         
 //        fetchTagTheUserGotList() { (result) in

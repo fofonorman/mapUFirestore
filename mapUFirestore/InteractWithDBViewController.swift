@@ -117,7 +117,7 @@ class InteractWithDBViewController: UIViewController {
         var result = [User]()
 
              
-        API.FollowingList.fetchFollowingList(withID: Auth.auth().currentUser!.uid) { users in
+        API.FollowingList.fetchFollowingList(withID: "G53HUXuPtBPvgdm2KxlR7dCE0SD3") { users in
                 result.append(users)
 
                 DispatchQueue.main.async() {

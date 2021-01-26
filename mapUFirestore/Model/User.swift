@@ -11,6 +11,7 @@ import FirebaseFirestore
 import FirebaseDatabase
 
 class User {
+    
     var uid: String?
     var displayName: String?
     var userAvatarURL: String?

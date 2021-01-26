@@ -96,9 +96,13 @@ class FollowingListToVote: UITableViewController, FollowingListToVoteCellDelegat
                     self.checkedUsers.append(selectedUser)
                     print(selectedUser.displayName)
                     print(self.checkedUsers.count)
+                    print("go to check!")
+                    print("------")
                 } else {
                     cell.checkbox.setImage(UIImage(named: "uncheckedBox"), for: .normal)
-                    guard let indexToDelete = self.checkedUsers.firstIndex(where: { $0 === selectedUser })
+                    guard let indexToDelete = self.checkedUsers.firstIndex(where: { (user) -> Bool in
+                        return user.uid == selectedUser.uid
+                    })
                         
                     else {
                         print("no user to delete!")
@@ -110,6 +114,8 @@ class FollowingListToVote: UITableViewController, FollowingListToVoteCellDelegat
                     print(self.checkedUsers.count)
                     
                     print("go to uncheck box")
+                    print("------")
+
 
                 }
         } else {
