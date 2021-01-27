@@ -75,6 +75,9 @@ class FollowingListToVote: UITableViewController, FollowingListToVoteCellDelegat
     }
 
     @objc func toVote() {
+        
+        self.infoFromPreviousPage.map({ print($0) })
+        
 //        print(self.checkedUsers?.count)
 //        InteractWithDBViewController.shared.actionsAfterClickFriendToVote(withUID: <#T##String#>, withTagContent: <#T##String#>, withTagID: <#T##String#>)
         
@@ -94,9 +97,10 @@ class FollowingListToVote: UITableViewController, FollowingListToVoteCellDelegat
                 if cell.checkbox.currentImage == UIImage(named: "uncheckedBox") {
                     cell.checkbox.setImage(UIImage(named: "checkedbox"), for: .normal)
                     self.checkedUsers.append(selectedUser)
-                    print(selectedUser.displayName)
-                    print(self.checkedUsers.count)
-                    print("go to check!")
+                    self.checkedUsers.map({ print($0.displayName!) })
+                    print("this is \(selectedUser.displayName) to add")
+//                    print(self.checkedUsers.count)
+//                    print("go to check!")
                     print("------")
                 } else {
                     cell.checkbox.setImage(UIImage(named: "uncheckedBox"), for: .normal)
@@ -110,9 +114,9 @@ class FollowingListToVote: UITableViewController, FollowingListToVoteCellDelegat
                     }
                     self.checkedUsers.remove(at: indexToDelete)
                     
-                    print(self.checkedUsers[indexToDelete].displayName)
+                    print(" this is \(self.checkedUsers[indexToDelete].displayName), the index is  \(indexToDelete) to delete")
+                    self.checkedUsers.map({ print($0.displayName )})
                     print(self.checkedUsers.count)
-                    
                     print("go to uncheck box")
                     print("------")
 
@@ -124,6 +128,8 @@ class FollowingListToVote: UITableViewController, FollowingListToVoteCellDelegat
         }
 
     }
+    
+    
     
     /*
     // Override to support conditional editing of the table view.
