@@ -11,6 +11,12 @@ import FirebaseAuth
 
 class AccessContacts: UIViewController {
 
+    struct Song {
+       var name: String
+       var singer: String
+        var dataSet: [String: [String: Any]]
+    }
+    var songs = [Song(name: "一次就好", singer: "楊宗緯", dataSet: ["RR": ["AA": "BB", "CC": 11]]), Song(name: "兩次就好", singer: "楊宗緯", dataSet: ["RR": ["AA": "BB", "CC": 11]]), Song(name: "三次就好", singer: "楊宗緯", dataSet: ["RR": ["AA": "BB", "CC": 11]]), Song(name: "一次就好", singer: "彼得潘", dataSet: ["RR": ["AA": "BB", "CC": 11]])]
     
     var virtualUser: [User]?
     let contactDataSetInVirtualUser = [String : Any]()
@@ -42,16 +48,17 @@ class AccessContacts: UIViewController {
 //                            print("-------------")
 //
 //                        }
-//
-                        self.fetchVirtualUserPool(completion: { users, result in
+
+                        
+                        self.fetchVirtualUserPool(completion: { users, contactData in return
 //                            self.virtualUser = result
 //                            print(self.virtualUser)
 //                            var contactDataInVirtualUser = [String: Any]()
 
 
-                            for i in users! {
-
-//                                API.UserRef.db.collection("userList").document(Auth.auth().currentUser!.uid).collection("VirtualFollowingList").addDocument(data: i.phone!) { (error) in
+//                            for i in contactData! {
+//
+//                                API.UserRef.db.collection("userList").document(Auth.auth().currentUser!.uid).collection("VirtualFollowingList").addDocument(data: i) { (error) in
 //                                    if error == nil {
 ////                                        print(self.virtualUser?.count)
 //                                        print("write succesfully!")
@@ -59,9 +66,9 @@ class AccessContacts: UIViewController {
 //                                        print(error?.localizedDescription)
 //                                    }
 //                                }
-
-//                                print(i.phone)
-                            }
+//
+////                                print(i.phone)
+//                            }
 //                            print("-------------")
 
 //                            for item in result! {
@@ -111,16 +118,16 @@ class AccessContacts: UIViewController {
     }
     */
     
-    typealias virtualUserClosure = ([User]?, [String: Any]?) -> Void
+    typealias virtualUserClosure = ([User]?, [[String: Any]]?) -> Void
 
     func fetchVirtualUserPool(completion: @escaping virtualUserClosure) {
         var userResult = [User]()
-        var contactDataSet = [String: Any]()
+        var contactDataSet = [[String: Any]]()
         
         API.shared.loadContactData { (user, contactSet) in
             userResult.append(user)
 //            試著將聯繫人資料字典結構存成一個陣列
-            contactDataSet = contactSet
+            contactDataSet.append(contactSet)
             
             DispatchQueue.main.async() {
                 if userResult.isEmpty || contactDataSet.isEmpty {
@@ -129,10 +136,10 @@ class AccessContacts: UIViewController {
                 } else {
                     completion(userResult, contactDataSet)
 //                    print(contactDataSet)
-//                    for i in contactDataSet {
-//                        print(i)
-//                    }
-//                    print("---------")
+                    for i in contactDataSet {
+                        print(i)
+                    }
+                    print("---------")
 
                 }
             }
