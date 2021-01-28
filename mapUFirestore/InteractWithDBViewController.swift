@@ -61,14 +61,27 @@ class InteractWithDBViewController: UIViewController {
    
         
         }
+      
+       
        )
         
-          
         
     }
     
+//  檢查字串是否包含空白鍵
+    func findWhitespaces() {
+        let whitespace = NSCharacterSet.whitespaces
+        let phrase = self.inputTag.text!
+        let range = phrase.rangeOfCharacter(from: whitespace)
+        
+        if range == nil {
+            print("not found")
+        } else {
+            print("found whitespace")
+        }
+
+    }
     
-  
     
     
     typealias TagArrayClosure = ([Tag]?) -> Void
@@ -155,7 +168,8 @@ class InteractWithDBViewController: UIViewController {
             
             
         }else{
-            
+            findWhitespaces()
+
             db.collection("tagPoolDefault").addDocument(data: data)
          
             self.inputTag.text = ""
@@ -169,7 +183,7 @@ class InteractWithDBViewController: UIViewController {
         db.collection("tagPoolDefault").getDocuments { (querySnapshot, error) in
            if let querySnapshot = querySnapshot {
               for document in querySnapshot.documents {
-                print(document.data())
+//                print(document.data())
               }
            }
         }
