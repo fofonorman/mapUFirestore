@@ -68,21 +68,41 @@ class InteractWithDBViewController: UIViewController {
         
     }
     
-//  檢查字串是否包含空白鍵
-    func findWhitespaces() {
-        let whitespace = NSCharacterSet.whitespaces
+//  檢查字串是否符合格式
+    func checkInputText() {
         let phrase = self.inputTag.text!
-        let range = phrase.rangeOfCharacter(from: whitespace)
+
+        let newline = NSCharacterSet.newlines
+        let symbol = NSCharacterSet.symbols
+        let whitespace = NSCharacterSet.whitespaces
+        let whitespacesAndNewline = NSCharacterSet.whitespacesAndNewlines
+        let illegalCharacter = NSCharacterSet.illegalCharacters
+        let punctuationCharacter = NSCharacterSet.punctuationCharacters
         
-        if range == nil {
-            print("not found")
+        let stringCount = phrase.count
+        
+        let ifContainNewLine = phrase.rangeOfCharacter(from: newline)
+        let ifContainsymbol = phrase.rangeOfCharacter(from: symbol)
+        let ifContainWhitespace = phrase.rangeOfCharacter(from: whitespace)
+        let ifContainWhitespacesAndNewline = phrase.rangeOfCharacter(from: whitespacesAndNewline)
+        let ifContainIllegalCharacter = phrase.rangeOfCharacter(from: illegalCharacter)
+        let ifContainPunctuationCharacter = phrase.rangeOfCharacter(from: punctuationCharacter)
+
+        if ifContainWhitespace != nil ||
+           ifContainNewLine != nil ||
+           ifContainsymbol != nil ||
+           ifContainWhitespacesAndNewline != nil ||
+            ifContainIllegalCharacter != nil ||
+            ifContainPunctuationCharacter != nil ||
+            stringCount > 5 {
+            print("format not right")
         } else {
-            print("found whitespace")
+            print("OK format")
         }
 
     }
     
-    
+
     
     typealias TagArrayClosure = ([Tag]?) -> Void
 
@@ -168,8 +188,7 @@ class InteractWithDBViewController: UIViewController {
             
             
         }else{
-            findWhitespaces()
-
+            checkInputText()
             db.collection("tagPoolDefault").addDocument(data: data)
          
             self.inputTag.text = ""
