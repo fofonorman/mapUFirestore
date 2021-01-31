@@ -112,9 +112,9 @@ class FollowingListToVote: UITableViewController, FollowingListToVoteCellDelegat
                         print("no user to delete!")
                         return
                     }
+                    print("this is \(selectedUser.displayName) to delete")
                     self.checkedUsers.remove(at: indexToDelete)
                     
-                    print(" this is \(self.checkedUsers[indexToDelete].displayName), the index is  \(indexToDelete) to delete")
                     self.checkedUsers.map({ print($0.displayName )})
                     print(self.checkedUsers.count)
                     print("go to uncheck box")
