@@ -90,20 +90,20 @@ class sharedFunc{
         
         let monitor = NWPathMonitor()
         
-        if monitor.currentPath.status == .satisfied {
-print("有網路")
-            
-        } else {
-            print("沒網路")
-        }
-        
-        if monitor.currentPath.usesInterfaceType(.wifi) {
-            print("wifi")
-        } else if monitor.currentPath.usesInterfaceType(.cellular) {
-            print("cellular")
-        } else {
-            print("wierßd")
-        }
+//        if monitor.currentPath.status == .satisfied {
+//print("有網路")
+//
+//        } else {
+//            print("沒網路")
+//        }
+//
+//        if monitor.currentPath.usesInterfaceType(.wifi) {
+//            print("wifi")
+//        } else if monitor.currentPath.usesInterfaceType(.cellular) {
+//            print("cellular")
+//        } else {
+//            print("wierßd")
+//        }
         
         monitor.pathUpdateHandler = { path in
             

@@ -50,7 +50,7 @@ class AccessContacts: UIViewController {
 //                        }
 
                         
-                        self.fetchVirtualUserPool(completion: { users, contactData in return
+//                        self.fetchVirtualUserPool(completion: { users, contactData in return
 //                            self.virtualUser = result
 //                            print(self.virtualUser)
 //                            var contactDataInVirtualUser = [String: Any]()
@@ -76,7 +76,7 @@ class AccessContacts: UIViewController {
 //////                                print(self.virtualUser?.count)
                      
 //                            }
-                        })
+//                        })
                        
                     }
     
@@ -132,14 +132,14 @@ class AccessContacts: UIViewController {
             DispatchQueue.main.async() {
                 if userResult.isEmpty || contactDataSet.isEmpty {
                     completion(nil, nil)
-                    print("no contact!")
+//                    print("no contact!")
                 } else {
                     completion(userResult, contactDataSet)
 //                    print(contactDataSet)
                     for i in contactDataSet {
-                        print(i)
+//                        print(i)
                     }
-                    print("---------")
+//                    print("---------")
 
                 }
             }
